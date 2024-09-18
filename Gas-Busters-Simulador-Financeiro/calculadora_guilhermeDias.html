@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador</title>
+</head>
+<body>
+    <h1>Simulador Financeiro - GasBusters </h1><hr>
+
+    <h4>Informe o seu nome/nome da empresa: </h4>
+    <input id="input_nomeEmpresa" placeholder="Insira o nome">
+    
+    <h4>Informe o valor investido para montar a cozinha: </h4>
+    <input type="number" id="input_investCozinha" placeholder="Insira o valor investido">
+
+    <h4>Informe a quantidade de colaboradores: </h4>
+    <input id="input_quantiColaborador" placeholder="Insira o total de trabalhador">
+
+    <h4>Informe o gasto média por mês com cada trabalhador: </h4>
+    <input id="input_gastoFunc" placeholder="Insira o gasto com trabalhadores"><br><br>
+
+    <button onclick="ExibirSimulacao()">Gerar Simulação</button><br>
+
+    <div id="div_transição">
+        <h1></h1>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function ExibirSimulacao() {
+        const nomeCliente = input_nomeEmpresa.value;
+        console.log(nomeCliente);
+        const investimentoCozinha = Number(input_investCozinha.value);
+        console.log(investimentoCozinha);
+        const qtdTrabalhador = Number(input_quantiColaborador.value);
+        console.log(qtdTrabalhador);
+        const gastoTrabalhador = Number(input_gastoFunc.value);
+        console.log(gastoTrabalhador);
+        var gastoTrabAnual = gastoTrabalhador * 12; 
+        var gastoAnual = gastoTrabAnual;//sálario anual
+        const multaNormas = 15000; //média
+        const valorInvalidez = 54000; //média - cálculo invalidez
+        const valorAcidenteGrave = 65000; //média
+        const despesaMedica = 21666; //média despesas médicas
+
+        var PTcozinha = investimentoCozinha + multaNormas ; //calculo prejuízo cozinha
+        var morte = gastoTrabAnual * 15 ; //cálculo morte 
+        var TotalAcidenteGrave = valorAcidenteGrave + despesaMedica; 
+        var totalInvalidez = valorInvalidez + despesaMedica ; 
+
+        div_transição.innerHTML=`Olá, ${nomeCliente}, seu investimento na cozinha é de ${investimentoCozinha}, 
+        voce tem ${qtdTrabalhador}, o seu gasto médio é de ${gastoTrabalhador}, o seu gasto anual é de ${gastoTrabAnual}
+        e ${gastoAnual}, a multa por infrigir as normas é de ${multaNormas}, o valor médio em acidentes de invalidez é de ${valorInvalidez}, 
+        o valor médio em acidentes graves é de ${valorAcidenteGrave}, e o valor das despesas médicas é de ${despesaMedica}, 
+        o valor da perda total da cozinha é de ${PTcozinha}, o valor total em caso de morte é de ${morte}, o valor total 
+        em caso de acidente grave é de ${TotalAcidenteGrave}, e o valor total em caso de invalidez é de ${totalInvalidez}, 
+        valeu.`;
+    }
+</script>

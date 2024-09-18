@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financeiro</title>
+  </head>
+
+  <body>
+    <div>
+      <label for="valorCozinhaInput">Valor da cozinha: </label>
+      <input type="text" name="" id="valorCozinhaInput" />
+    </div>
+
+    <div>
+      <label for="qtdFuncionarioInput">Quantidade de Funcionarios: </label>
+      <input type="text" name="" id="qtdFuncionarioInput" />
+    </div>
+
+    <div>
+      <label for="faturamentoDiarioInput">Faturamento Diário: </label>
+      <input type="text" name="" id="faturamentoDiarioInput" />
+    </div>
+
+    <div>
+      <label for="diasParadoInput">Dias parado (estimativa): </label>
+      <input type="text" name="" id="diasParadoInput" />
+    </div>
+
+    <button onclick="handleCalculo()">Calcular Prejuizo</button>
+
+    <div id="text"></div>
+  </body>
+</html>
+
+<script>
+  function handleCalculo() {
+    const valorCozinha = Number(valorCozinhaInput.value);
+    const qtdFuncionario = Number(qtdFuncionarioInput.value);
+    const faturamentoDiario = Number(faturamentoDiarioInput.value);
+    const diasParado = Number(diasParadoInput.value);
+
+    const reparacaoCozinha = valorCozinha * 0.90;
+    const indenizacaoFuncionario = 100000 * qtdFuncionario;
+    const perdaFaturamento = faturamentoDiario * diasParado;
+
+    const valorTotal =
+      reparacaoCozinha + indenizacaoFuncionario + perdaFaturamento;
+
+    text.innerHTML = `
+      <p>Mais da metade da cozinha pode ser comprometida em caso de incidentes com gás. A reparação da cozinha pode chegar a: R$${reparacaoCozinha.toFixed(2)}</p>
+      <p>O valor da indenização para os seus funcionários pode variar entre R$30.000 e R$100.000. Você pode chegar a pagar para os seus funcionários o valor de: R$${indenizacaoFuncionario.toFixed(2)}</p>
+      <p>Se a cozinha ficar parada por ${diasParado} dias, você pode perder em faturamento: R$${perdaFaturamento.toFixed(2)}</p>
+      <p>Total de prejuízo estimado: R$${valorTotal.toFixed(2)}</p>
+      <p>Além disso, o proprietário do prédio pode arcar com as despesas médicas, danos morais e materiais dos clientes.</p>
+      `;
+  }
+</script>

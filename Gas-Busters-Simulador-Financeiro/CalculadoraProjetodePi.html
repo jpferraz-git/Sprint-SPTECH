@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Divs com Inputs</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Você prefere uma calculadora para a sua cozinha mais</h1> <br>
+
+        <button style="font-size: 24px; padding: 15px 30px;" id="botao1">Pratica</button>
+        <button style="font-size: 24px; padding: 15px 30px;" id="botao2">Precisa</button>
+    </center>
+
+    <div id="div1" class="hidden">
+        <div id="Simulacão"></div>
+        <div id="ComecarConta">
+            <h1> Bem vindo(a) à simulação financeira da sua cozinha</h1> <br>
+            Para começarmos, por favor coloque seu nome <br>
+            <input id="input_nome"> <br>
+            Agora, coloque o nome da sua cozinha/empresa <br>
+            <input id="input_nome_empresa"> <br>
+            <button onclick="start()">Começar</button>
+        </div> <br>
+
+
+
+        <script>
+
+            function start() {
+                const Nome = input_nome.value
+                const nome_empresa = input_nome_empresa.value
+                Simulacão.innerHTML =
+                    `<h1> Bem-vindo, ${Nome}, à simulação financeira do(a) ${nome_empresa} </h1> 
+                        <br>`
+                ComecarConta.innerHTML = ` Agora precisamos que você coloque o valor que você investiu na sua cozinha industrial <br>
+                        <input id="input_investidoCozinha"> <br>
+                         Coloque a quantidade de funcionarios que você possue em sua cozinha. <br>
+                        <input id="input_qtd_funcionarios"> <br>
+                        <button onclick="Comecar2()"> Realizar Simulação</button>`
+            }
+
+            function Comecar2() {
+
+                const ValorInvestido = Number(input_investidoCozinha.value)
+                const Funcionarios = Number(input_qtd_funcionarios.value)
+                var preçoMultaFuncionarioMinimo = Funcionarios * 30000
+                var PreçoMultaFuncionarioMaximo = Funcionarios * 65000
+                var multaEquipamento = 15000
+                var PreçoGrave = preçoMultaFuncionarioMinimo + ValorInvestido
+                var PreçoGravissimo = PreçoMultaFuncionarioMaximo + ValorInvestido
+
+                ComecarConta.innerHTML = `Olá,
+        
+        Realizamos a sua simulação e apresentamos os seguintes cenários para a sua cozinha: <br>
+        
+        <h4> Fiscalização pelo Ministério do Trabalho e Corpo de Bombeiros:</h4> Se houver uma fiscalização e for constatada a falta de equipamentos de segurança e monitoramento (incluindo o controle do gás), será aplicada uma multa. O valor médio dessa multa é de ${multaEquipamento.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}. <br>
+        
+        <h4>Explosão devido a vazamento de gás:</h4> Se ocorrer uma explosão devido a um vazamento de gás em seu estabelecimento e isso resultar em danos graves ou gravíssimos aos seus funcionários, você terá que pagar uma indenização. O valor da total a pagar, no seu caso seria ${PreçoGrave.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })} para acidentes graves e ${PreçoGravissimo.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })} para acidentes gravíssimos. Lembrando que esse cálculo é feito somando o valor da multa (R$ 30.000 para grave e R$ 65.000 para gravissimos) vezes o número de funcionários, mais o valor da sua cozinha.
+        
+        <h4>Fatalidade devido à falta de monitoramento de gás:</h4> Se houver uma fatalidade devido à falta de monitoramento de gás, você terá que pagar o salário integral do funcionário falecido para a família dele por pelo menos 15 anos, além de uma ajuda financeira adicional se o funcionário tiver filhos. <br> <br> <br>
+        
+        Para evitar esses cenários e garantir a segurança da sua cozinha, recomendamos assinar um contrato conosco. O custo médio dos nossos serviços para a sua empresa é de R$100.000, e o sistema será implementado em até 4 meses. <br> <br>
+        
+        Caso tenha interesse, acesse o link abaixo para converçar com um de nossos funcionários: <br> 
+        <br>   <a href="https://wa.me/qr/PHBTJMBOD4UQM1">Contato</a> >`
+
+
+            }  
+        </script>
+
+
+</body>
+
+</html>
+</div>
+<a href=""></a>
+<div id="div2" class="hidden">
+
+
+    <div id="Calculo">
+        <center>
+            <h1>Bem-vindo(a) à simulação financeira da sua cozinha</h1>
+            <h2>Simular prejuízos em uma eventual incidente (vazamento sem/com explosão) com especificações detalhadas
+            </h2>
+            <table>
+                <tr>
+                    <td><label for="input_nomeestabelecimento">Nome da sua cozinha: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="text" id="input_nomeestabelecimento"
+                            placeholder="Nome da sua cozinha" style="margin-right: 10px;"></td>
+                    <td><label for="input_valorcozinha">Valor da sua cozinha: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_valorcozinha"
+                            placeholder="Valor da sua cozinha" style="margin-right: 10px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="input_numerofuncionários">Número de funcionários: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_numerofuncionários"
+                            placeholder="Número de funcionários" style="margin-right: 10px;"></td>
+                    <td><label for="input_mediaclientes">Número médio de clientes: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_mediaclientes"
+                            placeholder="Número médio de clientes" style="margin-right: 10px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="input_tamanhocozinha">Tamanho cozinha (m²): </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_tamanhocozinha"
+                            placeholder="Tamanho cozinha (m²)" style="margin-right: 10px;"></td>
+                    <td><label for="input_tamanhoeplosao">Raio da explosão (%): </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_tamanhoeplosao"
+                            placeholder="Raio da explosão (%)" style="margin-right: 10px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="input_numerosaidasdegas">Quantas saídas de gás: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_numerosaidasdegas"
+                            placeholder="Quantas saídas de gás" style="margin-right: 10px;"></td>
+                    <td><label for="input_numerobutjao">Número de butijões: </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_numerobutjao"
+                            placeholder="Número de butijões" style="margin-right: 10px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="input_tempo">Tempo (minutos): </label><input
+                            style="font-size: 15px; padding: 10px 25px;" type="number" id="input_tempo"
+                            placeholder="Tempo (minutos)" style="margin-right: 10px;"></td>
+                </tr>
+            </table>
+            <br><br>
+            <button onclick="verprejuizos()">Veja Estimativa de Prejuízo</button>
+            <br><br>
+        </center>
+    </div>
+
+    </html>
+    <script>
+        function verprejuizos() {
+            const nome = input_nomeestabelecimento.value
+            const valor = Number(input_valorcozinha.value)
+            const funcionários = Number(input_numerofuncionários.value)
+            const clientes = Number(input_mediaclientes.value)
+            const tamanhocozinha = Number(input_tamanhocozinha.value)
+            const explosao = Number(input_tamanhoeplosao.value)
+            const butijao = Number(input_numerobutjao.value)
+            const saidagas = Number(input_numerosaidasdegas.value)
+            const tempo = Number(input_tempo.value)
+
+            const multasemEPI = 150_500
+            const danosmorais = 152_500
+
+            var explosaoPorcentagem = explosao / 100
+            var custoreparo = (valor / (tamanhocozinha * explosaoPorcentagem)) * 2
+            var custorep = custoreparo.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+
+            var preçoBOTJA = 600
+            preçoBOTJA.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+            var pesoBOTJA = 45
+            pesoBOTJA.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+
+            var customateriaprima = (((tempo / 60) * 2) / pesoBOTJA) * (preçoBOTJA * butijao)
+            var customat = customateriaprima.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+
+            var pessoasmetroquadrado = (tamanhocozinha / (funcionários + clientes))
+            var pessoasm2 = pessoasmetroquadrado.toFixed(0)
+
+            var pessoasferidas = (clientes + funcionários) * explosaoPorcentagem 
+            var pessoasferi = pessoasferidas.toFixed(0)
+
+
+            var CLIENTESFERIDOS = tamanhocozinha / clientes
+            var PESSOASM2= CLIENTESFERIDOS
+            var DESTRUIÇÃO = tamanhocozinha * explosaoPorcentagem
+            var CLIENTESFERIDAS = DESTRUIÇÃO / PESSOASM2
+            var CLIENTESFERIDASFIX = CLIENTESFERIDAS.toFixed(0)
+
+            var FUNCIONARIOFERIDOS = tamanhocozinha / funcionários
+            var FUNCIONARIOSM2 = FUNCIONARIOFERIDOS
+            var DESTRUIÇÃO = tamanhocozinha * explosaoPorcentagem
+            var FUNCIONARIOSFERIDOS = DESTRUIÇÃO / FUNCIONARIOSM2
+            var FUNCIONARIOSFERIDOSFIX = FUNCIONARIOSFERIDOS.toFixed(0)
+
+
+
+
+
+
+
+            var sensores = saidagas
+
+            var inicialmult = 15000
+            inicialmult.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+            var incapaz = 54000
+            incapaz.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+            var gravissimo = 65000
+            gravissimo1 = gravissimo.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+            console.log(gravissimo)
+
+
+
+
+            var custosini = pessoasferidas * inicialmult
+            var custosincapazFuncionários = FUNCIONARIOSFERIDOSFIX * incapaz
+            var custosincapazClientes = CLIENTESFERIDASFIX * incapaz
+            var custosgravissimos = pessoasferidas * gravissimo
+
+
+
+
+
+            const despesaMedica = 21666
+            despesaMedica.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+
+            var totalapagarminimo = custoreparo + customateriaprima + custosini + despesaMedica
+            var totalminimo = totalapagarminimo.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+            var totalapagarmaximo = custoreparo + customateriaprima + custosgravissimos + despesaMedica
+            var totalmaximo = totalapagarmaximo.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })
+
+            Calculo.innerHTML = `<h1>Olá ${nome}, nós da GasBusters realizamos a sua simulação e apresentamos os seguintes cenários para a sua cozinha: </h1> 
+           
+            Em uma cozinha de valor  ${valor.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}, com numero de funcionários ${funcionários}, e 
+            o número de clientes ${clientes} , e com o tamanho da cozinha em ${tamanhocozinha} m²,
+            <h2>Se o prejuízo foi apenas de material</h2>
+            Se não houver explosão o total de prejuízo material com base em médias é ${customat}.
+            <br><br>
+            <h3>Se não houver o uso de epi, a média de multa a ser paga entre multa inicial, grave e gravissima é de mais R$152.500. </h3>
+        
+            <h2>Se houve uma explosão na cozinha </h2>
+            <h3>Gasto com reparos</h3>
+            Os gastos com reparos é de ${custorep}, além do gasto com matéria prima de ${customat}.<br><br>
+            <h3>Total de feridos e multas gerais</h3>
+            O total de pessoas feridas é de ${pessoasferi}
+
+            Com base na média do número de pessoas feridas ${pessoasferi}, o total de multas a pagar é de
+            a partir de ${custosini.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}.<br> 
+            Em casos de inválidez de funcionários, a soma das indenizações é de ${custosincapazFuncionários.toLocaleString("pt-BR" , { style: 'currency', currency: 'BRL' })} + compensasão por renda perdida (determinada por juíz), <br>
+            Em casos de inválidez de clientes, a soma das indenizações é de ${custosincapazClientes.toLocaleString("pt-BR" , { style: 'currency', currency: 'BRL' })} + compensasão se constatada negligência. <br>
+            Em casos gravissimos ,chegando a ${custosgravissimos.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}, em todos os 3 casos deve ser pago as despesas médicas que em média custa ${despesaMedica.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}. <BR>
+            Totalizando em despesas no minimo ${totalminimo}, podendo chegar a ${totalmaximo} + 15 anos de salário integral para as famílias afetadas dos colaboradores durante 15 anos. <BR>
+            Situação que pode ser evitada com ${sensores} sensores.<br><br>
+                             
+            <h4>Fatalidade devido à falta de monitoramento de gás:</h4> Se houver uma fatalidade devido à falta de monitoramento de gás, você terá que pagar o salário integral do funcionário falecido para a família dele por pelo menos 15 anos, além de uma ajuda financeira adicional se o funcionário tiver filhos. <br> <br> <br>
+                
+            Esses valores podem váriar de acordo com decisões judiciárias, sendo recomendado consulta com advogados. <br>
+           
+            Para evitar esses cenários e garantir a segurança da sua cozinha, recomendamos assinar um contrato conosco. O custo médio dos nossos serviços para a sua empresa é de R$100.000, e o sistema será implementado em até 4 meses. <br> <br>
+            Para saber mais informações entre em contato com a gente através do.
+            <a href="https://wa.me/qr/PHBTJMBOD4UQM1">Contato</a> <div></div> <img src=""> `
+
+
+
+
+        }
+    </script>
+</div>
+
+<script>
+
+    function mostrarDiv(divId) {
+
+        document.getElementById('div1').classList.add('hidden');
+        document.getElementById('div2').classList.add('hidden');
+
+
+        document.getElementById(divId).classList.remove('hidden');
+    }
+
+    document.getElementById('botao1').addEventListener('click', function () {
+        mostrarDiv('div1');
+    });
+
+    document.getElementById('botao2').addEventListener('click', function () {
+        mostrarDiv('div2');
+    });
+</script>
+</body>
+
+</html>
