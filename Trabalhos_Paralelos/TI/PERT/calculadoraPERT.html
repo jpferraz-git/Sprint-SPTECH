@@ -128,6 +128,6 @@
 
         var total = (pessimista+4*provavel+otimista)/6
 
-        divSaida.innerHTML=`<br><hr><h2>A média PERT é de <u>${total} ${select}</u>.</h2>`
+        divSaida.innerHTML=`<br><hr><h2>A média PERT é de <u>${Math.round(total,2)} ${select}</u>.</h2>`
     }
 </script>
