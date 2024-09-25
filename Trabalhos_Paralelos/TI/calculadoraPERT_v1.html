@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora PERT</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+    body{
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        /*background-color: #324ab2;*/
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        color:#555;
+        /*text-shadow:0.5px 0.5px #c4c4c4;*/        
+    }
+    input{
+        border-color: #555;
+        border-width: 1px;
+        border-radius: 3px;
+        border-style:dotted;
+        width: 100%;
+        color:#555;
+
+    }
+    select{
+        background-color: #fff;
+        color:#555;
+        border-radius: 3px;
+        width: 100%;
+    }
+    button{
+        width: 100%;
+        background-color: #fff;
+        border-radius: 3px;
+        border: 1px solid #324ab2;
+        color: #324ab2;
+        text-transform: uppercase;        
+    }
+    button:hover{
+        background-color: #324ab2;
+        color:#fff;
+        cursor: pointer;
+    }
+    .calculadora{
+    background-color: #fff;
+    border-radius: 30px;
+    width: fit-content;
+    padding: 20px;
+    margin: 2%;
+    box-shadow:2px 2px 2px rgb(0,0,0,0.3);
+    text-shadow:0.5px 0.5px #c4c4c4;
+    }
+    .h1{
+        color:#fff;
+        text-transform: uppercase;
+        text-justify: newspaper;
+        letter-spacing: 3px;
+    }
+    h2{
+        text-transform: uppercase;
+    }
+    footer{        
+        position:absolute;
+        left:0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        text-transform: uppercase;
+        margin-bottom: 0.5%;
+    }
+    .tudo-vert{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+    <center>
+        <div class="">
+        <h1 class="h1">Calculadora Pert</h1>
+<div id="calculadora" class="calculadora">
+    <center>
+    <text style="text-transform: uppercase;">Métrica pessimista</text>
+    <input type="number" id="inputP">
+    <br><br>
+    <text style="text-transform:uppercase;">Métrica mais provável</text>
+    <input type="number" id="inputM">
+    <br><br>
+    <text style="text-transform:uppercase;">Métrica otimista</text>
+    <input type="number" id="inputO"></center>
+    <br><br>
+    <center>
+    <select id="selectUnidade">
+        <option value="minutos">minutos</option>
+        <option value="dias">dias</option>
+        <option value="semanas">semanas</option>
+        <option value="reais">reais</option>
+    </select></center>
+    <br>
+    <center><button onclick="calcular()">Calcular</button></center>
+    <div id="divSaida">
+    </div>
+</div>
+</div>
+</center>
+<footer style="color:#fff;text-decoration: none;">SPTech - Setembro 2024 - 1ADSA
+    <br>
+    Grupo 4: João Pedro Ferraz - Lucas Aiello - Lucas Pereira - Miguel Angel - Shelly Nadudvari - Thiago Sanchez
+</footer>
+</body>
+</html>
+<script>
+    function calcular(){
+        const pessimista = Number(inputP.value)
+        const provavel = Number(inputM.value)
+        const otimista = Number(inputO.value)
+        const select = selectUnidade.value
+
+        var total = (pessimista+4*provavel+otimista)/6
+
+        divSaida.innerHTML=`<br><hr><h2>A média PERT é de <u>${total} ${select}</u>.</h2>`
+    }
+</script>
