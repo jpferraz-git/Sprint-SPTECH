@@ -38,11 +38,7 @@ if (porcentagem < 0){
 // Garante que a porcentagem não exceda os limites de 0% e 100%. 
 // Isso é útil para lidar com valores fora do intervalo esperado, garantindo que o resultado esteja dentro da faixa desejada. 
 
-  Serial.print("Valor de Saida do Sensor: "); 
-  Serial.print(valorSensor); 
-  Serial.print(" -> Porcentagem: "); 
-  Serial.print(porcentagem); 
-  Serial.println("%"); 
+Serial.println(porcentagem); 
 // Serial.print("Valor de Saida do Sensor: "); ... Serial.println("%"); 
 // Imprime o valor lido do sensor e a porcentagem correspondente no monitor serial. 
 
