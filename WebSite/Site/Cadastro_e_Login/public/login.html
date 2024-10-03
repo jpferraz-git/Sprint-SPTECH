@@ -9,23 +9,28 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="login">
-            <div class="titulo">
-                <h1>Login</h1>
-            </div>
-            <div class="campo">
-                <p>E-mail</p>   
-                <input type="email" id="input_email">
-            </div>
-            <div class="campo">
-                <p>Senha</p>
-                <input type="password" id="input_senha">
-            </div>
-            <div class="btn-entrar-cadastrar">
-                <button>
-                    Entrar
-                </button>
+    <div class="login">
+        <div class="container">
+            <form>
+                <div class="titulo">
+                    <h1>Login</h1>
+                </div>
+                <div class="campo">
+                    <img src="assets/envelope.png" alt="">
+                    <input required type="email" id="input_email" placeholder="E-mail">
+                </div>
+                <div class="campo">
+                    <img src="assets/key.png" alt="">
+                    <input required type="password" id="input_senha" placeholder="Senha">
+                </div>
+                <div class="btn-entrar-cadastrar">
+                    <button type="submit">
+                        Entrar
+                    </button>
+                </div>
+            </form>
+            <div class="mensagem-cadastro">
+                <p>Primeira vez por aqui? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
         </div>
     </div>
