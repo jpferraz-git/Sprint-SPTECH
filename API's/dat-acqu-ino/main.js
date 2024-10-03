@@ -11,7 +11,7 @@ const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
 // habilita ou desabilita a simulação de dados sem Arduino
-const SIMULAR_ARDUINO = true;
+const SIMULAR_ARDUINO = false;
 
 // função para comunicação serial
 const serial = async (
@@ -74,8 +74,8 @@ const serial = async (
         // processa os dados recebidos do Arduino
         arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
             console.log(data);
-            const valores = data.split(';');
-            const sensorAnalogico = parseFloat(valores[1]);
+            const valores = data;
+            const sensorAnalogico = parseFloat(valores);
 
             // armazena os valores dos sensores nos arrays correspondentes
             valoresSensorAnalogico.push(sensorAnalogico);
