@@ -33,7 +33,7 @@ const serial = async (
     if (SIMULAR_ARDUINO) {
         // Simula dados do sensor
         setInterval(() => {
-            const sensorAnalogico = (Math.random() * 100).toFixed(2);  // valor entre 0 e 100
+            const sensorAnalogico = 0;  // valor entre 0 e 100
             valoresSensorAnalogico.push(parseFloat(sensorAnalogico));
             console.log(`Simulação de valores, Sensor Analógico: ${sensorAnalogico}`);
 
