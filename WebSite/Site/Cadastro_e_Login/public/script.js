@@ -15,7 +15,7 @@ function trocarImgCheckSenha(){
 }
 
 function gerarSenha(){
-    const caracateres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$&*-!'
+    const caracateres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$&*-!123456789'
     var senha_gerada = ''
     
     for (var i = 0; i <= 8; i++){
