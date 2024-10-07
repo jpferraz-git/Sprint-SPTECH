@@ -89,6 +89,15 @@ form{
     border-radius: 0 15px 15px 0;
 }
 
+.link-senha{
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.link-senha a{
+    font-weight: 650;
+}
+
 .titulo{
     color: #cb0000;
 }
@@ -107,12 +116,12 @@ form{
     border-radius: 18px;
     box-shadow: 1px 1px 5px #a9a9a9;
     padding: 4.5px;
-    margin: 0;
     margin: 7px 0 7px 0;
 }
 
 .campo img{
     width: 7%;
+    margin-inline: 3%;
 }
 .campo input{
     font-family: 'Montserrat', sans-serif;
@@ -124,6 +133,11 @@ form{
     margin-left: 6px;
     font-size: 14.5px;
 }
+
+.campo input[type="password"]::-ms-reveal {
+    display: none;
+  }
+  
 
 .campo input:focus{
     outline: none;

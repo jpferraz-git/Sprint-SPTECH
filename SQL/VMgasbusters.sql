@@ -30,7 +30,6 @@ insert into cadastro values
 -- Tabela para acrescentar a quantidade de sensores e seus respectivo cliente 
 create table sensorMQ2(
 idSensor		int primary key auto_increment,
-nome		 	varchar(20) NOT NULL,
 statusSensor 	varchar(10),
 fkCadastro		int,
 foreign key (fkCadastro) references cadastro(idCadastro),
