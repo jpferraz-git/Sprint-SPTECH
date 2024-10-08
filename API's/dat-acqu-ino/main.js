@@ -11,7 +11,7 @@ const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
 // habilita ou desabilita a simulação de dados sem Arduino
-const SIMULAR_ARDUINO = false;
+const SIMULAR_ARDUINO = true;
 
 // função para comunicação serial
 const serial = async (
@@ -21,10 +21,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
             {
                 host: '127.0.0.1',
-                user: 'funcGasBuster',
-                password: 'urubu100',
-                database: 'gasbusters',
-                port: 3306
+                user: 'aluno',
+                password: 'Sptech#2024',
+                database: 'GasBusters',
+                port: 3307
             }
         ).promise();
 
@@ -86,6 +86,7 @@ const serial = async (
             console.log(data);
             const valores = data;
             const sensorAnalogico = parseFloat(valores);
+            
 
             // armazena os valores dos sensores nos arrays correspondentes
             valoresSensorAnalogico.push(sensorAnalogico);
