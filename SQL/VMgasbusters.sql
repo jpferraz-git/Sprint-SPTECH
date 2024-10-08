@@ -1,51 +1,70 @@
--- criação do bando de dados
-create database gasbusters;
+CREATE DATABASE gasbusters;
+USE gasbusters;
 
--- usar o banco de dados selecionado
-use gasbusters;
-
--- criação da tabela de cadastro do cliente para que ele possa usar como acesso no site 
-create table cadastro (
-idCadastro	int primary key auto_increment,
-nome		varchar(45),
-email		varchar(100),
-telefone	varchar(14),
-senha		varchar(45),
-cnpj		varchar(18),
-/*dados da localização*/
-cep			varchar(10),
-endereço	varchar(150),
-numero 		varchar(20),
-bairro		varchar(50),
-cidade 		varchar(50),
-UF 			char(2),
-/*Sensor quantidade*/
-qtdSensor	int	
+CREATE TABLE empresas (
+idEmpresa 		INT AUTO_INCREMENT PRIMARY KEY,
+nomeEmpresa 	VARCHAR(100),
+cnpj			VARCHAR(18),
+cidade			Varchar(50),
+bairro			VARCHAR(50),
+uf				CHAR(2),
+rua				VARCHAR(100),
+numero 			VARCHAR(6),
+cep				VARCHAR(9),
+telefoneEmpresa VARCHAR(20),
+emailEmpresa 	VARCHAR(100),
+dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-insert into cadastro values
-(default,'Miguel','Miguel@sptech','(11)954854326','senha@sptech','47.450.241/0001-04',
-'03045002','rua haddok','777','paulista','São Paulo','SP',1);
 
--- Tabela para acrescentar a quantidade de sensores e seus respectivo cliente 
-create table sensorMQ2(
-idSensor		int primary key auto_increment,
-statusSensor 	varchar(10),
-fkCadastro		int,
-foreign key (fkCadastro) references cadastro(idCadastro),
-constraint chkStatus check(statusSensor in('Ativo', 'Inativo'))
+CREATE TABLE usuarios (
+idUsuario 		INT AUTO_INCREMENT PRIMARY KEY,
+nome 			VARCHAR(100),
+telefonePessoa 	VARCHAR(20),
+cpf				VARCHAR(14),
+dtNascimento 	DATE,
+emailPessoal 	VARCHAR(100),
+senha 			VARCHAR(30),
+dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fkEmpresa 		INT,
+FOREIGN KEY (fkEmpresa) REFERENCES empresas(idEmpresa)
 );
 
-insert into sensorMQ2 values
-(default,'Sensor 1','Ativo',1);
 
--- tabela para coletar os dados do sensor
-create table medida(
-idMedida			int primary key auto_increment,
-sensor_analogico	float,
-fkSensor			int,
-foreign key (fkSensor) references sensorMQ2(idSensor)
+CREATE TABLE cozinhas (
+idCozinha 			INT AUTO_INCREMENT PRIMARY KEY,
+tipoCozinha 		VARCHAR(15),
+numeroFuncionarios	INT,
+observacoes			TEXT,
+entradaGas			INT, 
+fkEmpresa			INT,
+dtCriacao 			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (fkEmpresa) REFERENCES empresas(idEmpresa),
+CHECK (tipoCozinha IN ('Industrial', 'Comercial'))
 );
--- a inserção da tabela acima (medida) sera feita pelo programa que coletara os dados e iram automaticamente inserir. 
 
-select * from medida;
+
+
+CREATE TABLE sensores (
+idSensor 		INT AUTO_INCREMENT PRIMARY KEY,
+nomeSensor		VARCHAR(50),
+localInstalacao VARCHAR(255),
+sensorStatus 	VARCHAR(20),
+dtInstalacao	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fkEmpresa		INT,
+fkCozinha		INT,
+FOREIGN KEY (fkEmpresa) REFERENCES empresas(idEmpresa),
+FOREIGN KEY (fkCozinha) REFERENCES cozinhas(idCozinha),
+CHECK (sensorStatus IN ('Ativo', 'Inativo')) 
+);
+
+
+CREATE TABLE medida (
+idMedida		 INT AUTO_INCREMENT PRIMARY KEY,
+sensor_analogico FLOAT,
+dtLeitura		 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fkSensor		 INT,
+FOREIGN KEY (fkSensor) REFERENCES sensores(idSensor) 
+);
+
+
