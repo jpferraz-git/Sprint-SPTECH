@@ -11,12 +11,12 @@
     <h1>Graphics</h1>
     <div style="display: flex; justify-content: center;">
         <div style="width: 50%;">
-            <canvas id="sensorAnalogico"></canvas>
+            <canvas id="graficoSensor"></canvas>
         </div>
     </div>
 
     <script>
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+        var sensorAnalogico = new Chart(document.getElementById('graficoSensor').getContext('2d'), {
             type: 'line',
             data: {
                 datasets: [{

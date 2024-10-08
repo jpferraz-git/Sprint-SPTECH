@@ -18,16 +18,26 @@ const serial = async (
     valoresSensorAnalogico
 ) => {
 
-    // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
-        {
-            host: '127.0.0.1',
-            user: 'aluno',
-            password: 'Sptech#2024',
-            database: 'gasbusters',
-            port: 3307
-        }
-    ).promise();
+            {
+                host: '127.0.0.1',
+                user: 'root',
+                password: 'root',
+                database: 'gasbusters',
+                port: 3306
+            }
+        ).promise();
+
+    // conexão com o banco de dados MySQL
+    // let poolBancoDados = mysql.createPool(
+    //     {
+    //         host: '127.0.0.1',
+    //         user: 'aluno',
+    //         password: 'Sptech#2024',
+    //         database: 'gasbusters',
+    //         port: 3307
+    //     }
+    // ).promise();
 
     // PARA HABILITAR A 'IF' ABAIXO, COLOQUE (TRUE) NO 'SIMULAR_ARDUINO'
     if (SIMULAR_ARDUINO) {
