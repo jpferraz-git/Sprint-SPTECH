@@ -19,11 +19,13 @@
         var sensorAnalogico = new Chart(document.getElementById('graficoSensor').getContext('2d'), {
             type: 'line',
             data: {
-                datasets: [{
-                    label: 'Analogico',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
-                }]
+                datasets: [
+                    {
+                        label: 'Nível de Gás',
+                        borderColor: '#ED145B',
+                        backgroundColor: '#ED145B'
+                    }
+                ]
             },
             options: {
                 scales: {
@@ -41,7 +43,7 @@
             }
         });
 
-       
+
         var paginacao = {};
         var tempo = {};
 
@@ -76,7 +78,6 @@
 
         setInterval(() => {
             obterDados(sensorAnalogico, 'analogico');
-            obterDados(sensorDigital, 'digital');
         }, 1000);
 
     </script>
