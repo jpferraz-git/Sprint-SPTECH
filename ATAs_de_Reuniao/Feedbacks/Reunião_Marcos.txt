@@ -1,0 +1,51 @@
+# Documentação
+
+Mudar a posição do gráfico de explosão das cozinhas. Colocar no topo do contexto.
+
+Foca no “resultado” do problema.
+
+Reforça o por que do projeto. Pra quê?
+
+Redução de até…
+
+Chamar a atenção para o problema que não ter o sensor causa. Multa por falta de segurança.
+
+Melhora da justificativa. Colocar os valores. E lembrar o cliente sobre a multa.
+
+Vazamento, explosão e regulatório.
+
+Mudar premissa de lugar, colocar depois do escopo.
+
+Contexto, objetivo, justificativa, escopo, premissa, restrição, requisito, backlog, …
+
+Colocar software e hardware no escopo.
+
+Modificar premissa. Ela precisa ser exata, não podemos deixar duvidas.
+
+Premissa é algo para o escopo nascer.
+
+A equipe fará um mapeamento da infraestrutura do local para saber em quais pontos devem haver a instalação do sensor.
+
+Restrição: Dinheiro, prazo ou algo técnico.
+
+Saber todas as normas do projeto.
+
+Normas devem ser premissas, não restrições.
+
+Final, documentação está boa, porém esta quase totalmente bagunçada.
+
+# Calculadora
+
+Especificar qual a fonte das informações.
+
+Sempre colocando o pior cenário.
+
+Precisa ajudar a vender o projeto, não importa a complexidade do calculo.
+
+Perda de faturamento ou multa. Podemos mesclar ambos os dados também.
+
+# Login e Cadastro
+
+Razão social, CNPJ, nome fantasia, representante legal.
+
+Criação de uma planta baixa
