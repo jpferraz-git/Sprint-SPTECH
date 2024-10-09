@@ -129,10 +129,101 @@ a {
     margin-bottom: 20px;
 }
 
-.box p, img {
+.box p, .box img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 250px;
     font-size: 20px;
+}
+
+.citacao {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.img1, .img2, .img3 {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.img1, .img2, .img3 img {
+    max-width: 100%;
+    height: auto;
+}
+
+.img1 img, .img2 img, .img3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.citacao .img2 p {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+footer {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+footer .divisor {
+    border: 1px dotted white;
+    height: 80%;
+    width: 1px;
+}
+
+.logotipo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border-right: 2px dotted white;
+}
+
+.logotipo img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.logotipo h1 {
+   color: white;
+   font-size: xx-large;
+}
+
+.redes {
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    color: white;
+    width: 50%;
 }
