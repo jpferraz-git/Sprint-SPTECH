@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="simuladorGB.css" rel="stylesheet">
+    <title>Simulador Financeiros</title>
+</head>
+<body>
+<div class="divmae">
+<div class="container">
+<div class="conteudo">
+<h1>Gas Busters - Simule aqui a nossa SOLUÇÃO!</h1>
+<p>Descubra como podemos te ajudar a garantir a segurança do seu ambiente de trabalho, reduzir riscos de acidentes e otimizar seus custos operacionais com nossa solução avançada e personalizada.</p>
+<div class="form">
+    <div class="formdentro">
+    <p>Qual é o nome da sua empresa?</p>
+    <input id="input_nome" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <p>Quanto foi investido para montar a sua cozinha:</p>
+    <input type="number" id="input_valor" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <p>Qual é a quantidade de funcionários que trabalham nessa cozinha?</p>
+    <input type="number" id="input_qtd_funcionario" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <p>Por fim, qual é o seu faturamento mensal?</p>
+    <input type="number" id="input_faturamento_mensal" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" ><br>
+</div>
+</div>
+    <button class="btn" onclick="calcularPerda()">Como isso pode me prejudicar?</button>
+    <div id="div_mostrar_calculo"></div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="script.js"></script>
