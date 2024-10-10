@@ -71,115 +71,36 @@ a {
     text-decoration: none;
 }
 
-.face-page {
-    background-image: url("../assets/background-image1.jpg");
-    background-size: cover;
+.frase-impacto {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../assets/Fundo_Editado.png");
     background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 85vh;
 }
 
-.face-page p {
+.frase-impacto h1 {
     color: white;
-    width: 50vw;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    padding-left: 5vw;
-    margin-bottom: 20px;
+    font-size: xx-large;
 }
 
-.face-page a {
-    font-size: 20px;
-    padding-left: 5vw;
-    border-bottom: 3px solid red;
-}
-
-.navegacao-rapida {
-    width: 100%;
-    height: 80vh;
+.missao-visao {
     color: white;
-    margin-bottom: 100px;
+    width: 90%;
+    height: 30vh;
+    background-color: rgb(30, 0, 0);
 }
 
-.title {
-    font-weight: 200;
-    font-size: 40px;
-    letter-spacing: 5px;
-    width: fit-content;
-    padding: 0 10vw 5px 5vw;
-    border-bottom: 1px dotted white;
-    margin-bottom: 50px;
+.missao-visao h1 {
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: 20px;
 }
 
-.boxes {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
-
-.box h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    margin-bottom: 20px;
-}
-
-.box p, .box img {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    font-size: 20px;
-}
-
-.citacao {
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.img1, .img2, .img3 {
-    display: flex;
-    position: relative;
-    align-items: center;
-}
-
-.img1, .img2, .img3 img {
-    height: auto;
-}
-
-.img1 img, .img2 img, .img3 img {
-    width: 100%;
-    height: 100%;
-}
-
-.citacao p {
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    font-size: 30px;
-    font-weight: 200;
-    font-style: italic;
-    text-align: center;
-    color: white;
-    display: none;
-    position: absolute;
-    background-color: rgb(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-.img1:hover p, .img2:hover p, .img3:hover p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.missao-visao p {
+    align-self: center;
 }
 
 footer {
