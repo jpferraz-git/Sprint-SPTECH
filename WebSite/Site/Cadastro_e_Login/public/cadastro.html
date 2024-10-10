@@ -10,54 +10,58 @@
 
 <body>
     <div class="container">
-        <form>
-            <div class="container">
-                <div class="titulo">
-                    <h1>Cadastro</h1>
+        <div class="img-login">
+        </div>
+        <div class="login">
+            <form>
+                <div class="container-campos">
+                    <div class="titulo">
+                        <h1>Cadastro</h1>
+                    </div>
+                    <div class="campo">
+                        <img src="assets/id-card-clip-alt.png" alt="">
+                        <input required id="input_razao_social" placeholder="Razão Social">
+                    </div>
+                    <div class="campo">
+                        <img src="assets/id-badge.png" alt="">
+                        <input required id="input_nome_fachada" placeholder="Nome Fachada">
+                    </div>
+                    <div class="campo">
+                        <img src="assets/user.png" alt="">
+                        <input required id="input_responsavel" placeholder="Responsável Legal">
+                    </div>
+                    <div class="campo">
+                        <img src="assets/corporate.png" alt="">
+                        <input required id="input_cnpj" placeholder="CNPJ">
+                    </div>
+                    <div class="campo">
+                        <img src="assets/envelope.png" alt="">
+                        <input required type="email" id="input_email" placeholder="E-mail">
+                    </div>
+                    <div class="campo input-senha">
+                        <img src="assets/key.png" alt="">
+                        <input required type="password" id="input_senha_cadastro" placeholder="Senha">
+                        <img id="img_senha" src="assets/eye-crossed.png" alt=""
+                            onclick="revelarSenha('input_senha_cadastro','img_senha')">
+                    </div>
+                    <div class="campo input-senha">
+                        <img src="assets/key_check.png" alt="">
+                        <input required type="password" id="input_confirmacao_senha" placeholder="Confirme a sua senha">
+                        <img id="img_senha_confirmacao" src="assets/eye-crossed.png" alt=""
+                            onclick="revelarSenha('input_confirmacao_senha','img_senha_confirmacao')">
+                    </div>
+                    <div class="link-senha">
+                        <span>Temos uma sugestão de senha!</span>
+                        <a href="#" onclick="gerarSenha()">Clique aqui</a>
+                    </div>
+                    <div class="btn-entrar-cadastrar">
+                        <button type="submit">
+                            Já preenchi meu dados
+                        </button>
+                    </div>
                 </div>
-                <div class="campo">
-                    <img src="assets/id-card-clip-alt.png" alt="">
-                    <input required id="input_razao_social" placeholder="Razão Social">
-                </div>
-                <div class="campo">
-                    <img src="assets/id-badge.png" alt="">
-                    <input required id="input_nome_fachada" placeholder="Nome Fachada">
-                </div>
-                <div class="campo">
-                    <img src="assets/user.png" alt="">
-                    <input required id="input_responsavel" placeholder="Responsável Legal">
-                </div>
-                <div class="campo">
-                    <img src="assets/corporate.png" alt="">
-                    <input required id="input_cnpj" placeholder="CNPJ">
-                </div>
-                <div class="campo">
-                    <img src="assets/envelope.png" alt="">
-                    <input required type="email" id="input_email" placeholder="E-mail">
-                </div>
-                <div class="campo input-senha">
-                    <img src="assets/key.png" alt="">
-                    <input required type="password" id="input_senha_cadastro" placeholder="Senha">
-                    <img id="img_senha" src="assets/eye-crossed.png" alt=""
-                        onclick="revelarSenha('input_senha_cadastro','img_senha')">
-                </div>
-                <div class="campo input-senha">
-                    <img src="assets/key_check.png" alt="">
-                    <input required type="password" id="input_confirmacao_senha" placeholder="Confirme a sua senha">
-                    <img id="img_senha_confirmacao" src="assets/eye-crossed.png" alt=""
-                        onclick="revelarSenha('input_confirmacao_senha','img_senha_confirmacao')">
-                </div>
-                <div class="link-senha">
-                    <span>Temos uma sugestão de senha!</span>
-                    <a href="#" onclick="gerarSenha()">Clique aqui</a>
-                </div>
-                <div class="btn-entrar-cadastrar">
-                    <button type="submit">
-                        Já preenchi meu dados!
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </body>
 

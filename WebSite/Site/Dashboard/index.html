@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gas Busters</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="titulo">Monitoramento de Gás GLP</h1>
+        <div class="dashboard">
+            <div class="menu-cima">
+                <div class="data-atual">
+                    <div class="campo">
+                        <h4>Data e Hora Atual</h4>
+                        <span>10/10/2024 18:43</span>
+                    </div>
+                </div>
+                <div class="sensores">
+                    <div class="campo">
+                        <h4>Sensores Ativos</h4>
+                        <span>4</span>
+                    </div>
+                    <div class="campo">
+                        <h4>Ok</h4>
+                        <span>4</span>
+                    </div>
+                    <div class="campo">
+                        <h4>Com vazamento</h4>
+                        <span>4</span>
+                    </div>
+                </div>
+            </div>
+            <div class="principal">
+                <div class="menu">
+                    <div class="campos-menu">
+                        <div class="campo">
+                            <h4>Fogão 01</h4>
+                        </div>
+                        <div class="campo">
+                            <h4>Fogão 02</h4>
+                        </div>
+                        <div class="campo">
+                            <h4>Forno</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="graficos">
+                    <canvas></canvas>
+                    <div class="kpi-sensor">
+                        <div id="fogao1" class="campo">
+                            <h4>26%</h4>
+                            <span>10/10/2024 18:43</span>
+                        </div>
+                        <div id="fogao2" class="campo">
+                            <h4>26%</h4>
+                            <span>10/10/2024 18:43</span>
+                        </div>
+                        <div id="forno" class="campo">
+                            <h4>26%</h4>
+                            <span>10/10/2024 18:43</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    height: 70%;
+    box-shadow: 0 0 13px rgba(150, 150, 150, 0.701);
+    border-radius: 15px;
+}
+
+.titulo{
+    color: black;
+    font-size: 3em;
+    margin: 0;
+    margin-bottom: 2.7%;
+    margin-top: 2.7%;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    width: fit-content;
+    height: fit-content;
+}
+
+.campo h4 {
+    margin: 0;
+}
+
+.menu-cima {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-atual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+.data-atual .campo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.sensores {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-end;
+    align-items: center;
+    background-color: black;
+    padding: 3% 0 3% 0;
+    border-radius: 0 15px 0 0;
+}
+
+
+.principal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 0 15px;
+}
+
+.menu {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    border-radius: 0 0 0 15px;
+}
+
+.campos-menu{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.campos-menu .campo{
+    background-color: #cb0000;
+    padding: 4% 9% 4% 9%;
+    border-radius: 25px;
+}
+
+.graficos {
+    width: 75%;
+    height: 100%;
+}
+
+.kpi-sensor{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.kpi-sensor .campo{
+    width: 80%;
+    color: black;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+    font-size: 1.4em;
+    border-radius: 15px;
+    margin-bottom: 0.6%;
+}
+
+.kpi-sensor #fogao1.campo{
+    background-color: chocolate;
+}
+
+.kpi-sensor #fogao2.campo{
+    background-color: rgb(64, 150, 196);
+}
+
+.kpi-sensor #forno.campo{
+    background-color: rgb(196, 64, 137);
+}
