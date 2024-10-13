@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Gas Busters</title>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="titulo">Monitoramento de Gás GLP</h1>
+        <!-- <h1 class="titulo">Monitoramento de Gás GLP</h1> -->
         <div class="dashboard">
             <div class="menu-cima">
                 <div class="data-atual">
@@ -49,19 +50,22 @@
                     </div>
                 </div>
                 <div class="graficos">
-                    <canvas></canvas>
+                    <div class="chart">
+                        <canvas id="grafico_geral"></canvas>
+                    </div>
                     <div class="kpi-sensor">
+                        <p>Última Medições</p>
                         <div id="fogao1" class="campo">
-                            <h4>26%</h4>
-                            <span>10/10/2024 18:43</span>
+                            <h4 id="fg1">26%</h4>
+                            <span>Fogão 01</span>
                         </div>
                         <div id="fogao2" class="campo">
-                            <h4>26%</h4>
-                            <span>10/10/2024 18:43</span>
+                            <h4 id="fg2">26%</h4>
+                            <span>Fogão 02</span>
                         </div>
                         <div id="forno" class="campo">
-                            <h4>26%</h4>
-                            <span>10/10/2024 18:43</span>
+                            <h4 id="fn">26%</h4>
+                            <span>Forno</span>
                         </div>
                     </div>
                 </div>
@@ -71,3 +75,5 @@
 </body>
 
 </html>
+
+<script src="script.js"></script>
