@@ -5,33 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="../../Site/Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png"/> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Gas Busters</title>
 </head>
 
 <body>
     <div class="container">
-        <!-- <h1 class="titulo">Monitoramento de Gás GLP</h1> -->
         <div class="dashboard">
             <div class="menu-cima">
                 <div class="data-atual">
                     <div class="campo">
                         <h4>Data e Hora Atual</h4>
-                        <span>10/10/2024 18:43</span>
+                        <span id="data_hora">10/10/2024 18:43</span>
                     </div>
                 </div>
                 <div class="sensores">
                     <div class="campo">
                         <h4>Sensores Ativos</h4>
-                        <span>4</span>
+                        <span id="sensor_ativo">4</span>
                     </div>
                     <div class="campo">
                         <h4>Ok</h4>
-                        <span>4</span>
+                        <span id="sensor_ok">4</span>
                     </div>
                     <div class="campo">
                         <h4>Com vazamento</h4>
-                        <span>4</span>
+                        <span id="sensor_vazamento">4</span>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         <canvas id="grafico_geral"></canvas>
                     </div>
                     <div class="kpi-sensor">
-                        <p>Última Medições</p>
+                        <p>Últimas Medições</p>
                         <div id="fogao1" class="campo">
                             <h4 id="fg1">26%</h4>
                             <span>Fogão 01</span>
