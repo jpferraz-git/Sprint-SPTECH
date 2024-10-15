@@ -13,12 +13,12 @@
 <div class="divmae">
 <div class="container">
 <div class="conteudo">
-<h1>Gas Busters - Simule aqui a nossa SOLUÇÃO!</h1>
+<h1>GasBusters - Simule aqui a nossa SOLUÇÃO!</h1>
 <p>Descubra como podemos te ajudar a garantir a segurança do seu ambiente de trabalho, reduzir riscos de acidentes e otimizar seus custos operacionais com nossa solução avançada e personalizada.</p>
 <div class="form">
     <div class="formdentro">
-    <p>Qual é o nome da sua empresa?</p>
-    <input id="input_nome" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <!-- <p>Qual é o nome da sua empresa?</p>
+    <input id="input_nome" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" > -->
     <p>Quanto foi investido para montar a sua cozinha:</p>
     <input type="number" id="input_valor" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
     <p>Qual é a quantidade de funcionários que trabalham nessa cozinha?</p>
@@ -28,7 +28,48 @@
 </div>
 </div>
     <button class="btn" onclick="calcularPerda()">Como isso pode me prejudicar?</button>
-    <div id="div_mostrar_calculo"></div>
+    <div id="div_mostrar_calculo" class="divResultado">
+
+<!-- INÍCIO SCRIPT
+
+    <div class="divResultado">
+
+    <h2>Prejuízo Total: ${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</h2>
+
+<div class="divResultadoDentro">
+
+    <div class="divResultadoUm">
+        <div class="divUmSubtitulo">
+    Em caso de <b>Fiscalização</b>
+        </div>
+        <div class="divUmDescricao">
+        Dias fechados até a regularização: <text>7 dias</text>
+        Perda no faturamento: <text>${faturaMentoPerdidoFisc.toLocaleString('pt-br', estiloReal)} </text>
+        Multa por estar em irregularidade com a norma NBR 15526*: <text>${valorFiscalizacao.toLocaleString('pt-br', estiloReal)}</text>
+        <small style="text-transform: uppercase; font-size:xx-small; font-weight: 500;">
+            *A Norma <a href="https://www.mjinstalacoes.com.br/wp-content/uploads/2018/04/ABNT-NBR-15526-2016-Atualizada.pdf" target="_blank">NBR 15526</a> estabelece requisitos para a instalação segura e eficiente de sistemas de gás combustível em edificações.
+        </small> 
+        </div>
+    </div>
+
+    <div class="divResultadoDois">
+        <div class="divDoisSubtitulo">
+    Em caso uma <b>Explosão</b>
+        </div>
+        <div class="divDoisDescricao">
+        Dias fechados até a reconstrução da cozinha: <text>30</text>
+        Perda no faturamento: <text>${faturaMentoPerdidoExplo.toLocaleString('pt-br', estiloReal)}</text>
+        Perda dos TOTAL dos equipamentos: <text>${valorInvestido.toLocaleString('pt-br', estiloReal)}</text>
+        Gastos com tratamento médico dos funcionários: <text>${valoresFuncionariosExplo.toLocaleString('pt-br', estiloReal)}</text>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+
+FIM SCRIPT -->
+    </div>
 </div>
 </div>
 </div>
