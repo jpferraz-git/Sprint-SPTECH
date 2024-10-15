@@ -102,8 +102,23 @@ const data = {
 
 const config = {
     type: 'line',
-    data: data
+    data: data,
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Média dos Sensores a Cada Hora',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 16,
+                    family: 'Montserrat',
+                }
+            }
+        }
+    }
 }
+
 
 const graficoGeral = new Chart(
     grafico,
