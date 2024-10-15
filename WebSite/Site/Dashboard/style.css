@@ -113,6 +113,21 @@ body {
     flex-direction: column;
 }
 
+.menu-indiv{
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu-indiv span{
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1.7%;
+}
+
 .campos-menu .campo {
     background-color: #cb0000;
     padding: 6.5% 0 6.5% 0;
