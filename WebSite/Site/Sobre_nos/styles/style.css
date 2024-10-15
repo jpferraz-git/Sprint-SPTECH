@@ -93,7 +93,7 @@ a {
     margin-top: 40px;
 }
 
-.setores {
+.setores-empresa {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -101,14 +101,20 @@ a {
     align-items: stretch;
 }
 
-.topicos .setores div {
-    background-color: rgb(30, 0, 0);
+.topicos .setores-empresa div {
+    background-color: #00173094;
     width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.setores-caracteristicas div {
+    background-color: rgb(30, 0, 0);
     padding: 20px;
     margin-bottom: 40px;
 }

@@ -35,7 +35,7 @@ body::after {
 .img-logo {
     height: 50px;
     width: 50px;
-    margin: 10px;
+    margin-right: 10px;
 }
 
 .logo {
@@ -87,13 +87,13 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 35px;
     padding-left: 5vw;
     margin-bottom: 20px;
 }
 
 .face-page a {
-    font-size: 20px;
+    font-size: 25px;
     padding-left: 5vw;
     border-bottom: 3px solid red;
 }
@@ -177,6 +177,25 @@ a {
 }
 
 .img1:hover p, .img2:hover p, .img3:hover p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diagrama {
+    color: black;
+    background-color: white;
+}
+
+.diagrama h1 {
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: 5px;
+    padding: 5vh 10vw 5px 5vw;
+    border-bottom: 1px dotted black;
+}
+
+.diagrama-imagem {
     display: flex;
     justify-content: center;
     align-items: center;
