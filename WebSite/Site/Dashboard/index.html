@@ -18,21 +18,32 @@
                 <div class="data-atual">
                     <div class="campo">
                         <h4>Data e Hora Atual</h4>
-                        <span id="data_hora">10/10/2024 18:43</span>
+                        <span id="data_hora"></span>
                     </div>
                 </div>
                 <div class="sensores">
-                    <div class="campo">
-                        <h4>Sensores Ativos</h4>
-                        <span id="sensor_ativo">3</span>
+                    <div class="sensores-geral">
+                        <div class="campo">
+                            <h4>Sensores Ativos</h4>
+                            <span id="sensor_ativo">3</span>
+                        </div>
+                        <div class="campo">
+                            <h4>Ok</h4>
+                            <span id="sensor_ok">1</span>
+                        </div>
+                        <div class="campo">
+                            <h4>Em Alerta</h4>
+                            <span id="sensor_vazamento">2</span>
+                        </div>
                     </div>
-                    <div class="campo">
-                        <h4>Ok</h4>
-                        <span id="sensor_ok">1</span>
-                    </div>
-                    <div class="campo">
-                        <h4>Com vazamento</h4>
-                        <span id="sensor_vazamento">2</span>
+                    <div class="barra"></div>
+                    <div class="ultima-medicao">
+                        <h4>Últimas Medições</h4>
+                        <div>
+                            <p id="ult-fg01">2%</p>
+                            <p id="ult-fg02">4%</p>
+                            <p id="ult-fn">13%</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,53 +51,50 @@
                 <div class="menu">
                     <div class="campos-menu">
                         <div class="menu-indiv">
-                            <span id="situacao_fg01">Alerta Crítico!</span>
-                        <div class="campo">
-                            <a href="#">
-                                <h4>Fogão 01</h4>
+                            <a id="visao_geral" href="#">
+                                <span>Visão Geral</span>
+                                <div class="campo">
+                                    <h4>Alerta!</h4>
                             </a>
                         </div>
                     </div>
-                        <div div class="menu-indiv">
-                            <span id="situacao_fg02">Ok</span>
+                    <div class="menu-indiv">
+                        <a id="visao_fg01" href="#">
+                            <span>Fogão 01</span>
                             <div class="campo">
-                                <a href="#">
-                                    <h4>Fogão 02</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="menu-indiv">
-                            <span id="situacao_fn">Alerta!</span>
-                            <div class="campo">
-                                <a href="#">
-                                    <h4>Forno</h4>
-                                </a>
-                            </div>
-                        </div>
+                                <h4>Alerta Crítico!</h4>
+                        </a>
                     </div>
                 </div>
-                <div class="graficos">
-                    <div class="chart">
-                        <canvas id="grafico_geral"></canvas>
-                    </div>
-                    <div class="kpi-sensor">
-                        <p>Últimas Medições</p>
-                        <div id="fogao1" class="campo">
-                            <h4 id="fg1">26%</h4>
-                            <span>Fogão 01</span>
-                        </div>
-                        <div id="fogao2" class="campo">
-                            <h4 id="fg2">26%</h4>
-                            <span>Fogão 02</span>
-                        </div>
-                        <div id="forno" class="campo">
-                            <h4 id="fn">26%</h4>
-                            <span>Forno</span>
-                        </div>
-                    </div>
+                <div id="situacao_fg02" class="menu-indiv">
+                    <a id="visao_fg02" href="#">
+                        <span>Fogão 02</span>
+                        <div class="campo">
+                            <h4>Ok</h4>
+                    </a>
                 </div>
             </div>
+            <div class="menu-indiv">
+                <a id="visao_fn" href="#">
+                    <span>Forno</span>
+                    <div class="campo">
+                        <h4>Alerta!</h4>
+                </a>
+            </div>
         </div>
+    </div>
+    </div>
+    <div class="graficos">
+        <div class="chart">
+            <canvas id="grafico_hora" width="1300" height="850"></canvas>
+            <div class="chart-vertical">
+                <canvas id="grafico_minuto" width="300" height="190"></canvas>
+                <canvas id="grafico_comparacao" width="200" height="190"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
     </div>
 </body>
 
