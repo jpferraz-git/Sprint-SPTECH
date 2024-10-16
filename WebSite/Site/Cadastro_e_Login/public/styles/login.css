@@ -82,6 +82,14 @@ form {
     outline: none;
 }
 
+.campo input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+.input-senha input {
+    width: 78%;
+}
+
 .btn-entrar-cadastrar {
     width: 50%;
     height: 40px;
@@ -100,6 +108,7 @@ form {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
+    font-size: 1.02em;
 }
 
 .mensagem-cadastro {
@@ -109,7 +118,7 @@ form {
     display: flex;
     justify-content: center;
     border-radius: 0 0 13px 13px;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .mensagem-cadastro a {

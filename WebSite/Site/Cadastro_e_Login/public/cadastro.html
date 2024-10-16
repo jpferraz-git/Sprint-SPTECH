@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="icon" href="assets/Nova logo Gas Busters tipo 3.png">
     <link rel="stylesheet" href="styles/cadastro.css">
     <title>Gas Busters</title>
 </head>
@@ -32,7 +36,7 @@
                     </div>
                     <div class="campo">
                         <img src="assets/corporate.png" alt="">
-                        <input required id="input_cnpj" placeholder="CNPJ">
+                        <input required id="input_cnpj" placeholder="CNPJ" maxlength="18">
                     </div>
                     <div class="campo">
                         <img src="assets/envelope.png" alt="">
@@ -60,11 +64,12 @@
                         </button>
                     </div>
                 </div>
+                <div class="mensagem-cadastro">
+                    <p>Possui cadastro? <a href="login.html">Faça o login</a></p>
+                </div>
             </form>
         </div>
     </div>
 </body>
 
 </html>
-
-<script src="script.js"></script>

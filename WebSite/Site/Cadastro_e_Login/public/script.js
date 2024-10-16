@@ -10,10 +10,6 @@ function revelarSenha(idInput,idImage){
     }
 }
 
-function trocarImgCheckSenha(){
-      
-}
-
 function gerarSenha(){
     const caracateres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$&*-!123456789'
     var senha_gerada = ''
@@ -27,3 +23,10 @@ function gerarSenha(){
     input_confirmacao_senha.value = senha_gerada
     
 }
+
+// Mascarando o input do CNPJ
+$(document).ready(function(){
+    $('#input_cnpj').mask('00.000.000/0000-00');
+  });
+
+
