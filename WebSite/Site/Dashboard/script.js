@@ -62,6 +62,7 @@ const config_hora = {
     }
 }
 
+
 // Configurando o CHART para o grafico_minuto
 const data_minuto = {
     labels: labels_line_min,
