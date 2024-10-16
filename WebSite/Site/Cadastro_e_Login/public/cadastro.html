@@ -44,13 +44,13 @@
                     </div>
                     <div class="campo input-senha">
                         <img src="assets/key.png" alt="">
-                        <input required type="password" id="input_senha_cadastro" placeholder="Senha">
+                        <input required type="password" id="input_senha_cadastro" placeholder="Senha" onfocus="trocarCorNormal()">
                         <img id="img_senha" src="assets/eye-crossed.png" alt=""
                             onclick="revelarSenha('input_senha_cadastro','img_senha')">
                     </div>
                     <div class="campo input-senha">
                         <img src="assets/key_check.png" alt="">
-                        <input required type="password" id="input_confirmacao_senha" placeholder="Confirme a sua senha">
+                        <input required type="password" id="input_confirmacao_senha" placeholder="Confirme a sua senha" onclick="trocarCorNormal()">
                         <img id="img_senha_confirmacao" src="assets/eye-crossed.png" alt=""
                             onclick="revelarSenha('input_confirmacao_senha','img_senha_confirmacao')">
                     </div>
@@ -59,7 +59,7 @@
                         <a href="#" onclick="gerarSenha()">Clique aqui</a>
                     </div>
                     <div class="btn-entrar-cadastrar">
-                        <button type="submit">
+                        <button type="submit" onclick="validarCampos()">
                             Já preenchi meu dados
                         </button>
                     </div>
