@@ -7,13 +7,54 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="simuladorGB.css" rel="stylesheet">
-    <title>Simulador Financeiros</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <title>GasBusters | Financeiros</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
+            <ul class="nav-list">
+                <li><b><a href="../Home/index.html">HOME</a></b></li>
+                <li>•</li>
+                <li><a href="../Sobre_nos/index.html">SOBRE NÓS</a></li>
+                <li>•</li>
+                <li><a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a></li>
+                <li>•</li>
+                <li><a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a></li>
+                <li>•</li>
+                <li><a href="../Cadastro_e_Login/public/login.html">LOGIN</a></li>
+            </ul>
+        </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo"> GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="../Home/index.html">HOME</a>
+                    <a href="../Sobre_nos/index.html">SOBRE NÓS</a>
+                    <a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a>
+                    <a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a>
+                    <a href="../Cadastro_e_Login/public/login.html">LOGIN</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+        </div>
+        <!-- FIM MENU MOBILE -->
+
+    </header>
 <div class="divmae">
 <div class="container">
 <div class="conteudo">
-<h1>GasBusters - Simule aqui a nossa SOLUÇÃO!</h1>
+<h1>Simule aqui a nossa SOLUÇÃO!</h1>
 <p>Descubra como podemos te ajudar a garantir a segurança do seu ambiente de trabalho, reduzir riscos de acidentes e otimizar seus custos operacionais com nossa solução avançada e personalizada.</p>
 <div class="form">
     <div class="formdentro">
@@ -72,8 +113,46 @@ FIM SCRIPT -->
     </div>
 </div>
 </div>
+
+<footer>
+    <span class="logoGasbus">
+    <section class="logotipo">
+        <img src="../Home/assets/logo.png" alt="">
+        <h1>GASBUSTERS</h1>
+    </section>
+    <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+</span>
+
+
+    <div class="vl"></div>
+
+    <section class="infos">
+        <h1>FALE CONOSCO</h1>
+        <p>(11) 3456-7890</p>
+        <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+        <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+        <div class="redes">
+            <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+        </div>
+    </section>
+</footer>
 </div>
+
 </body>
 </html>
 
 <script src="script.js"></script>
+<script>
+    function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>

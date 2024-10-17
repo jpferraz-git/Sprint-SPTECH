@@ -73,6 +73,6 @@ function calcularPerda() {
 
         <button class="btn" onclick="clearDiv()">Calcular novamente</button>
     `
-    div_mostrar_calculo.scrollIntoView({ behavior: 'smooth' });
+    div_mostrar_calculo.scrollIntoView({behavior: 'smooth' });
     document.getElementById('div_mostrar_calculo').style="opacity: 100%;";
 }
