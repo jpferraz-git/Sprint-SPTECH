@@ -16,7 +16,6 @@ body {
     justify-content: center;
     min-height: 100vh;
     position: relative;
-    padding-top: 16vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -103,6 +102,7 @@ header a {
 }
 
 main {
+    padding-top: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +113,7 @@ main {
 
 .container {
     width: 60vw;
-    height: 100%;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,8 +124,7 @@ main {
 
 form {
     width: 100%;
-    background-color: #fff;
-    border-radius: 15px;
+    height: 60%;
     margin-block: 30px;
     color: #131313;
     display: flex;
@@ -140,19 +139,22 @@ form p {
 }
 
 .campos {
-    margin-block: 30px;
-    padding-inline: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 2em;
     width: 100%;
+    margin-bottom: 1.5em;
 }
 
-.separacao-campos{
+.separacao-campos {
     display: flex;
     gap: 1em;
     align-items: center;
     justify-content: center;
 }
 
-.separacao-campos input {
+.separacao-campos input,
+select {
     width: 100%;
     height: 30px;
     margin-top: 10px;
@@ -162,37 +164,57 @@ form p {
     margin-bottom: 20px;
 }
 
-.separacao-campos input:focus {
+.separacao-campos textarea {
+    width: 100%;
+    height: 45%;
+    margin-top: 10px;
+    background-color: #fff;
+    border-style: none;
+    border: #cb4444 solid 1px;
+    border-radius: 0.7em;
+    padding: 2%;
+}
+
+.separacao-campos input:focus,
+select:focus,
+textarea:focus {
     outline: none;
 }
 
-.campo-indiv{
+textarea {
+    width: 100%;
+    height: 8vh;
+    resize: none;
+    overflow: hidden;
+}
+
+.campo-indiv {
     flex: 1;
 }
 
-.btn{
-    display:inline-block;
+.btn {
+    display: inline-block;
     width: 100%;
     height: 50px;
-    padding:0.7em 1.4em;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.15em;
+    padding: 0.7em 1.4em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.15em;
     border: none;
-    text-decoration:none;
-    text-transform:uppercase;
+    text-decoration: none;
+    text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2px;
-    color:#FFFFFF;
-    background-color:#cb0000;
-    box-shadow:inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
-    text-align:center;
+    color: #FFFFFF;
+    background-color: #cb0000;
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
+    text-align: center;
     cursor: pointer;
-    }
-    
-    .btn:hover{
-    background-color:#9c0202;
-    box-shadow:inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
-    }
+}
+
+.btn:hover {
+    background-color: #9c0202;
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
+}
 
 footer {
     width: 100%;
