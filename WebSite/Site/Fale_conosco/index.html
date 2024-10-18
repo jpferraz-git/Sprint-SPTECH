@@ -24,13 +24,13 @@
                     GASBUSTERS</a>
             </div>
             <ul class="nav-list">
-                <li><b><a href="../Home/index.html">HOME</a></b></li>
+                <li><a href="../Home/index.html">HOME</a></li>
                 <li>•</li>
                 <li><a href="../Sobre_nos/index.html">SOBRE NÓS</a></li>
                 <li>•</li>
                 <li><a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a></li>
                 <li>•</li>
-                <li><a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a></li>
+                <li><a href="../Cadastro_e_Login/public/cadastro.html"><b>CONTATO</b></a></li>
                 <li>•</li>
                 <li><a href="../Cadastro_e_Login/public/login.html">LOGIN</a></li>
             </ul>
@@ -86,9 +86,36 @@
                     <div class="separacao-campos">
                         <div class="campo-indiv">
                             <p>Estado</p>
-                            <!-- Mudar para um Select -->
-                            <input required type="email" id="email" placeholder="Digite aqui"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                            <select required id="estados">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                              </select>                              
                         </div>
                         <div class="campo-indiv">
                             <p>Cidade</p>
@@ -99,28 +126,35 @@
                     <div class="separacao-campos">
                         <div class="campo-indiv">
                             <p>Como nos conheceu</p>
-                            <!-- Mudar para um Select -->
-                            <input required type="email" id="email" placeholder="Digite aqui"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                            <select id="como_conheceu">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="">Indicação</option>
+                                <option value="">WebSite</option>
+                                <option value="">Mídias Digitais</option>
+                                <option value="">Outro</option>
+                            </select>
                         </div>
                         <div class="campo-indiv">
                             <p>Motivo do contato</p>
-                            <!-- Mudar para um Select -->
-                            <input required id="cidade" placeholder="Digite aqui" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Digite aqui'">
+                            <select id="motivo_contato">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="">Saber mais sobre a Solução</option>
+                                <option value="">Tirar dúvidas</option>
+                                <option value="">Sugestões ou reclamações</option>
+                                <option value="">Outro</option>
+                            </select>
                         </div>
                     </div>
                     <div class="separacao-campos">
                         <div class="campo-indiv">
                             <p>Nos envie uma mensagem!</p>
-                            <!-- Mudar para um Textarea -->
-                            <input required type="email" id="email" placeholder="Digite aqui"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                            <textarea required id="mensagem" placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Digite aqui'"></textarea>
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="btn">Enviar</button>
             </form>
-            <button type="submit" class="btn">Enviar</button>
         </div>
     </main>
     <footer>
