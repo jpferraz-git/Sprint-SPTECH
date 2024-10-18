@@ -70,6 +70,10 @@ header {
     white-space: nowrap;
 }
 
+.nav-list li:active {
+    opacity: 0.7;
+}
+
 .nav-list li:hover {
     opacity: 0.7;
 }
@@ -267,11 +271,11 @@ transition: 0.3s ease-in-out;
     color: white;
     display: none;
     position: absolute;
-    background-color: rgb(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
 .img1:hover p, .img2:hover p, .img3:hover p {
+    background-color: rgb(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,6 +298,7 @@ transition: 0.3s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 footer {
@@ -370,6 +375,7 @@ footer {
 
     text-align: left;
     color: white;
+    height: auto;
 }
 .infos a{
     text-decoration: underline 0.5px;
