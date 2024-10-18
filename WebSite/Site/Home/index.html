@@ -3,55 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./styles/style.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+
     <title>GasBusters | Home</title>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <h1 class="logo"><img src="./assets/logo.png" class="img-logo">GASBUSTERS</h1>
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
             <ul class="nav-list">
                 <li><b><a href="./index.html">HOME</a></b></li>
                 <li>•</li>
-                <li><a href="../Sobre_nos/index.html">SOBRE NÓS</a></li>
+                <li><a href="../Sobre_nos/index.html">SOBRE</a></li>
                 <li>•</li>
-                <li><a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a></li>
+                <li><a href="../Calculadora/index.html">SIMULADOR</a></li>
                 <li>•</li>
                 <li><a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a></li>
                 <li>•</li>
-                <li><a href="../Cadastro_e_Login/public/login.html"><i class="fa-solid fa-user fa-lg" style="color: #ffffff;"></i></a></li>
+                <li><a href="../Cadastro_e_Login/public/login.html">LOGIN</a></li>
             </ul>
         </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="./index.html">HOME</a>
+                    <a href="../Sobre_nos/index.html">SOBRE</a>
+                    <a href="../Calculadora/index.html">SIMULADOR</a>
+                    <a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a>
+                    <a href="../Cadastro_e_Login/public/login.html">LOGIN</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+        </div>
+        <!-- FIM MENU MOBILE -->
+
     </header>
 
     <main>
-        <section class="face-page">
-            <p>"Proteja sua cozinha industrial com nossos sensores de gás: tecnologia avançada para detectar vazamentos em tempo real e evitar prejuízos inesperados. Simule agora e veja o quanto sua empresa pode economizar ao prevenir acidentes!"</p>
+        <section class="face-page" onclick="clickable()">
+            <div class="divFacePage">
+            <p>Proteja sua cozinha industrial com nossos sensores de gás: tecnologia avançada para detectar vazamentos em tempo real e evitar prejuízos inesperados. Veja aqui o quanto sua empresa pode economizar com os nossos sensores!</p>
 
+<<<<<<< HEAD
             <a href="../Calculadora/index-css.html">CLIQUE AQUI</a>
+=======
+            <a href="../Calculadora/index.html">Simule agora</a>
+            </div>
+>>>>>>> c4ccfd78214274701795d74989cdc7d5d5702cb5
         </section>
 
         <section class="navegacao-rapida">
             <h1 class="title">NAVEGAÇÃO RÁPIDA</h1>
             
             <div class="boxes">
+
                 <div class="box">
                     <h2>QUEM SOMOS</h2>
-                    <img class="img-team" src="./assets/quem-somos.png">
+                <div class="boxMobile">
+                    <a href="../Sobre_nos/index.html">
+                        <img src="./assets/quem-somos.png" alt="">
                     <p>Conheça nossa história e valores que nos guiam na busca por excelência</p>
+                </a>
+                </div>
                 </div>
     
                 <div class="box">
                     <h2>COMO FUNCIONA</h2>
-                    <img src="./assets/gas-cylinder-2.png" alt="">
+                    <div class="boxMobile">
+                    <a href="../Calculadora/index.html">
+                        <img src="./assets/gas-cylinder-2.png" alt="">
                     <p>Entenda como podemos te ajudar a monitorar o seu negócio</p>
+                </a>
+                </div>
                 </div>
     
                 <div class="box">
                     <h2>FALE CONOSCO</h2>
+                    <div class="boxMobile">
+                    <a href="../Cadastro_e_Login/public/cadastro.html">
                     <img src="./assets/contact-form.png" alt="">
                     <p>Entre em contato e tire suas dúvidas com a nossa equipe</p>
+                    </a>
+                </div>
                 </div>
             </div>
         </section>
@@ -72,7 +122,7 @@
         </section>
 
         <section class="diagrama">
-            <h1>Diagrama de solução</h1>
+            <h1 class="title">Como funciona?</h1>
             <div class="diagrama-imagem">
                 <img src="./assets/DiagramadeSolução.png" alt="">
             </div>
@@ -80,16 +130,22 @@
     </main>
 
     <footer>
+        <span class="logoGasbus">
         <section class="logotipo">
             <img src="./assets/logo.png" alt="">
             <h1>GASBUSTERS</h1>
         </section>
+        <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+    </span>
+
+
+        <div class="vl"></div>
 
         <section class="infos">
             <h1>FALE CONOSCO</h1>
             <p>(11) 3456-7890</p>
-            <p>Rua Qualquer, 123, Cidade Qualquer</p>
-            <p>ola@grandesite.com.br</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
 
             <div class="redes">
                 <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
@@ -101,3 +157,17 @@
     </footer>
 </body>
 </html>
+<script>
+    /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+function clickable(){
+    window.location.href='../Calculadora/index.html'
+}
+</script>

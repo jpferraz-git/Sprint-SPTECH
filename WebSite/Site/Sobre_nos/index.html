@@ -5,34 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
-    <title>GasBusters | Sobre Nós</title>
+
+    <title>GasBusters | Sobre</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar">
-            <h1 class="logo"><img src="./assets/logo.png" class="img-logo">GASBUSTERS</h1>
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
             <ul class="nav-list">
                 <li><a href="../Home/index.html">HOME</a></li>
                 <li>•</li>
-                <li><b><a href="./index.html">SOBRE NÓS</a></b></li>
+                <li><b><a href="../Sobre_nos/index.html">SOBRE</b></a></li>
                 <li>•</li>
-                <li><a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a></li>
+                <li><a href="../Calculadora/index.html">SIMULADOR</a></li>
                 <li>•</li>
                 <li><a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a></li>
                 <li>•</li>
+<<<<<<< HEAD
                 <li><a href="../Cadastro_e_Login/public/login.html"><i class="fa-solid fa-user fa-lg"
                             style="color: #ffffff;"></i></a></li>
+=======
+                <li><a href="../Cadastro_e_Login/public/login.html">LOGIN</a></li>
+>>>>>>> c4ccfd78214274701795d74989cdc7d5d5702cb5
             </ul>
         </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="../Home/index.html">HOME</a>
+                    <a href="../Sobre_nos/index.html">SOBRE</a>
+                    <a href="../Calculadora/index.html">SIMULADOR</a>
+                    <a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a>
+                    <a href="../Cadastro_e_Login/public/login.html">LOGIN</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+        </div>
+        <!-- FIM MENU MOBILE -->
     </header>
 
     <main>
-        <section class="frase-impacto">
-            <h1>Monitorando o invisível, protegendo o indispensável.</h1>
+        <section class="face-page">
+            <div class="texto">
+                <h1>Sobre a <br>GasBusters</h1>
+                <p>Conheça nossas missões, visões e valores</p>
+            </div>
         </section>
 
+<<<<<<< HEAD
         <div class="sobre-empresa">
             <h1>NASCIMENTO</h1>
         </div>
@@ -53,6 +88,37 @@
                 </p>
                 <img src="assets/team.png" alt="">
             </div>
+=======
+        <section class="caracteristicas">
+            <div class="container">
+                <div>
+                    <img src="assets/bandeiras.png" alt="">
+                    <span>Nossa missão é garantir a segurança e a eficiência nas cozinhas industriais por meio de soluções avançadas de monitoramento de gás. Com foco em inovação e prevenção, buscamos proteger pessoas e negócios, prevenindo acidentes e promovendo um ambiente de trabalho seguro.</span>
+                </div>
+                <div>
+                    <img src="assets/visao-compartilhada.png" alt="">
+                    <span>Ser referência nacional em tecnologia de monitoramento de gás, reconhecida pela qualidade, confiança e eficácia de nossas soluções. Queremos liderar o mercado na prevenção de acidentes, contribuindo para a evolução e segurança das indústrias alimentícias e cozinhas profissionais.</span>
+                </div>
+                <div>
+                    <img src="assets/valor (1).png" alt="">
+                    <span>Valorizamos a responsabilidade, a integridade e o compromisso com a segurança. Acreditamos na inovação constante, no atendimento de excelência e na transparência em nossas operações, sempre priorizando o bem-estar de nossos clientes e colaboradores.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="fundacao">
+            <div class="container">
+                <img src="./assets/imagem gabriel cores mudadas 1.png" alt="">
+                <div class="texto">
+                    <h1>Fundação</h1>
+                    <span>A GasBusters foi fundada com o objetivo de preencher uma lacuna no mercado de segurança em cozinhas industriais, onde a prevenção de acidentes com vazamentos de gás é essencial. Desde o início, a empresa se destacou por oferecer soluções tecnológicas inovadoras, utilizando sensores de alta precisão para monitoramento contínuo. Nosso compromisso com a segurança e a proteção de ambientes de trabalho foi o alicerce da criação da GasBusters, e seguimos crescendo com foco em inovação e qualidade para atender às necessidades de nossos clientes.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="conjunto-imagens">
+            <img src="./assets/Group 3.png" alt="">
+>>>>>>> c4ccfd78214274701795d74989cdc7d5d5702cb5
         </section>
 
         <section class="setores-caracteristicas">
@@ -95,16 +161,22 @@
     </main>
 
     <footer>
+        <span class="logoGasbus">
         <section class="logotipo">
             <img src="./assets/logo.png" alt="">
             <h1>GASBUSTERS</h1>
         </section>
+        <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+    </span>
+
+
+        <div class="vl"></div>
 
         <section class="infos">
             <h1>FALE CONOSCO</h1>
             <p>(11) 3456-7890</p>
-            <p>Rua Qualquer, 123, Cidade Qualquer</p>
-            <p>ola@grandesite.com.br</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
 
             <div class="redes">
                 <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
@@ -115,5 +187,20 @@
         </section>
     </footer>
 </body>
+<<<<<<< HEAD
 
 </html>
+=======
+</html>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+>>>>>>> c4ccfd78214274701795d74989cdc7d5d5702cb5

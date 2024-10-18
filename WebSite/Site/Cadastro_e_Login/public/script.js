@@ -10,14 +10,40 @@ function revelarSenha(idInput, idImage) {
     }
 }
 
+// Ajustar a senha gerada para atender ao critérios da validação de senha
 function gerarSenha() {
-    const caracateres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$&*-!123456789'
+    const caracateres = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()/@_0123456789`
+    const caract_especiais_senha_gerada = `!#$%&()+/<=>?@[]_\{|}`
     var senha_gerada = ''
 
-    for (var i = 0; i <= 8; i++) {
-        var letra = caracateres[parseInt(Math.random() * (caracateres.length - 1))]
-        senha_gerada += letra
+    var qtd_num = 0
+    var qtd_caract_especiais = 0
+    var qtd_letras_maius = 0
+    var letra_caract_especial = false
+
+    for (var i = 0; senha_gerada.length <= 8; i++) {
+        var letra_random = caracateres[parseInt(Math.random() * (caracateres.length - 1))]
+        if (isNaN(parseInt(letra_random)) == false && qtd_num < 2) {
+            senha_gerada += letra_random
+        } else {
+            for (var caract = 0; caract < caract_especiais_senha_gerada.length; caract++) {
+                if (letra_random == caract_especiais_senha_gerada[caract] && qtd_caract_especiais < 2) {
+                    qtd_caract_especiais++
+                    senha_gerada += letra_random
+                    letra_caract_especial = true
+                }
+            }
+            if (letra_caract_especial == false) {
+                if (letra_random == letra_random.toUpperCase() && qtd_letras_maius < 2) {
+                    qtd_letras_maius++
+                    senha_gerada += letra_random
+                } else {
+                    senha_gerada += letra_random
+                }
+            }
+        }
     }
+
 
     input_senha_cadastro.value = senha_gerada
     input_confirmacao_senha.value = senha_gerada
@@ -29,8 +55,8 @@ $(document).ready(function () {
     $('#input_cnpj').mask('00.000.000/0000-00');
 });
 
-// Validações
 
+// Validando a Senha
 function validarCampos() {
     var validacao_senha = false
     var validacao_confirmacao = false
@@ -69,7 +95,7 @@ function validarCampos() {
 
 
     if (senha.length < 8 || qtd_num < 2 || qtd_caract_especiais < 2 || qtd_letras_maius < 2 || possui_espaco) {
-        alert('A senha deve conter no mínimo 8 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
+        alert('A senha deve conter no mínimo 10 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
         trocarCorErro()
     } else {
         validacao_senha = true
