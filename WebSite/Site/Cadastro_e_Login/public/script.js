@@ -12,39 +12,36 @@ function revelarSenha(idInput, idImage) {
 
 // Ajustar a senha gerada para atender ao critérios da validação de senha
 function gerarSenha() {
-    const caracateres = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()/@_0123456789`
-    const caract_especiais_senha_gerada = `!#$%&()+/<=>?@[]_\{|}`
+    const letras = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`
+    const caract_especiais_senha_gerada = `!#$%&()/?@_`
+    const numeros = '0123456789'
+
     var senha_gerada = ''
 
-    var qtd_num = 0
-    var qtd_caract_especiais = 0
     var qtd_letras_maius = 0
-    var letra_caract_especial = false
 
     for (var i = 0; senha_gerada.length <= 8; i++) {
-        var letra_random = caracateres[parseInt(Math.random() * (caracateres.length - 1))]
-        if (isNaN(parseInt(letra_random)) == false && qtd_num < 2) {
-            senha_gerada += letra_random
-        } else {
-            for (var caract = 0; caract < caract_especiais_senha_gerada.length; caract++) {
-                if (letra_random == caract_especiais_senha_gerada[caract] && qtd_caract_especiais < 2) {
-                    qtd_caract_especiais++
-                    senha_gerada += letra_random
-                    letra_caract_especial = true
-                }
+        if(senha_gerada.length <= 3) {
+            const letra_random = letras[parseInt(Math.random()*letras.length)]
+            if(letra_random == letra_random.toLowerCase() && qtd_letras_maius >= 2) {
+                senha_gerada += letra_random
+            } else{
+                senha_gerada += letra_random.toUpperCase()
+                qtd_letras_maius++
             }
-            if (letra_caract_especial == false) {
-                if (letra_random == letra_random.toUpperCase() && qtd_letras_maius < 2) {
-                    qtd_letras_maius++
-                    senha_gerada += letra_random
-                } else {
-                    senha_gerada += letra_random
-                }
+        } else if (senha_gerada.length <= 5) {
+            const especial_random = caract_especiais_senha_gerada[parseInt(Math.random()*caract_especiais_senha_gerada.length)]
+            if (senha_gerada[senha_gerada.length-1] != especial_random) {
+                senha_gerada += especial_random
+            }
+        } else {
+            const num_random = numeros[parseInt(Math.random()*numeros.length)]
+            if (senha_gerada[senha_gerada.length-1] != num_random) {
+                senha_gerada += num_random
             }
         }
     }
-
-
+    
     input_senha_cadastro.value = senha_gerada
     input_confirmacao_senha.value = senha_gerada
 
@@ -56,7 +53,6 @@ $(document).ready(function () {
 });
 
 
-// Validando a Senha
 function validarCampos() {
     var validacao_senha = false
     var validacao_confirmacao = false
@@ -95,7 +91,7 @@ function validarCampos() {
 
 
     if (senha.length < 8 || qtd_num < 2 || qtd_caract_especiais < 2 || qtd_letras_maius < 2 || possui_espaco) {
-        alert('A senha deve conter no mínimo 10 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
+        alert('A senha deve conter no mínimo 8 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
         trocarCorErro()
     } else {
         validacao_senha = true
@@ -111,9 +107,7 @@ function validarCampos() {
         validacao_confirmacao = true
     }
 
-    if (validacao_senha && validacao_confirmacao) {
-        ja_preenchi_dados.href = '../../Dashboard/index.html'
-    }
+
 }
 
 function trocarCorErro() {
