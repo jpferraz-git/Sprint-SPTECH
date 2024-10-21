@@ -204,10 +204,10 @@ header {
     grid-template-rows: repeat(6, 1fr);
     gap: 10px;
     width: 80%;
-    max-width: 800px;
 }
 
 .grid-imagens {
+    width: 100%;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 20px;
