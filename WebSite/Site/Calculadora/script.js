@@ -37,7 +37,7 @@ function calcularPerda() {
     div_mostrar_calculo.innerHTML = `
     <div class="divResultado">
 
-    <h1>Prejuízo Total de <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
+    <h1>Prejuízo Total de até <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
 
 <div class="divResultadoDentro">
 
