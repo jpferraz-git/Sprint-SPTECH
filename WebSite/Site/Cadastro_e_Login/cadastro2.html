@@ -65,9 +65,10 @@
         <div class="container">
             <h1>Cadastro</h1>
             <p>Vamos começar a sua jornada em direção à segurança da sua cozinha.</p>
-            <form>
-                <div class="campos">
 
+            <form>
+
+                <div class="campos">
                     <div class="campo-indiv separacao-empresa">
                         <p>Sobre a Empresa</p>
                     </div>
@@ -175,10 +176,12 @@
                         <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('+')">Adicionar</button>
                         <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('-')">Deletar</button>
                     </div>
+
                     <div id="div_user" class="user">
                         <div class="user-indiv">
                             <div class="separacao-campos">
                                 <div class="campo-indiv reduzido">
+                                    <!-- Fazer a validação no Username via JS para delimitar regras na definição do usuário -->
                                     <p>Username</p>
                                     <input required id="input_numero" placeholder="Digite aqui"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
@@ -227,13 +230,16 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="link-senha">
                                 <span>Temos uma sugestão de senha!</span>
                                 <a href="#" onclick="gerarSenha()">Clique aqui</a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
+                <!-- Arrumar a validação pois agora exite um campo senha de para cada usuário e estão com o mesmo ID -->
                 <button onclick="validarCampos()" type="submit" class="btn">Finalizar Cadastro</button>
             </form>
         </div>
