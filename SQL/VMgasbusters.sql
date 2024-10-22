@@ -68,10 +68,10 @@ FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 
 
 INSERT INTO empresa (razaoSocial, nomeFantasia, CNPJ, cidade, bairro, Uf, rua, numero, cep, telefoneEmpresa, emailEmpresa) 
-VALUES ('Empresa Gasbusters Ltda', 'Gasbusters, '12345678901234', 'São Paulo', 'Centro', 'SP', 'Rua Nova Vila', '100', '01000-000', '11987654321', 'contato@gasbusters.com.br');
+VALUES ('Empresa Gasbusters Ltda', 'Gasbusters', '12345678901234', 'São Paulo', 'Centro', 'SP', 'Rua Nova Vila', '100', '01000-000', '11987654321', 'contato@gasbusters.com.br');
 
 INSERT INTO empresa (razaoSocial, nomeFantasia, CNPJ, cidade, bairro, Uf, rua, numero, cep, telefoneEmpresa, emailEmpresa) 
-VALUES ('Empresa Três Irmãos S.A.', 'Três Irmãos, '23456789012345', 'Rio de Janeiro', 'Copacabana', 'RJ', 'Avenida Bem vindas', '200', '22070-000', '21987654321', 'contato@tresirmaos.com.br');
+VALUES ('Empresa Três Irmãos S.A.', 'Três Irmãos', '23456789012345', 'Rio de Janeiro', 'Copacabana', 'RJ', 'Avenida Bem vindas', '200', '22070-000', '21987654321', 'contato@tresirmaos.com.br');
 
 
 INSERT INTO usuario (idUsuario, nome, telefonePessoa, cpf, dtNasc, emailPessoal, senha, fkEmpresa, fkUsuarioADM) 
@@ -100,4 +100,4 @@ INSERT INTO sensor (idSensor, nomeSensor, localInstalacao, sensorStatus, fkCozin
 VALUES (1, 'Sensor 1', 'Cozinha Principal no fogão', 'Ativo', 1);
 
 INSERT INTO sensor (idSensor, nomeSensor, localInstalacao, sensorStatus, fkCozinha) 
-VALUES (2, 'Sensor 2', 'Cozinha Principal no fogão 2, 'Ativo', 2);
+VALUES (2, 'Sensor 2', 'Cozinha Principal no fogão 2', 'Ativo', 2);

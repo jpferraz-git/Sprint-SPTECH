@@ -12,7 +12,10 @@
         rel="stylesheet">
     <link href="simuladorGB.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="public/script.js"></script>
     <title>Cadastro</title>
 </head>
 
@@ -28,9 +31,9 @@
                 <li>•</li>
                 <li><a href="../Sobre_nos/index.html">SOBRE NÓS</a></li>
                 <li>•</li>
-                <li><a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a></li>
+                <li><a href="../Calculadora/index.html">SIMULADOR</a></li>
                 <li>•</li>
-                <li><a href="../Cadastro_e_Login/public/cadastro.html"><b>CONTATO</b></a></li>
+                <li><a href="../Fale_conosco/index.html">CONTATO</a></li>
                 <li>•</li>
                 <li><a href="../Cadastro_e_Login/public/login.html">LOGIN</a></li>
             </ul>
@@ -45,8 +48,8 @@
                 <div id="myLinks">
                     <a href="../Home/index.html">HOME</a>
                     <a href="../Sobre_nos/index.html">SOBRE NÓS</a>
-                    <a href="../Calculadora/index.html">SIMULADOR FINANCEIRO</a>
-                    <a href="../Cadastro_e_Login/public/cadastro.html">CONTATO</a>
+                    <a href="../Calculadora/index.html">SIMULADOR</a>
+                    <a href="../Fale_conosco/index.html">CONTATO</a>
                     <a href="../Cadastro_e_Login/public/login.html">LOGIN</a>
                 </div>
                 <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
@@ -61,99 +64,177 @@
     <main>
         <div class="container">
             <h1>Cadastro</h1>
-            <p>Conheça a nossa solução, tire dúvidas ou nos envie sugestões de melhoria.</p>
+            <p>Vamos começar a sua jornada em direção à segurança da sua cozinha.</p>
             <form>
                 <div class="campos">
+
+                    <div class="campo-indiv separacao-empresa">
+                        <p>Sobre a Empresa</p>
+                    </div>
                     <div class="separacao-campos">
                         <div class="campo-indiv">
-                            <p>Nome da Empresa</p>
-                            <input required id="nome_emp" placeholder="Digite aqui" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Digite aqui'">
+                            <p>Razão Social</p>
+                            <input required id="input_razao_social" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
+                        <div class="campo-indiv">
+                            <p>Nome Fantasia</p>
+                            <input required required id="input_nome_fantasia" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                    </div>
+                    <div class="separacao-campos">
                         <div class="campo-indiv">
                             <p>Responsável Legal</p>
-                            <input required required id="resp_legal" placeholder="Digite aqui"
+                            <input required id="input_resp_legal" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div id="cnpj" class="campo-indiv reduzido">
+                            <p>CNPJ</p>
+                            <input required maxlength="14" id="input_cnpj" placeholder="Digite aqui"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
                     <div class="separacao-campos">
                         <div class="campo-indiv">
-                            <p>E-mail</p>
-                            <input required type="email" id="email" placeholder="Digite aqui"
+                            <p>E-mail Corporativo</p>
+                            <input required type="email" id="input_email" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Telefone de contato</p>
+                            <input required maxlength="14" id="input_telefone" placeholder="Digite aqui"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
                     <div class="separacao-campos">
-                        <div class="campo-indiv">
+                        <div class="campo-indiv reduzido">
                             <p>Estado</p>
-                            <select required id="estados">
+                            <select required id="select_estados">
                                 <option value="" disabled selected>Selecione</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                              </select>                              
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
                         </div>
                         <div class="campo-indiv">
                             <p>Cidade</p>
-                            <input required id="cidade" placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                            <input required id="input_cidade" placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Bairro</p>
+                            <input required id="input_bairro" placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
                     <div class="separacao-campos">
                         <div class="campo-indiv">
-                            <p>Como nos conheceu</p>
-                            <select id="como_conheceu">
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="">Indicação</option>
-                                <option value="">WebSite</option>
-                                <option value="">Mídias Digitais</option>
-                                <option value="">Outro</option>
-                            </select>
+                            <p>CEP</p>
+                            <input required maxlength="9" id="input_cep" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                         <div class="campo-indiv">
-                            <p>Motivo do contato</p>
-                            <select id="motivo_contato">
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="">Saber mais sobre a Solução</option>
-                                <option value="">Tirar dúvidas</option>
-                                <option value="">Sugestões ou reclamações</option>
-                                <option value="">Outro</option>
-                            </select>
+                            <p>Logradouro/Rua</p>
+                            <input required id="input_logradouro" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv reduzido">
+                            <p>N°</p>
+                            <input required type="number" id="input_numero" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
-                    <div class="separacao-campos">
-                        <div class="campo-indiv">
-                            <p>Nos envie uma mensagem!</p>
-                            <textarea required id="mensagem" placeholder="Digite aqui" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Digite aqui'"></textarea>
+
+                    <div class="campo-indiv separacao-usuario">
+                        <p>Usuários</p>
+                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('+')">Adicionar</button>
+                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('-')">Deletar</button>
+                    </div>
+                    <div id="div_user" class="user">
+                        <div class="user-indiv">
+                            <div class="separacao-campos">
+                                <div class="campo-indiv reduzido">
+                                    <p>Username</p>
+                                    <input required id="input_numero" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                                <div class="campo-indiv">
+                                    <p>E-mail</p>
+                                    <input required type="email" id="input_email_user" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                            </div>
+                            <div class="separacao-campos">
+                                <div class="campo-indiv">
+                                    <p>Nome Completo</p>
+                                    <input required id="input_nome_completo" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                                <div class="campo-indiv reduzido">
+                                    <p>Tipo</p>
+                                    <select required id="select_tipo">
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option value="adm">Administrador</option>
+                                        <option value="comum">Comum</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="separacao-campos senha">
+                                <div class="campo-indiv">
+                                    <p>Senha</p>
+                                    <div class="campo-img">
+                                        <input required onfocus="trocarCorNormal()" type="password" id="input_senha"
+                                            placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Digite aqui'">
+                                        <img id="img_senha" onclick="revelarSenha('input_senha','img_senha')"
+                                            src="public/assets/eye-crossed.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="campo-indiv">
+                                    <p>Confirmação</p>
+                                    <div class="campo-img">
+                                        <input required onfocus="trocarCorNormal()" type="password"
+                                            id="input_confirmacao" placeholder="Digite aqui"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                        <img id="img_confirmacao"
+                                            onclick="revelarSenha('input_confirmacao','img_confirmacao')"
+                                            src="public/assets/eye-crossed.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="link-senha">
+                                <span>Temos uma sugestão de senha!</span>
+                                <a href="#" onclick="gerarSenha()">Clique aqui</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn">Enviar</button>
+                <button onclick="validarCampos()" type="submit" class="btn">Finalizar Cadastro</button>
             </form>
         </div>
     </main>
