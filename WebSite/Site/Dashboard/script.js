@@ -13,22 +13,22 @@ var data_hora = {
             label: 'Fogão 01',
             data: [18.3, 19.2, 18.7, 19, 19.5, 19.8, 19.4, 20, 20.6],
             tension: 0,
-            borderColor: 'rgb(94, 255, 0)', // Cor da linha
-            backgroundColor: 'rgb(94, 255, 0)', // Cor de fundo da linha
+            borderColor: 'rgb(160, 71, 71)', // Cor da linha
+            backgroundColor: 'rgb(160, 71, 71)', // Cor de fundo da linha
         },
         {
             label: 'Fogão 02',
             data: [41.0,39.0,37.2,37.0,34.0,35.0,41.0,39.0,37.2],
             tension: 0,
-            borderColor: 'rgb(64, 150, 196)',
-            backgroundColor: 'rgb(64, 150, 196)',
+            borderColor: 'rgb(184, 117, 137)',
+            backgroundColor: 'rgb(184, 117, 137)',
         },
         {
             label: 'Forno',
             data: [5, 2, 1, 0, 3, 4, 1, 1, 2],
             tension: 0,
-            borderColor: 'rgb(196, 64, 137)',
-            backgroundColor: 'rgb(196, 64, 137)',
+            borderColor: 'rgb(240, 89, 65)',
+            backgroundColor: 'rgb(240, 89, 65)',
         }
     ]
 }
@@ -68,22 +68,22 @@ const data_minuto = {
             label: 'Fogão 01',
             data: [12, 12.5, 14, 15, 16, 17],
             tension: 0,
-            borderColor: 'rgb(94, 255, 0)',
-            backgroundColor: 'rgb(94, 255, 0)',
+            borderColor: 'rgb(160, 71, 71)',
+            backgroundColor: 'rgb(160, 71, 71)',
         },
         {
             label: 'Fogão 02',
             data: [41, 39, 37.2, 37, 34, 35],
             tension: 0,
-            borderColor: 'rgb(64, 150, 196)',
-            backgroundColor: 'rgb(64, 150, 196)',
+            borderColor: 'rgb(184, 117, 137)',
+            backgroundColor: 'rgb(184, 117, 137)',
         },
         {
             label: 'Forno',
             data: [2.2, 2.8, 3.1, 3.5, 3.3, 3.8],
             tension: 0,
-            borderColor: 'rgb(196, 64, 137)',
-            backgroundColor: 'rgb(196, 64, 137)',
+            borderColor: 'rgb(240, 89, 65)',
+            backgroundColor: 'rgb(240, 89, 65)',
         },
     ]
 }
