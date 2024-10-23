@@ -73,7 +73,7 @@ const data_minuto = {
         },
         {
             label: 'Fogão 02',
-            data: [41, 39, 37.2, 37, 34, 35],
+            data: [48, 52, 53, 58, 60, 55],
             tension: 0,
             borderColor: 'rgb(184, 117, 137)',
             backgroundColor: 'rgb(184, 117, 137)',
