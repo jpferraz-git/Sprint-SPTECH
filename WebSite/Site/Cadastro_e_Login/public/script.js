@@ -62,7 +62,7 @@ function validarCampos() {
     var validacao_confirmacao = false
 
     // Validando Senha
-    const senha = input_senha.value
+    const senha = id_campo.value
     const caract_especiais = `!"#$%&'()*+,-./:;<=>?@[\]^_\`{|}~`
 
     var qtd_num = 0
@@ -73,15 +73,20 @@ function validarCampos() {
     for (var letra = 0; letra < senha.length; letra++) {
         var letra_caract_especial = false
         letra_atual = senha[letra]
+
+        // Números
         if (isNaN(parseInt(letra_atual)) == false) {
             qtd_num++
         } else {
+            // Caracteres Especiais
             for (var caract = 0; caract < caract_especiais.length; caract++) {
                 if (letra_atual == caract_especiais[caract]) {
                     qtd_caract_especiais++
                     letra_caract_especial = true
                 }
             }
+
+            // Letras
             if (letra_caract_especial == false) {
                 if (letra_atual == letra_atual.toUpperCase() && letra_atual != ' ') {
                     qtd_letras_maius++
