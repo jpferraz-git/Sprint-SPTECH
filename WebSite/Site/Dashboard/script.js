@@ -66,10 +66,10 @@ const data_minuto = {
     datasets: [
         {
             label: 'Fogão 01',
-            data: [12, 12.5, 14, 15, 16, 17],
+            data: [2.3, 2.5, 3.4, 1.9, 2.4, 2.3],
             tension: 0,
-            borderColor: 'rgb(160, 71, 71)',
-            backgroundColor: 'rgb(160, 71, 71)',
+            borderColor: 'rgb(240, 89, 65)',
+            backgroundColor: 'rgb(240, 89, 65)',
         },
         {
             label: 'Fogão 02',
@@ -84,6 +84,22 @@ const data_minuto = {
             tension: 0,
             borderColor: 'rgb(240, 89, 65)',
             backgroundColor: 'rgb(240, 89, 65)',
+        },
+        {
+            label: 'PERIGO',
+            data: [30,30,30,30,30,30],
+            tension: 0,
+            borderColor: 'rgb(203,5,5)',
+            backgroundColor: 'rgb(203,5,5)',
+        },
+        {
+            label: 'ALERTA',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            borderColor: 'rgb(255, 255, 255)',
+            backgroundColor: 'rgb(241, 101, 41) ',
+
+        
         },
     ]
 }
