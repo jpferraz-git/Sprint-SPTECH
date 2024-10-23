@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png">
+    <link rel="stylesheet" href="public/styles/cadastro2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="simuladorGB.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="public/script.js"></script>
+    <title>GasBusters | Cadastro</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo">
+                    GASBUSTERS</a>
+            </div>
+            <ul class="nav-list">
+                <li><a href="../Home/index.html">HOME</a></li>
+                <li>•</li>
+                <li><a href="../Sobre_nos/index.html">SOBRE NÓS</a></li>
+                <li>•</li>
+                <li><a href="../Calculadora/index.html">SIMULADOR</a></li>
+                <li>•</li>
+                <li><a href="../Fale_conosco/index.html">CONTATO</a></li>
+                <li>•</li>
+                <li><a href="../Cadastro_e_Login/login2.html">Login</a></li>
+            </ul>
+        </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo">
+                    GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="../Home/index.html">HOME</a>
+                    <a href="../Sobre_nos/index.html">SOBRE NÓS</a>
+                    <a href="../Calculadora/index.html">SIMULADOR</a>
+                    <a href="../Fale_conosco/index.html">CONTATO</a>
+                    <a href="../Cadastro_e_Login/public/login.html">LOGIN</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <!-- FIM MENU MOBILE -->
+
+    </header>
+    <main>
+        <div class="container">
+            <h1>Crie mais usuários!</h1>
+            <p>Permita que seus colaboradores acessem os nossos dados.</p>
+
+            <form>
+                <div class="campos">
+                    <div class="campo-indiv separacao-usuario">
+                        <p>Usuários</p>
+                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('+')">Adicionar</button>
+                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('-')">Deletar</button>
+                    </div>
+
+                    <div id="div_user" class="user">
+                        <div id="user1" class="user-indiv">
+                            <div class="separacao-campos">
+                                <div class="campo-indiv reduzido">
+                                    <p>Username</p>
+                                    <input required id="input_numero" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                                <div class="campo-indiv">
+                                    <p>E-mail</p>
+                                    <input required type="email" id="input_email_user" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                            </div>
+                            <div class="separacao-campos">
+                                <div class="campo-indiv">
+                                    <p>Nome Completo</p>
+                                    <input required id="input_nome_completo" placeholder="Digite aqui"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                </div>
+                                <div class="campo-indiv reduzido">
+                                    <p>Tipo</p>
+                                    <select required id="select_tipo">
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option value="adm">Administrador</option>
+                                        <option value="comum">Comum</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="separacao-campos senha">
+                                <div class="campo-indiv">
+                                    <p>Senha</p>
+                                    <div class="campo-img">
+                                        <input required onfocus="trocarCorNormal(input_senha1,input_confirmacao1)" type="password" id="input_senha1"
+                                            placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Digite aqui'">
+                                        <img id="img_senha1" onclick="revelarSenha(input_senha1,img_senha1)"
+                                            src="public/assets/eye-crossed.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="campo-indiv">
+                                    <p>Confirmação</p>
+                                    <div class="campo-img">
+                                        <input required onfocus="trocarCorNormal(input_senha1,input_confirmacao1)" type="password"
+                                            id="input_confirmacao1" placeholder="Digite aqui"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                        <img id="img_confirmacao1"
+                                            onclick="revelarSenha(input_confirmacao1,img_confirmacao1)"
+                                            src="public/assets/eye-crossed.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="link-senha">
+                                <span>Temos uma sugestão de senha!</span>
+                                <a href="#" onclick="gerarSenha(input_senha1,input_confirmacao1)">Clique aqui</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <button onclick="validarCampos()" type="submit" class="btn">Finalizar Cadastro</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <span class="logoGasbus">
+            <section class="logotipo">
+                <img src="../Home/assets/logo.png" alt="">
+                <h1>GASBUSTERS</h1>
+            </section>
+            <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+        </span>
+
+
+        <div class="vl"></div>
+
+        <section class="infos">
+            <h1>FALE CONOSCO</h1>
+            <p>(11) 3456-7890</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+            <div class="redes">
+                <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+                <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>

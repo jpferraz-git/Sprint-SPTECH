@@ -67,7 +67,6 @@
             <p>Vamos começar a sua jornada em direção à segurança da sua cozinha.</p>
 
             <form>
-
                 <div class="campos">
                     <div class="campo-indiv separacao-empresa">
                         <p>Sobre a Empresa</p>
@@ -93,18 +92,6 @@
                         <div id="cnpj" class="campo-indiv reduzido">
                             <p>CNPJ</p>
                             <input required maxlength="14" id="input_cnpj" placeholder="Digite aqui"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                        </div>
-                    </div>
-                    <div class="separacao-campos">
-                        <div class="campo-indiv">
-                            <p>E-mail Corporativo</p>
-                            <input required type="email" id="input_email" placeholder="Digite aqui"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                        </div>
-                        <div class="campo-indiv">
-                            <p>Telefone de contato</p>
-                            <input required maxlength="14" id="input_telefone" placeholder="Digite aqui"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
@@ -170,79 +157,49 @@
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
-
-                    <div class="campo-indiv separacao-usuario">
-                        <p>Usuários</p>
-                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('+')">Adicionar</button>
-                        <button class="btn usuario" type="button" onclick="adicionarDeletarUsuario('-')">Deletar</button>
-                    </div>
-
-                    <div id="div_user" class="user">
-                        <div class="user-indiv">
-                            <div class="separacao-campos">
-                                <div class="campo-indiv reduzido">
-                                    <!-- Fazer a validação no Username via JS para delimitar regras na definição do usuário -->
-                                    <p>Username</p>
-                                    <input required id="input_numero" placeholder="Digite aqui"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                                </div>
-                                <div class="campo-indiv">
-                                    <p>E-mail</p>
-                                    <input required type="email" id="input_email_user" placeholder="Digite aqui"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                                </div>
-                            </div>
-                            <div class="separacao-campos">
-                                <div class="campo-indiv">
-                                    <p>Nome Completo</p>
-                                    <input required id="input_nome_completo" placeholder="Digite aqui"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                                </div>
-                                <div class="campo-indiv reduzido">
-                                    <p>Tipo</p>
-                                    <select required id="select_tipo">
-                                        <option value="" disabled selected>Selecione</option>
-                                        <option value="adm">Administrador</option>
-                                        <option value="comum">Comum</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="separacao-campos senha">
-                                <div class="campo-indiv">
-                                    <p>Senha</p>
-                                    <div class="campo-img">
-                                        <input required onfocus="trocarCorNormal()" type="password" id="input_senha"
-                                            placeholder="Digite aqui" onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Digite aqui'">
-                                        <img id="img_senha" onclick="revelarSenha('input_senha','img_senha')"
-                                            src="public/assets/eye-crossed.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="campo-indiv">
-                                    <p>Confirmação</p>
-                                    <div class="campo-img">
-                                        <input required onfocus="trocarCorNormal()" type="password"
-                                            id="input_confirmacao" placeholder="Digite aqui"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                                        <img id="img_confirmacao"
-                                            onclick="revelarSenha('input_confirmacao','img_confirmacao')"
-                                            src="public/assets/eye-crossed.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="link-senha">
-                                <span>Temos uma sugestão de senha!</span>
-                                <a href="#" onclick="gerarSenha()">Clique aqui</a>
-                            </div>
-                            
+                    <div class="separacao-campos">
+                        <div class="campo-indiv">
+                            <p>E-mail Corporativo</p>
+                            <input required type="email" id="input_email" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Telefone de contato</p>
+                            <input required maxlength="14" id="input_telefone" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                         </div>
                     </div>
+                    <div class="separacao-campos senha">
+                        <div class="campo-indiv">
+                            <p>Senha</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal('input_senha1','input_confirmacao1')"
+                                    type="password" id="input_senha1" placeholder="Digite aqui"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_senha1" onclick="revelarSenha(input_senha1,img_senha1)"
+                                    src="public/assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Confirmação</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal('input_senha1','input_confirmacao1')"
+                                    type="password" id="input_confirmacao1" placeholder="Digite aqui"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_confirmacao1"
+                                    onclick="revelarSenha(input_confirmacao1,img_confirmacao1)"
+                                    src="public/assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-senha">
+                        <span>Temos uma sugestão de senha!</span>
+                        <a href="#" onclick="gerarSenha(input_senha1,input_confirmacao1)">Clique aqui</a>
+                    </div>
                 </div>
-                <!-- Arrumar a validação pois agora exite um campo senha de para cada usuário e estão com o mesmo ID -->
                 <button onclick="validarCampos()" type="submit" class="btn">Finalizar Cadastro</button>
             </form>
-        </div>
+
     </main>
     <footer>
         <span class="logoGasbus">

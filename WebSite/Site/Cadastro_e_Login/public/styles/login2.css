@@ -146,7 +146,7 @@ form p {
 .campos {
     background-color: #fff;
     border-radius: 15px;
-    padding: 1.5em;
+    padding: 2.4em;
     width: 100%;
 }
 
@@ -193,7 +193,7 @@ select:focus {
 }
 
 .campo-indiv.separacao-usuario{
-    margin-top: 1.5em;
+    margin-top: 111.5em;
     display: flex;
     flex-direction: row;
     width: 100%;

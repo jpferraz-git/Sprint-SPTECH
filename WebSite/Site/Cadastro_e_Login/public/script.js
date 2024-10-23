@@ -1,17 +1,15 @@
 function revelarSenha(idInput, idImage) {
-    var elemento_input = document.getElementById(idInput)
-    var elemento_image = document.getElementById(idImage)
-    if (elemento_input.type == "password") {
-        elemento_input.type = "text"
-        elemento_image.src = "public/assets/eye.png"
+    if (idInput.type == "password") {
+        idInput.type = "text"
+        idImage.src = "public/assets/eye.png"
     } else {
-        elemento_input.type = "password"
-        elemento_image.src = "public/assets/eye-crossed.png"
+        idInput.type = "password"
+        idImage.src = "public/assets/eye-crossed.png"
     }
 }
 
 // Ajustar a senha gerada para atender ao critérios da validação de senha
-function gerarSenha() {
+function gerarSenha(id_campo,id_confirmacao) {
     event.preventDefault()
     const letras = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`
     const caract_especiais_senha_gerada = `!#$%&()/?@_`
@@ -43,8 +41,8 @@ function gerarSenha() {
         }
     }
 
-    input_senha.value = senha_gerada
-    input_confirmacao.value = senha_gerada
+    id_campo.value = senha_gerada
+    id_confirmacao.value = senha_gerada
 
 }
 
@@ -58,85 +56,105 @@ $(document).ready(function () {
 
 
 function validarCampos() {
-    var validacao_senha = false
-    var validacao_confirmacao = false
+    for(var user_atual = 1; user_atual <= qtd_users; user_atual++)
+    {
+        const id_campo = `input_senha${user_atual}`
+        const id_confirmacao = `input_confirmacao${user_atual}`
+        const id_img1 = `img_senha${user_atual}`
+        const id_img2 = `img_confirmacao${user_atual}`
 
-    // Validando Senha
-    const senha = id_campo.value
-    const caract_especiais = `!"#$%&'()*+,-./:;<=>?@[\]^_\`{|}~`
-
-    var qtd_num = 0
-    var qtd_caract_especiais = 0
-    var qtd_letras_maius = 0
-    var possui_espaco = false
-
-    for (var letra = 0; letra < senha.length; letra++) {
-        var letra_caract_especial = false
-        letra_atual = senha[letra]
-
-        // Números
-        if (isNaN(parseInt(letra_atual)) == false) {
-            qtd_num++
+        var validacao_senha = false
+        var validacao_confirmacao = false
+    
+        // Validando Senha
+        const senha = document.getElementById(id_campo)
+        const confirmacao_senha = document.getElementById(id_confirmacao)
+        const caract_especiais = `!"#$%&'()*+,-./:;<=>?@[\]^_\`{|}~`
+    
+        var qtd_num = 0
+        var qtd_caract_especiais = 0
+        var qtd_letras_maius = 0
+        var possui_espaco = false
+    
+        for (var letra = 0; letra < senha.length; letra++) {
+            var letra_caract_especial = false
+            letra_atual = senha[letra]
+    
+            // Números
+            if (isNaN(parseInt(letra_atual)) == false) {
+                qtd_num++
+            } else {
+                // Caracteres Especiais
+                for (var caract = 0; caract < caract_especiais.length; caract++) {
+                    if (letra_atual == caract_especiais[caract]) {
+                        qtd_caract_especiais++
+                        letra_caract_especial = true
+                    }
+                }
+    
+                // Letras
+                if (letra_caract_especial == false) {
+                    if (letra_atual == letra_atual.toUpperCase() && letra_atual != ' ') {
+                        qtd_letras_maius++
+                    } else if (letra_atual == ' ') {
+                        possui_espaco = true
+                    }
+                }
+            }
+    
+        }
+    
+    
+        if (senha.length < 8 || qtd_num < 2 || qtd_caract_especiais < 2 || qtd_letras_maius < 2 || possui_espaco) {
+            alert('A senha deve conter no mínimo 8 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
+            trocarCorErro(id_campo,id_confirmacao)
+            senha.scrollIntoView({behavior: 'smooth'})
+            return
         } else {
-            // Caracteres Especiais
-            for (var caract = 0; caract < caract_especiais.length; caract++) {
-                if (letra_atual == caract_especiais[caract]) {
-                    qtd_caract_especiais++
-                    letra_caract_especial = true
-                }
-            }
-
-            // Letras
-            if (letra_caract_especial == false) {
-                if (letra_atual == letra_atual.toUpperCase() && letra_atual != ' ') {
-                    qtd_letras_maius++
-                } else if (letra_atual == ' ') {
-                    possui_espaco = true
-                }
-            }
+            validacao_senha = true
+        }
+    
+        // Validando se a Senha e a Confirmação são iguais
+    
+        if (senha != confirmacao_senha) {
+            alert('O campo Senha e o campo Confirmação estão diferentes!')
+            trocarCorErro(id_campo,id_confirmacao,id_img2,id_img2)
+        } else {
+            validacao_confirmacao = true
         }
 
-    }
-
-
-    if (senha.length < 8 || qtd_num < 2 || qtd_caract_especiais < 2 || qtd_letras_maius < 2 || possui_espaco) {
-        alert('A senha deve conter no mínimo 8 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços!')
-        trocarCorErro()
-    } else {
-        validacao_senha = true
-    }
-
-    // Validando se a Senha e a Confirmação são iguais
-    const confirmacao_senha = input_confirmacao.value
-
-    if (senha != confirmacao_senha) {
-        alert('O campo Senha e o campo Confirmação estão diferentes!')
-        trocarCorErro()
-    } else {
-        validacao_confirmacao = true
-    }
+    }    
 
 
 }
 
-function trocarCorErro() {
-    input_senha.style = 'color: red'
-    input_confirmacao.style = 'color: red'
+function trocarCorErro(id_campo,id_confirmacao,id_img1,id_img2) {
+    const campo = document.getElementById(id_campo)
+    const confirmacao = document.getElementById(id_confirmacao)
+    const img1 = document.getElementById(id_img1)
+    const img2 = document.getElementById(id_img2)    
 
-    if (input_confirmacao.type == "password") {
-        input_confirmacao.type = "text"
-        input_confirmacao.src = "assets/eye.png"
+    campo.style = 'color: red'
+    confirmacao.style = 'color: red'
+
+    if (campo.type == "password") {
+        campo.type = "text"
+        img1.src = "public/assets/eye.png"
     }
 
-    if (input_senha.type == "password") {
-        input_senha.type = "text"
-        input_senha.src = "assets/eye.png"
+    if (confirmacao.type == "password") {
+        confirmacao.type = "text"
+        img2.src = "public/assets/eye.png"
     }
+
 }
 
-function trocarCorNormal() {
-    input_senha.style = 'default'
-    input_confirmacao.style = 'default'
+function trocarCorNormal(id_campo,id_confirmacao) {
+    const campo = document.getElementById(id_campo)
+    const confirmacao = document.getElementById(id_confirmacao)
+
+    campo.style = 'default'
+    confirmacao.style = 'default'
 }
 
 
@@ -146,11 +164,13 @@ function adicionarDeletarUsuario(a) {
     const ultimo_adicionado = document.getElementById(`user${qtd_users}`)
 
     if (a == '-') {
-        qtd_users--
-        ultimo_adicionado.remove()
+        if (qtd_users > 1) {
+            qtd_users--
+            ultimo_adicionado.remove()
+        }
     } else {
         qtd_users++
-       element_user.innerHTML += `
+        element_user.innerHTML += `
         <div id="user${qtd_users}" class="user-indiv">
             <div class="separacao-campos">
                 <div class="campo-indiv reduzido">
@@ -183,28 +203,28 @@ function adicionarDeletarUsuario(a) {
                 <div class="campo-indiv">
                     <p>Senha</p>
                     <div class="campo-img">
-                        <input required onfocus="trocarCorNormal()" type="password" id="input_senha"
+                        <input required onfocus="trocarCorNormal()" type="password" id="input_senha${qtd_users}"
                             placeholder="Digite aqui" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Digite aqui'">
-                        <img id="img_senha" onclick="revelarSenha('input_senha','img_senha')"
+                        <img id="img_senha${qtd_users}" onclick="revelarSenha(input_senha${qtd_users},img_senha${qtd_users})"
                             src="public/assets/eye-crossed.png" alt="">
                     </div>
                 </div>
                 <div class="campo-indiv">
                     <p>Confirmação</p>
                     <div class="campo-img">
-                        <input required onfocus="trocarCorNormal()" type="password" id="input_confirmacao"
+                        <input required onfocus="trocarCorNormal()" type="password" id="input_confirmacao${qtd_users}"
                             placeholder="Digite aqui" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Digite aqui'">
-                        <img id="img_confirmacao"
-                            onclick="revelarSenha('input_confirmacao','img_confirmacao')"
+                        <img id="img_confirmacao${qtd_users}"
+                            onclick="revelarSenha(input_confirmacao${qtd_users},img_confirmacao${qtd_users})"
                             src="public/assets/eye-crossed.png" alt="">
                     </div>
                 </div>
             </div>
             <div class="link-senha">
                 <span>Temos uma sugestão de senha!</span>
-                <a href="#" onclick="gerarSenha()">Clique aqui</a>
+                <a href="#" onclick="gerarSenha(input_senha${qtd_users},input_confirmacao${qtd_users})">Clique aqui</a>
             </div>
         </div>
             `
