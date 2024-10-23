@@ -1,114 +1,34 @@
-const grafico_hora = document.querySelector("#grafico_hora");
-const grafico_minuto = document.querySelector("#grafico_minuto");
-const grafico_comparacao = document.querySelector("#grafico_comparacao");
+const grafico_hora = document.querySelector("#grafico_hora")
+const grafico_minuto = document.querySelector("#grafico_minuto")
+const grafico_comparacao = document.querySelector("#grafico_comparacao")
 
-const labels_line_hora = ['07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
-const labels_line_min = ['0', '1min', '2min', '3min', '4min', '5min'];
-
-// Função para determinar a cor de acordo com o valor do dado
-function getColorBasedOnValue(value, isConsecutiveFive = false) {
-    if (isConsecutiveFive) {
-        return 'gold'; // Amarelo se cinco valores consecutivos são >= 5
-    } else if (value >= 50) {
-        return 'red'; // Acima de 50, cor vermelha
-    } else if (value >= 25) {
-        return 'orange'; // Entre 25 e 50, cor laranja
-    } else if (value >= 10) {
-        return 'gold'; // Entre 10 e 25, cor amarela
-    } else {
-        return 'blue'; // Abaixo de 10, cor azul
-    }
-}
-
-// Função para verificar cinco valores consecutivos
-function checkConsecutiveValues(data) {
-    let consecutiveCount = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i] >= 5) {
-            consecutiveCount++;
-            if (consecutiveCount >= 5) {
-                return true; // Encontrou cinco valores consecutivos >= 5
-            }
-        } else {
-            consecutiveCount = 0; // Reseta o contador se o valor não for >= 5
-        }
-    }
-    return false; // Não encontrou cinco valores consecutivos
-}
+const labels_line_hora = ['07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h']
+const labels_line_min = ['0', '1min', '2min', '3min', '4min', '5min']
 
 // Configurando o CHART para o grafico_hora
-const data_hora = {
+var data_hora = {
     labels: labels_line_hora,
     datasets: [
         {
             label: 'Fogão 01',
             data: [18.3, 19.2, 18.7, 19, 19.5, 19.8, 19.4, 20, 20.6],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[0].data); // Verifica para a primeira dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_hora.datasets[0].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[0].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
+            tension: 0,
+            borderColor: 'rgb(94, 255, 0)', // Cor da linha
+            backgroundColor: 'rgb(94, 255, 0)', // Cor de fundo da linha
         },
         {
             label: 'Fogão 02',
-            data: [2, 3, 1, 5, 2, 4, 3, 1, 0.5],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[1].data); // Verifica para a segunda dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_hora.datasets[1].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[1].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
+            data: [41.0,39.0,37.2,37.0,34.0,35.0,41.0,39.0,37.2],
+            tension: 0,
+            borderColor: 'rgb(64, 150, 196)',
+            backgroundColor: 'rgb(64, 150, 196)',
         },
         {
             label: 'Forno',
             data: [5, 2, 1, 0, 3, 4, 1, 1, 2],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[2].data); // Verifica para a terceira dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_hora.datasets[2].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_hora.datasets[2].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
+            tension: 0,
+            borderColor: 'rgb(196, 64, 137)',
+            backgroundColor: 'rgb(196, 64, 137)',
         }
     ]
 }
@@ -116,6 +36,61 @@ const data_hora = {
 const config_hora = {
     type: 'line',
     data: data_hora,
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Média por hora',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 14,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 3 // Tamanho das bolinhas
+            }
+        }
+    }
+}
+
+// Configurando o CHART para o grafico_minuto
+const data_minuto = {
+    labels: labels_line_min,
+    datasets: [
+        {
+            label: 'Fogão 01',
+            data: [12, 12.5, 14, 15, 16, 17],
+            tension: 0,
+            borderColor: 'rgb(94, 255, 0)',
+            backgroundColor: 'rgb(94, 255, 0)',
+        },
+        {
+            label: 'Fogão 02',
+            data: [41, 39, 37.2, 37, 34, 35],
+            tension: 0,
+            borderColor: 'rgb(64, 150, 196)',
+            backgroundColor: 'rgb(64, 150, 196)',
+        },
+        {
+            label: 'Forno',
+            data: [2.2, 2.8, 3.1, 3.5, 3.3, 3.8],
+            tension: 0,
+            borderColor: 'rgb(196, 64, 137)',
+            backgroundColor: 'rgb(196, 64, 137)',
+        },
+    ]
+}
+
+const config_minuto = {
+    type: 'line',
+    data: data_minuto,
     options: {
         plugins: {
             legend: {
@@ -130,7 +105,7 @@ const config_hora = {
             },
             title: {
                 display: true,
-                text: 'Média dos Vazamentos de Gás a cada Hora',
+                text: 'Média dos últimos 5 Minutos',
                 padding: 0.5,
                 color: '#000000',
                 font: {
@@ -139,112 +114,9 @@ const config_hora = {
                 }
             }
         },
-        scales: {
-            y: {
-                beginAtZero: true, // Mantém o eixo Y iniciando no zero
-            }
-        }
-    }
-}
-
-// Configurando o CHART para o grafico_minuto
-const data_minuto = {
-    labels: labels_line_min,
-    datasets: [
-        {
-            label: 'Fogão 01',
-            data: [17, 18, 19, 20, 21, 22],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[0].data); // Verifica para a primeira dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_minuto.datasets[0].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[0].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
-        },
-        {
-            label: 'Fogão 02',
-            data: [3, 3.5, 4, 4.5, 5, 4.2],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[1].data); // Verifica para a segunda dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_minuto.datasets[1].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[1].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
-        },
-        {
-            label: 'Forno',
-            data: [3.8, 4.2, 4.5, 4.8, 5.2, 5.5],
-            tension: 0.4,
-            borderColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[2].data); // Verifica para a terceira dataset
-                return getColorBasedOnValue(value, consecutive);
-            },
-            segment: {
-                borderColor: (ctx) => {
-                    const consecutive = checkConsecutiveValues(data_minuto.datasets[2].data);
-                    return getColorBasedOnValue(ctx.p1.raw, consecutive);
-                }
-            },
-            pointBackgroundColor: function (context) {
-                const value = context.raw;
-                const consecutive = checkConsecutiveValues(data_minuto.datasets[2].data);
-                return getColorBasedOnValue(value, consecutive);
-            },
-            borderWidth: 3,
-            backgroundColor: 'transparent',
-        }
-    ]
-}
-
-const config_minuto = {
-    type: 'line',
-    data: data_minuto,
-    options: {
-        plugins: {
-            legend: {
-                display: false // Mantém a legenda desativada como no exemplo anterior
-            },
-            title: {
-                display: true,
-                text: 'Média dos Vazamentos de Gás a cada Minuto',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 16,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true, // Mantém o eixo Y iniciando no zero
+        elements: {
+            point: {
+                radius: 5 // Tamanho das bolinhas
             }
         }
     }
@@ -286,10 +158,10 @@ const config_comparacao = {
     }
 }
 
-const chart_hora = new Chart(grafico_hora, config_hora);
-const chart_minuto = new Chart(grafico_minuto, config_minuto);
+// Inicializando os gráficos com as novas configurações
+const graficoHora = new Chart(grafico_hora, config_hora);
+const graficoMinuto = new Chart(grafico_minuto, config_minuto);
 const graficoComparacao = new Chart(grafico_comparacao, config_comparacao);
-
 
 // Mostrando Data e hora em tempo real
 function atualizarDataHora() {
@@ -309,7 +181,6 @@ function atualizarDataHora() {
         second: '2-digit'
     });
 
-    // Corrigido: usar crases para interpolação de string
     let dataHoraFormatada = `${dataFormatada} ${horaFormatada}`;
 
     const mostrar_data = document.querySelector('#data_hora');

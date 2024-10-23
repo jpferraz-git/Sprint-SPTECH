@@ -140,7 +140,7 @@ body {
 }
 
 #ult-fg01{
-    background-color: rgb(210, 105, 30);
+    background-color: rgb(94, 255, 0);
     padding: 5%;
 }
 
@@ -204,7 +204,7 @@ body {
 }
 
 .campos-menu .campo {
-    background-color: #cb0000;
+    background-color: orange;
     padding: 6.5% 0 6.5% 0;
     width: 75%;
 }
@@ -232,7 +232,7 @@ body {
     height: 100%;
 }
 
-#grafico_hora{
+#grafico_minuto{
     height: 100%;
     width: 100%;
 }

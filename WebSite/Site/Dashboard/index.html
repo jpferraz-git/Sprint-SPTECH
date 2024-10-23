@@ -29,7 +29,7 @@
                         </div>
                         <div class="campo">
                             <h4>Ok</h4>
-                            <span id="sensor_ok">1</span>
+                            <span id="sensor_ok">2</span>
                         </div>
                         <div class="campo">
                             <h4>Em Alerta</h4>
@@ -53,24 +53,24 @@
                         <div class="menu-indiv">
                             <a id="visao_geral" href="#">
                                 <span>Visão Geral</span>
-                                <div class="campo">
-                                    <h4>Alerta!</h4>
+                                <div class="campo" style="background-color: orange;">
+                                    <h4>Alerta Crítico!</h4>
                             </a>
                         </div>
                     </div>
                     <div class="menu-indiv">
                         <a id="visao_fg01" href="#">
                             <span>Fogão 01</span>
-                            <div class="campo">
-                                <h4>Alerta Crítico!</h4>
+                            <div class="campo" style="background-color: gold;">
+                                <h4>Alerta!</h4>
                         </a>
                     </div>
                 </div>
                 <div id="situacao_fg02" class="menu-indiv">
                     <a id="visao_fg02" href="#">
                         <span>Fogão 02</span>
-                        <div class="campo">
-                            <h4>Ok</h4>
+                        <div class="campo" style="background-color: orange;">
+                            <h4>Alerta Crítico!</h4>
                     </a>
                 </div>
             </div>
@@ -86,15 +86,12 @@
     </div>
     <div class="graficos">
         <div class="chart">
-            <canvas id="grafico_hora" width="1300" height="850"></canvas>
+            <canvas id="grafico_minuto" width="1300" height="850"></canvas>
             <div class="chart-vertical">
-                <canvas id="grafico_minuto" width="300" height="190"></canvas>
+                <canvas id="grafico_hora" width="300" height="190"></canvas>
                 <canvas id="grafico_comparacao" width="200" height="190"></canvas>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 </body>
 
