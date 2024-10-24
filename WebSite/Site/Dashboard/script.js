@@ -13,22 +13,50 @@ var data_hora = {
             label: 'Fogão 01',
             data: [18.3, 19.2, 18.7, 19, 19.5, 19.8, 19.4, 20, 20.6],
             tension: 0,
-            borderColor: 'rgb(160, 71, 71)', // Cor da linha
-            backgroundColor: 'rgb(160, 71, 71)', // Cor de fundo da linha
+            borderColor: 'rgb(241,101,41)', // Cor da linha
+            backgroundColor: 'rgb(241,101,41)', // Cor de fundo da linha
         },
         {
             label: 'Fogão 02',
             data: [41.0,39.0,37.2,37.0,34.0,35.0,41.0,39.0,37.2],
             tension: 0,
-            borderColor: 'rgb(184, 117, 137)',
-            backgroundColor: 'rgb(184, 117, 137)',
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5)',
         },
         {
             label: 'Forno',
             data: [5, 2, 1, 0, 3, 4, 1, 1, 2],
             tension: 0,
-            borderColor: 'rgb(240, 89, 65)',
-            backgroundColor: 'rgb(240, 89, 65)',
+            borderColor: 'rgb(40,106,174)',
+            backgroundColor: 'rgb(40,106,174)',
+        },
+        {
+            label: 'PERIGO',
+            data: [30,30,30,30,30,30,30,30,30],
+            tension: 0,
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5, 0.1)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: 'ALERTA',
+            data: [10,10,10,10,10,10,10,10,10],
+            tension: 0,
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            data: [10,10,10,10,10,10,10,10,10,10],
+            tension: 0,
+            backgroundColor: 'rgb(40,106,174, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'start'
         }
     ]
 }
@@ -50,7 +78,7 @@ const config_hora = {
                     size: 14,
                     family: 'Montserrat',
                 }
-            }
+            },
         },
         elements: {
             point: {
@@ -66,41 +94,54 @@ const data_minuto = {
     datasets: [
         {
             label: 'Fogão 01',
-            data: [2.3, 2.5, 3.4, 1.9, 2.4, 2.3],
+            data: [19, 19.5, 19.8, 19.4, 20, 20.6],
             tension: 0,
-            borderColor: 'rgb(240, 89, 65)',
-            backgroundColor: 'rgb(240, 89, 65)',
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41)',
         },
         {
             label: 'Fogão 02',
             data: [48, 52, 53, 58, 60, 55],
             tension: 0,
-            borderColor: 'rgb(184, 117, 137)',
-            backgroundColor: 'rgb(184, 117, 137)',
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5)',
         },
         {
             label: 'Forno',
             data: [2.2, 2.8, 3.1, 3.5, 3.3, 3.8],
             tension: 0,
-            borderColor: 'rgb(240, 89, 65)',
-            backgroundColor: 'rgb(240, 89, 65)',
+            borderColor: 'rgb(40,106,174)',
+            backgroundColor: 'rgb(40,106,174)',
         },
         {
             label: 'PERIGO',
             data: [30,30,30,30,30,30],
             tension: 0,
-            borderColor: 'rgb(203,5,5)',
-            backgroundColor: 'rgb(203,5,5)',
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5, 0.1)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
         },
         {
             label: 'ALERTA',
             data: [10,10,10,10,10,10],
             tension: 0,
-            borderColor: 'rgb(255, 255, 255)',
-            backgroundColor: 'rgb(241, 101, 41) ',
-
-        
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
         },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            backgroundColor: 'rgb(40,106,174, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'start'
+        }
     ]
 }
 
@@ -118,6 +159,7 @@ const config_minuto = {
                         weight: 'bold',
                     },
                 },
+                onClick: null
             },
             title: {
                 display: true,
