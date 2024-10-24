@@ -52,7 +52,7 @@ function calcularPerda() {
     div_mostrar_calculo.innerHTML = `
     <div class="divResultado">
 
-    <h1>Sem a nossa solução você terá um Prejuízo Total de até <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
+    <h1>Sem a nossa solução você pode chegar a um prejuízo Total de até <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
 
 <div class="divResultadoDentro">
 
@@ -78,9 +78,9 @@ function calcularPerda() {
         Período inativo até a reconstrução da cozinha pode chegar até <text>6 meses</text>
         Perda no faturamento: <text>${faturaMentoPerdidoExplo.toLocaleString('pt-br', estiloReal)}</text>
         Perda TOTAL dos equipamentos: <text>${valorInvestido.toLocaleString('pt-br', estiloReal)}</text>
-        Gastos com tratamento médico dos funcionários: <text>${valoresFuncionariosExplo.toLocaleString('pt-br', estiloReal)}</text>
+        Gastos com tratamento médico dos funcionários*: <text>${valoresFuncionariosExplo.toLocaleString('pt-br', estiloReal)}</text>
         <small>
-            *DE ACORDO COM AS INFORMAÇÕES DA <br><a href="https://www.rbqueimaduras.com.br/details/545/pt-br/avaliacao-dos-custos-de-um-centro-de-tratamento-de-queimados" target="_blank">revista brasileira de queimaduras</a>.
+            *DE ACORDO com a <a href="https://www.rbqueimaduras.com.br/details/545/pt-br/avaliacao-dos-custos-de-um-centro-de-tratamento-de-queimados" target="_blank">revista brasileira de queimaduras</a>.
         </small>
         </div>
     </div>
