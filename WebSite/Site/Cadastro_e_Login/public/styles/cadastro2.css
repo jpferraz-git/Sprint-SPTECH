@@ -246,6 +246,15 @@ select:focus {
     gap: 0.45em;
 }
 
+.link-senha a{
+    color: #cb0000;
+}
+
+#mensagem_erro1{
+    color: #cb0000;
+    text-align: center;
+}
+
 .btn {
     display: inline-block;
     width: 100%;

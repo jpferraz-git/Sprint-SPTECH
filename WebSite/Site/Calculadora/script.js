@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $('#input_valor').mask('000.000.000.000.000,00', {reverse: true})
+    $('#input_faturamento_mensal').mask('000.000.000.000.000,00', {reverse: true})
+  });
+
 function clearDiv(){
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('input_valor').value = '';
@@ -9,6 +14,14 @@ function clearDiv(){
 
 function calcularPerda() {
     div_mostrar_calculo.innerHTML=``
+
+    input_valor.value = input_valor.value.replace('.','')
+    input_valor.value = input_valor.value.replace(',00','')
+    console.log(input_valor.value)
+
+    input_faturamento_mensal.value = input_faturamento_mensal.value.replace('.','')
+    input_faturamento_mensal.value = input_faturamento_mensal.value.replace(',00','')
+    console.log(input_faturamento_mensal.value)
 
     // const nome = input_nome.value
     const valorInvestido = Number(input_valor.value)
@@ -37,7 +50,7 @@ function calcularPerda() {
     div_mostrar_calculo.innerHTML = `
     <div class="divResultado">
 
-    <h1>Prejuízo Total de até <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
+    <h1>Sem a nossa solução você terá um Prejuízo Total de até <u>${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</u>!!</h1>
 
 <div class="divResultadoDentro">
 
@@ -72,6 +85,7 @@ function calcularPerda() {
     </div>
 
         <button class="btn" onclick="clearDiv()">Calcular novamente</button>
+            <a href="../Cadastro_e_Login/cadastro2.html"><button class="btn">Quero me Cadastrar e ter acesso a Solução</button></a>
     `
     div_mostrar_calculo.scrollIntoView({behavior: 'smooth' });
     document.getElementById('div_mostrar_calculo').style="opacity: 100%;";

@@ -184,6 +184,13 @@ text-align:center;
 cursor: pointer;
 }
 
+.btn a{
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 100%;
+}
+
 .btn:hover{
 background-color:#9c0202;
 box-shadow:inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
@@ -217,9 +224,9 @@ box-shadow:inset 0 -0.6em 0 -0.35em rgba(143, 0, 0, 0.8);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width:fit-content;
   justify-content: center;
   align-items: center;
+  width: 100%;
   
 }
 
