@@ -43,6 +43,8 @@ function calcularPerda() {
         500) // Tratamento Médico
         *qtdFuncionario
 
+    
+
     const valorTotalExplo = valorInvestido + faturaMentoPerdidoExplo + valoresFuncionariosExplo
 
     const estiloReal = {style: 'currency', currency: 'BRL'}
@@ -77,6 +79,9 @@ function calcularPerda() {
         Perda no faturamento: <text>${faturaMentoPerdidoExplo.toLocaleString('pt-br', estiloReal)}</text>
         Perda TOTAL dos equipamentos: <text>${valorInvestido.toLocaleString('pt-br', estiloReal)}</text>
         Gastos com tratamento médico dos funcionários: <text>${valoresFuncionariosExplo.toLocaleString('pt-br', estiloReal)}</text>
+        <small>
+            *DE ACORDO COM AS INFORMAÇÕES DA <br><a href="https://www.rbqueimaduras.com.br/details/545/pt-br/avaliacao-dos-custos-de-um-centro-de-tratamento-de-queimados" target="_blank">revista brasileira de queimaduras</a>.
+        </small>
         </div>
     </div>
 
