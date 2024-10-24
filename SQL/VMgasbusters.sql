@@ -3,65 +3,65 @@ USE gasbusters;
 
 CREATE TABLE empresa(
 idEmpresa  		INT PRIMARY KEY AUTO_INCREMENT,
-razaoSocial  	VARCHAR(100) NOT NULL,
+razaoSocial  	VARCHAR(100),
 nomeFantasia 	VARCHAR(100),
-CNPJ  			CHAR(14) NOT NULL,
-cidade  		VARCHAR(45) NOT NULL,
-bairro 			VARCHAR(45) NOT NULL,
-Uf 				CHAR(2) NOT NULL,
-rua 			VARCHAR(45) NOT NULL,
-numero 			VARCHAR(6) NOT NULL,
-cep 			CHAR(9) NOT NULL,
-telefoneEmpresa CHAR(10),
-emailEmpresa 	VARCHAR(100) NOT NULL,
+CNPJ  			CHAR(14),
+cidade  		VARCHAR(45),
+bairro 			VARCHAR(45),
+Uf 				CHAR(2),
+rua 			VARCHAR(45),
+numero 			VARCHAR(6),
+cep 			CHAR(9),
+telefoneEmpresa CHAR(11),
+emailEmpresa 	VARCHAR(100),
 dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE usuario(
-idUsuario		INT NOT NULL,
-nome  			VARCHAR(45) NOT NULL,
-telefonePessoa  CHAR(11) NOT NULL,
-cpf  			CHAR(11) NOT NULL,
-dtNasc  		DATE NOT NULL,
-emailPessoal  	VARCHAR(100) NOT NULL,
-senha  			VARCHAR(45) NOT NULL,
+idUsuario		INT AUTO_INCREMENT,
+nome  			VARCHAR(45),
+telefonePessoa  CHAR(11),
+cpf  			CHAR(11),
+dtNasc  		DATE,
+emailPessoal  	VARCHAR(100),
+senha  			VARCHAR(45),
 dtCriacao  		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-fkEmpresa  		INT NOT NULL,
-fkUsuarioADM  	INT NOT NULL,
+fkEmpresa  		INT,
+fkUsuarioADM  	INT,
 PRIMARY KEY (idUsuario, fkUsuarioADM),
 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
 FOREIGN KEY (fkUsuarioADM)REFERENCES usuario (idUsuario)
 );
 
 CREATE TABLE cozinha(
-idCozinha		 	 INT NOT NULL,
-tipoCozinha 		 VARCHAR(15) NOT NULL,
-numeroFuncionarios 	 INT NOT NULL,
+idCozinha		 	 INT AUTO_INCREMENT,
+tipoCozinha 		 VARCHAR(15),
+numeroFuncionarios 	 INT,
 observacoes 		 TEXT,
-entradasGas 		 INT NOT NULL,
-fkEmpresa 			 INT NOT NULL,
+entradasGas 		 INT,
+fkEmpresa 			 INT,
 PRIMARY KEY (idCozinha,fkEmpresa),
 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
 CHECK (tipoCozinha IN ('Industrial', 'Comercial'))
 );
 
 CREATE TABLE sensor(
-idSensor            INT NOT NULL,
-nomeSensor          VARCHAR(45) NOT NULL,
-localInstalacao     VARCHAR(255) NOT NULL,
-sensorStatus        VARCHAR(20) NOT NULL,
+idSensor            INT AUTO_INCREMENT,
+nomeSensor          VARCHAR(45),
+localInstalacao     VARCHAR(255),
+sensorStatus        VARCHAR(20),
 dtInstalacao        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-fkCozinha           INT NOT NULL,
+fkCozinha           INT,
 PRIMARY KEY (idSensor, fkCozinha),
 FOREIGN KEY (fkCozinha) REFERENCES cozinha (idCozinha),
 CHECK (sensorStatus IN ('Ativo', 'Inativo'))
 );
 
 CREATE TABLE  medida(
-idMedida  			INT NOT NULL,
-sensor_analogico 	FLOAT NOT NULL,
+idMedida  			INT AUTO_INCREMENT,
+sensor_analogico 	FLOAT,
 dtLeitura  			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-fkSensor  			INT NOT NULL,
+fkSensor  			INT,
 PRIMARY KEY (idMedida, fkSensor),
 FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
