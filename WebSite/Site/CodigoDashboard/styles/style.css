@@ -102,7 +102,7 @@ main {
 
 .container-dash {
     width: 90%;
-    height: 70vh;
+    height: 80vh;
     box-shadow: 0 0 10px black;
     display: flex;
     flex-direction: row;
@@ -160,7 +160,7 @@ main {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: larger;
+    font-size: 80%;
     background-color: #F16529;
 }
 
@@ -172,7 +172,7 @@ main {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: larger;
+    font-size: 80%;
     background-color: #CD0505;
 }
 
@@ -184,7 +184,7 @@ main {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: larger;
+    font-size: 80%;
     background-color: #286AAE;
 }
 
@@ -254,15 +254,21 @@ main {
     display: flex;
 }
 
+.horizontal {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .cinco-minutos {
-    width: 75% !important;
     margin-right: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px black;
 }
 
 .vertical {
-    width: 25%;
+    width: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,6 +277,7 @@ main {
 
 .hora-hora {
     width: 100%;
+    height: 50%;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px black;
@@ -282,10 +289,10 @@ main {
     padding: 20px;
     border-radius: 10px;
     width: 100%;
-    height: 40%;
+    height: 50%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
     flex-direction: column;
     box-shadow: 0 0 5px black;
 }
@@ -294,6 +301,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
+    font-size: 90%;
     padding-bottom: 10px;
     border-bottom: 2px solid white;
 }
