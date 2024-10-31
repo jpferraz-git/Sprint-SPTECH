@@ -1,0 +1,32 @@
+Apresentação ficou faltando treino e tempo para incrementar.
+
+Testes foram deixados muito pro final, o que ocasionou em erros na reta final.
+
+Melhoras na dashboard, nos botões de sensores individualmente.
+
+Buscar novas ideias para incrementar a apresentação.
+
+Transição entre quem esta falando durante a apresentação.
+
+Falta de planejamento devido ao excesso de confiança.
+
+
+
+SPRINT 3A
+
+-Script SQL definitivo
+-Modelagem definitiva
+-Documentação de mudança
+-Dashboard atualizada
+-Integração com a DataViz
+-Integração da BobIa
+-Criptografia da senhas no BD
+
+
+
+SPRINT 3B
+-Manual de Instalação
+-Documentação de mudança
+-Responsividade do site
+-Tela de recuperação de senha
+-Responsividade da dashboard
