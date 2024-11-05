@@ -14,19 +14,18 @@ Falta de planejamento devido ao excesso de confiança.
 
 SPRINT 3A
 
--Script SQL definitivo
--Modelagem definitiva
--Documentação de mudança
--Dashboard atualizada
--Integração com a DataViz
--Integração da BobIa
--Criptografia da senhas no BD
-
+-Script SQL definitivo - Lucas
+-Modelagem definitiva - Lucas
+-Documentação de mudança - Miguel
+-Dashboard atualizada - thiago
+-Integração com a DataViz - João Pedro
+-Criptografia da senhas no BD - Shelly
+-Recuperação de Senha(opcional) - Lucas
 
 
 SPRINT 3B
+-Integração da BobIa
 -Manual de Instalação
--Documentação de mudança
 -Responsividade do site
 -Tela de recuperação de senha
 -Responsividade da dashboard
