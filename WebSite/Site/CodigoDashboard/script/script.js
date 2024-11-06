@@ -140,7 +140,7 @@ const data_minuto = {
             backgroundColor: 'rgb(40,106,174)',
         },
         {
-            label: 'PERIGO',
+            label: '',
             data: [30,30,30,30,30,30],
             tension: 0,
             borderColor: 'rgb(205,5,5)',
@@ -150,7 +150,7 @@ const data_minuto = {
             fill: 'end'
         },
         {
-            label: 'ALERTA',
+            label: '',
             data: [10,10,10,10,10,10],
             tension: 0,
             borderColor: 'rgb(241,101,41)',
