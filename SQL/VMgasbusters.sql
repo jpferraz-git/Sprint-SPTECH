@@ -17,6 +17,10 @@ emailEmpresa 	VARCHAR(100),
 dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+insert into empresa (razaoSocial) values
+('assdad');
+
+
 CREATE TABLE usuario(
 idUsuario		INT AUTO_INCREMENT,
 nome  			VARCHAR(45),
