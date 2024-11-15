@@ -7,6 +7,80 @@ function myFunction() {
     }
 }
 
+function trocarDash(tela) {
+    // Trazendo os graficos
+    var dashGeral = document.getElementById('dash-geral')
+    var dashFg1 = document.getElementById('dash-fg1')
+    var dashFg2 = document.getElementById('dash-fg2')
+    var dashFn = document.getElementById('dash-fn')
+
+    var buttonFg1 = document.getElementById('button-fg1')
+    var buttonFg2 = document.getElementById('button-fg2')
+    var buttonFn = document.getElementById('button-fn')
+
+    var containerFg1 = document.getElementById('fg1')
+    var containerFg2 = document.getElementById('fg2')
+    var containerFn = document.getElementById('fn')
+
+    // Verificando para qual tela deve trocar
+    if (tela == 'fg1') {
+        //Fazendo a tela aparecer
+        dashGeral.style.display = 'none';
+        dashFg1.style.display = 'flex';
+        dashFg2.style.display = 'none';
+        dashFn.style.display = 'none';
+
+        // Colocando uma borda para mostrar que foi selecionado
+        containerFg1.style.border = '5px solid #CCC';
+        containerFg2.style.border = 'none';
+        containerFn.style.border = 'none';
+
+        // Trocando o parametro da função
+        buttonFg1.onclick = function() {trocarDash('geral')};
+        buttonFg2.onclick = function() {trocarDash('fg2')};
+        buttonFn.onclick = function() {trocarDash('fn')};
+    } else if (tela == 'fg2') {
+        dashGeral.style.display = 'none';
+        dashFg1.style.display = 'none';
+        dashFg2.style.display = 'flex';
+        dashFn.style.display = 'none';
+
+        containerFg1.style.border = 'none';
+        containerFg2.style.border = '2px solid yellow';
+        containerFn.style.border = 'none';
+
+        buttonFg1.onclick = function() {trocarDash('fg1')}
+        buttonFg2.onclick = function() {trocarDash('geral')}
+        buttonFn.onclick = function() {trocarDash('fn')}
+    } else if (tela == 'fn') {
+        dashGeral.style.display = 'none';
+        dashFg1.style.display = 'none';
+        dashFg2.style.display = 'none';
+        dashFn.style.display = 'flex';
+
+        containerFg1.style.border = 'none';
+        containerFg2.style.border = 'none';
+        containerFn.style.border = '2px solid yellow';
+
+        buttonFg1.onclick = function() {trocarDash('fg1')}
+        buttonFg2.onclick = function() {trocarDash('fg2')}
+        buttonFn.onclick = function() {trocarDash('geral')}
+    } else if (tela == 'geral') {
+        dashGeral.style.display = 'flex';
+        dashFg1.style.display = 'none';
+        dashFg2.style.display = 'none';
+        dashFn.style.display = 'none';
+
+        containerFg1.style.border = 'none';
+        containerFg2.style.border = 'none';
+        containerFn.style.border = 'none';
+
+        buttonFg1.onclick = function() {trocarDash('fg1')}
+        buttonFg2.onclick = function() {trocarDash('fg2')}
+        buttonFn.onclick = function() {trocarDash('fn')}
+    }
+}
+
 function atualizarDataHora() {
     let data_geral = new Date();
     let dataFormatada = data_geral.toLocaleDateString('pt-BR', {
@@ -27,93 +101,13 @@ function atualizarDataHora() {
 atualizarDataHora();
 setInterval(atualizarDataHora, 1000);
 
-const grafico_hora = document.querySelector("#grafico_hora")
 const grafico_minuto = document.querySelector("#grafico_minutos")
+const grafico_segundo_fg1 = document.querySelector("#grafico_segundos_fg1")
+const grafico_segundo_fg2 = document.querySelector("#grafico_segundos_fg2")
+const grafico_segundo_fn = document.querySelector("#grafico_segundos_fn")
 
-const labels_line_hora = ['07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h']
 const labels_line_min = ['0', '1min', '2min', '3min', '4min', '5min']
-
-var data_hora = {
-    labels: labels_line_hora,
-    datasets: [
-        {
-            label: 'Fogão 01',
-            data: [18.3, 19.2, 18.7, 19, 19.5, 19.8, 19.4, 20, 20.6],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41)',
-        },
-        {
-            label: 'Fogão 02',
-            data: [41.0,39.0,37.2,37.0,34.0,35.0,41.0,39.0,37.2],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5)',
-        },
-        {
-            label: 'Forno',
-            data: [5, 2, 1, 0, 3, 4, 1, 1, 2],
-            tension: 0,
-            borderColor: 'rgb(40,106,174)',
-            backgroundColor: 'rgb(40,106,174)',
-        },
-        {
-            label: 'PERIGO',
-            data: [30,30,30,30,30,30,30,30,30],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5, 0.1)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: 'ALERTA',
-            data: [10,10,10,10,10,10,10,10,10],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            data: [10,10,10,10,10,10,10,10,10,10],
-            tension: 0,
-            backgroundColor: 'rgb(40,106,174, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'start'
-        }
-    ]
-}
-
-const config_hora = {
-    type: 'line',
-    data: data_hora,
-    options: {
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Média por hora',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 14,
-                    family: 'Montserrat',
-                }
-            },
-        },
-        elements: {
-            point: {
-                radius: 3
-            }
-        }
-    }
-}
+const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
 
 const data_minuto = {
     labels: labels_line_min,
@@ -184,6 +178,9 @@ const config_minuto = {
                         family: 'Montserrat',
                         weight: 'bold',
                     },
+                    filter: function(legendItem) {
+                        return legendItem.text !== '';
+                    }
                 },
                 onClick: null
             },
@@ -206,5 +203,247 @@ const config_minuto = {
     }
 }
 
-const graficoHora = new Chart(grafico_hora, config_hora);
+const data_segundo_fg1 = {
+    labels: labels_line_seg,
+    datasets: [
+        {
+            label: 'Fogão 01',
+            data: [19, 19.5, 19.8, 19.4, 20, 20.6],
+            tension: 0,
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41)',
+        },
+        {
+            label: '',
+            data: [30,30,30,30,30,30],
+            tension: 0,
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5, 0.1)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            backgroundColor: 'rgb(40,106,174, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'start'
+        }
+    ]
+}
+
+const config_segundo_fg1 = {
+    type: 'line',
+    data: data_segundo_fg1,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'gray',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                        weight: 'bold',
+                    },
+                    filter: function(legendItem) {
+                        return legendItem.text !== '';
+                    }
+                },
+                onClick: null
+            },
+            title: {
+                display: true,
+                text: 'Ultimos segundos',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 16,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+}
+
+const data_segundo_fg2 = {
+    labels: labels_line_seg,
+    datasets: [
+        {
+            label: 'Fogão 02',
+            data: [48, 52, 53, 58, 60, 55],
+            tension: 0,
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5)',
+        },
+        {
+            label: '',
+            data: [30,30,30,30,30,30],
+            tension: 0,
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5, 0.1)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            backgroundColor: 'rgb(40,106,174, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'start'
+        }
+    ]
+}
+
+const config_segundo_fg2 = {
+    type: 'line',
+    data: data_segundo_fg2,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'gray',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                        weight: 'bold',
+                    },
+                    filter: function(legendItem) {
+                        return legendItem.text !== '';
+                    }
+                },
+                onClick: null
+            },
+            title: {
+                display: true,
+                text: 'Ultimos segundos',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 16,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+}
+
+const data_segundo_fn = {
+    labels: labels_line_seg,
+    datasets: [
+        {
+            label: 'Forno',
+            data: [2.2, 2.8, 3.1, 3.5, 3.3, 3.8],
+            tension: 0,
+            borderColor: 'rgb(40,106,174)',
+            backgroundColor: 'rgb(40,106,174)',
+        },
+        {
+            label: '',
+            data: [30,30,30,30,30,30],
+            tension: 0,
+            borderColor: 'rgb(205,5,5)',
+            backgroundColor: 'rgb(205,5,5, 0.1)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            borderColor: 'rgb(241,101,41)',
+            backgroundColor: 'rgb(241,101,41, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'end'
+        },
+        {
+            label: '',
+            data: [10,10,10,10,10,10],
+            tension: 0,
+            backgroundColor: 'rgb(40,106,174, 0.2)',
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: 'start'
+        }
+    ]
+}
+
+const config_segundo_fn = {
+    type: 'line',
+    data: data_segundo_fn,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'gray',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                        weight: 'bold',
+                    },
+                    filter: function(legendItem) {
+                        return legendItem.text !== '';
+                    }
+                },
+                onClick: null
+            },
+            title: {
+                display: true,
+                text: 'Ultimos segundos',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 16,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+}
+
 const graficoMinuto = new Chart(grafico_minuto, config_minuto);
+const graficoSegundoFg1 = new Chart(grafico_segundo_fg1, config_segundo_fg1);
+const graficoSegundoFg2 = new Chart(grafico_segundo_fg2, config_segundo_fg2);
+const graficoSegundoFn = new Chart(grafico_segundo_fn, config_segundo_fn);

@@ -24,15 +24,11 @@
                 <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
             </div>
             <ul class="nav-list">
-                <li><a href="../Home/index.html">Home</a></li>
+                <li><a href="../CodigoDashboard/index.html">Gráficos</a></li>
                 <li>•</li>
-                <li><a href="../Sobre_nos/index.html">Sobre nós</a></li>
+                <li><a href="../Cadastro_e_Login/criacao_usuario.html">Criar usuários</a></li>
                 <li>•</li>
-                <li><a href="../Calculadora/index.html">Simulador</a></li>
-                <li>•</li>
-                <li><a href="../Fale_conosco/index.html">Contato</a></li>
-                <li>•</li>
-                <li><a href="../Cadastro_e_Login/login2.html">Login</a></li>
+                <li><a href="../Home/index.html">Sair</a></li>
             </ul>
         </nav>
 
@@ -43,11 +39,9 @@
                     GASBUSTERS</a>
                 <!-- Navigation links (hidden by default) -->
                 <div id="myLinks">
-                    <a href="../Home/index.html">Home</a>
-                    <a href="../Sobre_nos/index.html">Sobre nós</a>
-                    <a href="../Calculadora/index.html">Simulador Financeiro</a>
-                    <a href="../Fale_conosco/index.html">Contato</a>
-                    <a href="../Cadastro_e_Login/public/login.html">Login</a>
+                    <a href="../Home/index.html">Gráficos</a>
+                    <a href="../Sobre_nos/index.html">Criar usuários</a>
+                    <a href="../Calculadora/index.html">Sair</a>
                 </div>
                 <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -66,17 +60,17 @@
                 </article>
                 <section class="container-status">
                     <h1>Status</h1>
-                    <article class="fg1">
+                    <article class="fg1" id="fg1">
                         <h2>Fogão 1</h2>
-                        <div class="status-fg1">Alerta Crítico</div>
+                        <div class="status alerta"><a onclick="trocarDash('fg1')" id="button-fg1">Alerta Crítico</a></div>
                     </article>
-                    <article class="fg2">
+                    <article class="fg2" id="fg2">
                         <h2>Fogão 2</h2>
-                        <div class="status-fg2">Perigo</div>
+                        <div class="status perigo"><a onclick="trocarDash('fg2')" id="button-fg2">Perigo</a></div>
                     </article>
-                    <article class="fn">
+                    <article class="fn" id="fn">
                         <h2>Forno</h2>
-                        <div class="status-fn">Normal</div>
+                        <div class="status normal"><a onclick="trocarDash('fn')" id="button-fn">Normal</a></div>
                     </article>
                 </section>
             </div>
@@ -104,25 +98,96 @@
                     </article>
                 </section>
                 <section class="graficos">
-                    <article class="chart">
+                    <article class="chart" id="dash-geral">
                         <div class="horizontal">
                             <canvas class="cinco-minutos" id="grafico_minutos"></canvas>
                         </div>
                         <div class="vertical">
-                            <canvas class="hora-hora" id="grafico_hora"></canvas>
+                            <span class="leg normal"></span> Normal <br>
+                            <span class="leg alerta"></span> Alerta Crítico <br>
+                            <span class="leg perigo"></span> Perigo <br>
                             <div class="ult-medicao">
                                 <h2>Ultimas medições</h2>
                                 <div class="medicao med-fg1">
                                     <p>Fogão 1:</p>
-                                    <span>20,6%</span>
+                                    <span class="alerta">20,6%</span>
                                 </div>
                                 <div class="medicao med-fg2">
                                     <p>Fogão 2:</p>
-                                    <span>55%</span>
+                                    <span class="perigo">55%</span>
                                 </div>
                                 <div class="medicao med-fn">
                                     <p>Forno:</p>
-                                    <span>3,8%</span>
+                                    <span class="normal">3,8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fg1" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fg1"></canvas>
+                        </div>
+                        <div class="vertical">
+                            <div class="maior-vasao">
+                                <h2>Maior vazão</h2>
+                                <div class="hora-vasao">
+                                    <p>23%</p>
+                                    <p>26/10/24</p>
+                                    <p>12:54</p>
+                                </div>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ok">43</p>
+                                    <p class="alerta-ruim">233</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fg2" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fg2"></canvas>
+                        </div>
+                        <div class="vertical">
+                            <div class="maior-vasao">
+                                <h2>Maior vazão</h2>
+                                <div class="hora-vasao">
+                                    <p>23%</p>
+                                    <p>26/10/24</p>
+                                    <p>12:54</p>
+                                </div>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ok">43</p>
+                                    <p class="alerta-ruim">233</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fn" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fn"></canvas>
+                        </div>
+                        <div class="vertical">
+                            <div class="maior-vasao">
+                                <h2>Maior vazão</h2>
+                                <div class="hora-vasao">
+                                    <p>23%</p>
+                                    <p>26/10/24</p>
+                                    <p>12:54</p>
+                                </div>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ok">43</p>
+                                    <p class="alerta-ruim">233</p>
                                 </div>
                             </div>
                         </div>
@@ -131,33 +196,8 @@
             </div>
         </div>
     </main>
-
-    <footer>
-        <span class="logoGasbus">
-            <section class="logotipo">
-                <img src="./assets/logo.png" alt="">
-                <h1>GASBUSTERS</h1>
-            </section>
-            <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
-        </span>
-
-        <div class="vl"></div>
-
-        <section class="infos">
-            <h1>FALE CONOSCO</h1>
-            <p>(11) 3456-7890</p>
-            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
-            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
-
-            <div class="redes">
-                <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
-                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
-                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
-                <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
-            </div>
-        </section>
-    </footer>
 </body>
 
 </html>
 <script src="script/script.js"></script>
+<script data-jsd-embedded data-key="12aac0c2-7d1c-4ac5-a4c5-f02fb0fc766e" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
