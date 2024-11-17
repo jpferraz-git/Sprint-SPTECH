@@ -1,6 +1,7 @@
 CREATE DATABASE gasbusters;
 USE gasbusters;
 
+
 CREATE TABLE empresa(
 idEmpresa  		INT PRIMARY KEY AUTO_INCREMENT,
 razaoSocial  	VARCHAR(100),
@@ -8,7 +9,7 @@ nomeFantasia 	VARCHAR(100),
 CNPJ  			CHAR(14),
 cidade  		VARCHAR(45),
 bairro 			VARCHAR(45),
-uf 				CHAR(2),
+uf 				CHAR(5),
 rua 			VARCHAR(45),
 numero 			VARCHAR(6),
 cep 			CHAR(9),
@@ -16,9 +17,6 @@ telefoneEmpresa CHAR(11),
 emailEmpresa 	VARCHAR(100),
 dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-insert into empresa (razaoSocial) values
-('assdad');
 
 
 CREATE TABLE usuario(
@@ -29,11 +27,10 @@ email			VARCHAR(100),
 senha  			VARCHAR(45),
 dtCriacao  		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 fkEmpresa  		INT,
-fkUsuarioADM  	INT,
-PRIMARY KEY (idUsuario, fkUsuarioADM, fkEmpresa),
-FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
-FOREIGN KEY (fkUsuarioADM)REFERENCES usuario (idUsuario)
+PRIMARY KEY (idUsuario),
+FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
+
 
 CREATE TABLE cozinha(
 idCozinha		 	 INT AUTO_INCREMENT,
@@ -80,3 +77,4 @@ fkSensor  			INT,
 PRIMARY KEY (idMedida, fkSensor),
 FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
+
