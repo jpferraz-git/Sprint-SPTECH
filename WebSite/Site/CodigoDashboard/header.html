@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style_header.css">
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>GasBusters | Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> Bem-vindo, <script>${}</script></a>
+            </div>
+            <ul class="nav-list">
+                <li><a href="../Home/index.html">Home</a></li>
+                <li>•</li>
+                <li><a href="../Sobre_nos/index.html">Sobre nós</a></li>
+                <li>•</li>
+                <li><a href="../Calculadora/index.html">Simulador</a></li>
+                <li>•</li>
+                <li><a href="../Fale_conosco/index.html">Contato</a></li>
+                <li>•</li>
+                <li><a href="../Cadastro_e_Login/login2.html">Login</a></li>
+            </ul>
+        </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo">
+                    GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="../Home/index.html">Home</a>
+                    <a href="../Sobre_nos/index.html">Sobre nós</a>
+                    <a href="../Calculadora/index.html">Simulador Financeiro</a>
+                    <a href="../Fale_conosco/index.html">Contato</a>
+                    <a href="../Cadastro_e_Login/public/login.html">Login</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dash">
+            <div class="area-esquerda">
+                <article class="data-hora">
+                    <h1>Data e Hora</h1>
+                    <div id="hora_atual"></div>
+                </article>
+                <section class="container-status">
+                    <h1>Status</h1>
+                    <article class="fg1">
+                        <h2>Fogão 1</h2>
+                        <div class="status-fg1">Alerta Crítico</div>
+                    </article>
+                    <article class="fg2">
+                        <h2>Fogão 2</h2>
+                        <div class="status-fg2">Perigo</div>
+                    </article>
+                    <article class="fn">
+                        <h2>Forno</h2>
+                        <div class="status-fn">Normal</div>
+                    </article>
+                </section>
+            </div>
+            <div class="area-direita">
+                <section class="container-kpis">
+                    <article class="kpi">
+                        <h1>Sensores ativos</h1>
+                        <div class="qtd ativo">3</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Sensores Inoperantes</h1>
+                        <div class="qtd inoperante">0</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Normal</h1>
+                        <div class="qtd normal">1</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Alerta</h1>
+                        <div class="qtd alerta">1</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Perigo</h1>
+                        <div class="qtd perigo">1</div>
+                    </article>
+                </section>
+                <section class="graficos">
+                    <article class="chart">
+                        <div class="horizontal">
+                            <canvas class="cinco-minutos" id="grafico_minutos"></canvas>
+                        </div>
+                        <div class="vertical">
+                            <canvas class="hora-hora" id="grafico_hora"></canvas>
+                            <div class="ult-medicao">
+                                <h2>Ultimas medições</h2>
+                                <div class="medicao med-fg1">
+                                    <p>Fogão 1:</p>
+                                    <span>20,6%</span>
+                                </div>
+                                <div class="medicao med-fg2">
+                                    <p>Fogão 2:</p>
+                                    <span>55%</span>
+                                </div>
+                                <div class="medicao med-fn">
+                                    <p>Forno:</p>
+                                    <span>3,8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span class="logoGasbus">
+            <section class="logotipo">
+                <img src="./assets/logo.png" alt="">
+                <h1>GASBUSTERS</h1>
+            </section>
+            <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+        </span>
+
+        <div class="vl"></div>
+
+        <section class="infos">
+            <h1>FALE CONOSCO</h1>
+            <p>(11) 3456-7890</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+            <div class="redes">
+                <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+                <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
+<script src="script/script.js"></script>
