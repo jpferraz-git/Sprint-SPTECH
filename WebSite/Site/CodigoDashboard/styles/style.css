@@ -235,6 +235,26 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.legenda-grafico {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.legenda-grafico .div-legenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.legenda-grafico .div-legenda .leg {
+    width: 10px;
+    height: 10px;
 }
 
 .cinco-minutos, .cinco-segundos {
@@ -252,6 +272,40 @@ main {
     flex-direction: column;
     gap: 16px;
 }
+
+.legenda, .media-semana {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px black;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.legenda h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.legenda .med-leg {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.legenda .med-leg .leg {    
+    width: 10px;
+    height: 10px;
+}
+
 
 .qtd-alertas {
     background-color: black;
@@ -271,7 +325,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    font-size: 90%;
+    font-size: 100%;
     padding-bottom: 10px;
     border-bottom: 2px solid white;
 }
@@ -283,14 +337,14 @@ main {
     justify-content: space-around;
 }
 
-.alerta-ok {
-    padding: 10px;
-    background-color: rgb(0, 200, 0);
-}
-
 .alerta-ruim {
     padding: 10px;
     background-color: rgb(200, 0, 0);
+}
+
+.alerta-perigoso {
+    padding: 10px;
+    background-color: rgb(100, 0, 0);
 }
 
 .ult-medicao {
@@ -320,7 +374,7 @@ main {
     width: 50%;
 }
 
-.medicao span {
+.ult-medicao .medicao span {
     width: 30%;
     display: flex;
     justify-content: center;

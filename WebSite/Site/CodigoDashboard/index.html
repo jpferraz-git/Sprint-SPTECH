@@ -103,9 +103,21 @@
                             <canvas class="cinco-minutos" id="grafico_minutos"></canvas>
                         </div>
                         <div class="vertical">
-                            <span class="leg normal"></span> Normal <br>
-                            <span class="leg alerta"></span> Alerta Crítico <br>
-                            <span class="leg perigo"></span> Perigo <br>
+                            <div class="legenda">
+                                <h2>Métricas</h2>
+                                <div class="med-leg">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="med-leg">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="med-leg">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
                             <div class="ult-medicao">
                                 <h2>Ultimas medições</h2>
                                 <div class="medicao med-fg1">
@@ -127,21 +139,30 @@
                     <article class="chart" id="dash-fg1" style="display: none;">
                         <div class="horizontal">
                             <canvas class="cinco-segundos" id="grafico_segundos_fg1"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
                         </div>
                         <div class="vertical">
-                            <div class="maior-vasao">
-                                <h2>Maior vazão</h2>
-                                <div class="hora-vasao">
-                                    <p>23%</p>
-                                    <p>26/10/24</p>
-                                    <p>12:54</p>
-                                </div>
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fg1"></canvas>
                             </div>
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ok">43</p>
-                                    <p class="alerta-ruim">233</p>
+                                    <p class="alerta-ruim">56</p>
+                                    <p class="alerta-perigoso">3</p>
                                 </div>
                             </div>
                         </div>
@@ -150,21 +171,30 @@
                     <article class="chart" id="dash-fg2" style="display: none;">
                         <div class="horizontal">
                             <canvas class="cinco-segundos" id="grafico_segundos_fg2"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
                         </div>
                         <div class="vertical">
-                            <div class="maior-vasao">
-                                <h2>Maior vazão</h2>
-                                <div class="hora-vasao">
-                                    <p>23%</p>
-                                    <p>26/10/24</p>
-                                    <p>12:54</p>
-                                </div>
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fg2"></canvas>
                             </div>
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ok">43</p>
-                                    <p class="alerta-ruim">233</p>
+                                    <p class="alerta-ruim">56</p>
+                                    <p class="alerta-perigoso">3</p>
                                 </div>
                             </div>
                         </div>
@@ -173,21 +203,30 @@
                     <article class="chart" id="dash-fn" style="display: none;">
                         <div class="horizontal">
                             <canvas class="cinco-segundos" id="grafico_segundos_fn"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
                         </div>
                         <div class="vertical">
-                            <div class="maior-vasao">
-                                <h2>Maior vazão</h2>
-                                <div class="hora-vasao">
-                                    <p>23%</p>
-                                    <p>26/10/24</p>
-                                    <p>12:54</p>
-                                </div>
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fn"></canvas>
                             </div>
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ok">43</p>
-                                    <p class="alerta-ruim">233</p>
+                                    <p class="alerta-ruim">56</p>
+                                    <p class="alerta-perigoso">3</p>
                                 </div>
                             </div>
                         </div>

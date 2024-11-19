@@ -31,14 +31,14 @@ function trocarDash(tela) {
         dashFn.style.display = 'none';
 
         // Colocando uma borda para mostrar que foi selecionado
-        containerFg1.style.border = '5px solid #CCC';
+        containerFg1.style.border = '2px solid #EFB661';
         containerFg2.style.border = 'none';
         containerFn.style.border = 'none';
 
         // Trocando o parametro da função
-        buttonFg1.onclick = function() {trocarDash('geral')};
-        buttonFg2.onclick = function() {trocarDash('fg2')};
-        buttonFn.onclick = function() {trocarDash('fn')};
+        buttonFg1.onclick = function () { trocarDash('geral') };
+        buttonFg2.onclick = function () { trocarDash('fg2') };
+        buttonFn.onclick = function () { trocarDash('fn') };
     } else if (tela == 'fg2') {
         dashGeral.style.display = 'none';
         dashFg1.style.display = 'none';
@@ -46,12 +46,12 @@ function trocarDash(tela) {
         dashFn.style.display = 'none';
 
         containerFg1.style.border = 'none';
-        containerFg2.style.border = '2px solid yellow';
+        containerFg2.style.border = '2px solid #EFB661';
         containerFn.style.border = 'none';
 
-        buttonFg1.onclick = function() {trocarDash('fg1')}
-        buttonFg2.onclick = function() {trocarDash('geral')}
-        buttonFn.onclick = function() {trocarDash('fn')}
+        buttonFg1.onclick = function () { trocarDash('fg1') }
+        buttonFg2.onclick = function () { trocarDash('geral') }
+        buttonFn.onclick = function () { trocarDash('fn') }
     } else if (tela == 'fn') {
         dashGeral.style.display = 'none';
         dashFg1.style.display = 'none';
@@ -60,11 +60,11 @@ function trocarDash(tela) {
 
         containerFg1.style.border = 'none';
         containerFg2.style.border = 'none';
-        containerFn.style.border = '2px solid yellow';
+        containerFn.style.border = '2px solid #EFB661';
 
-        buttonFg1.onclick = function() {trocarDash('fg1')}
-        buttonFg2.onclick = function() {trocarDash('fg2')}
-        buttonFn.onclick = function() {trocarDash('geral')}
+        buttonFg1.onclick = function () { trocarDash('fg1') }
+        buttonFg2.onclick = function () { trocarDash('fg2') }
+        buttonFn.onclick = function () { trocarDash('geral') }
     } else if (tela == 'geral') {
         dashGeral.style.display = 'flex';
         dashFg1.style.display = 'none';
@@ -75,9 +75,9 @@ function trocarDash(tela) {
         containerFg2.style.border = 'none';
         containerFn.style.border = 'none';
 
-        buttonFg1.onclick = function() {trocarDash('fg1')}
-        buttonFg2.onclick = function() {trocarDash('fg2')}
-        buttonFn.onclick = function() {trocarDash('fn')}
+        buttonFg1.onclick = function () { trocarDash('fg1') }
+        buttonFg2.onclick = function () { trocarDash('fg2') }
+        buttonFn.onclick = function () { trocarDash('fn') }
     }
 }
 
@@ -105,9 +105,13 @@ const grafico_minuto = document.querySelector("#grafico_minutos")
 const grafico_segundo_fg1 = document.querySelector("#grafico_segundos_fg1")
 const grafico_segundo_fg2 = document.querySelector("#grafico_segundos_fg2")
 const grafico_segundo_fn = document.querySelector("#grafico_segundos_fn")
+const grafico_semana_fg1 = document.querySelector("#grafico_semana_fg1")
+const grafico_semana_fg2 = document.querySelector("#grafico_semana_fg2")
+const grafico_semana_fn = document.querySelector("#grafico_semana_fn")
 
-const labels_line_min = ['0', '1min', '2min', '3min', '4min', '5min']
 const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
+const labels_line_min = ['0', '1min', '2min', '3min', '4min', '5min']
+const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
 const data_minuto = {
     labels: labels_line_min,
@@ -135,7 +139,7 @@ const data_minuto = {
         },
         {
             label: '',
-            data: [30,30,30,30,30,30],
+            data: [30, 30, 30, 30, 30, 30],
             tension: 0,
             borderColor: 'rgb(205,5,5)',
             backgroundColor: 'rgb(205,5,5, 0.1)',
@@ -145,7 +149,7 @@ const data_minuto = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             borderColor: 'rgb(241,101,41)',
             backgroundColor: 'rgb(241,101,41, 0.2)',
@@ -155,7 +159,7 @@ const data_minuto = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             backgroundColor: 'rgb(40,106,174, 0.2)',
             borderDash: [5, 5],
@@ -178,7 +182,7 @@ const config_minuto = {
                         family: 'Montserrat',
                         weight: 'bold',
                     },
-                    filter: function(legendItem) {
+                    filter: function (legendItem) {
                         return legendItem.text !== '';
                     }
                 },
@@ -199,6 +203,13 @@ const config_minuto = {
             point: {
                 radius: 5
             }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 0,
+                max: 100
+            }
         }
     }
 }
@@ -215,7 +226,7 @@ const data_segundo_fg1 = {
         },
         {
             label: '',
-            data: [30,30,30,30,30,30],
+            data: [30, 30, 30, 30, 30, 30],
             tension: 0,
             borderColor: 'rgb(205,5,5)',
             backgroundColor: 'rgb(205,5,5, 0.1)',
@@ -225,7 +236,7 @@ const data_segundo_fg1 = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             borderColor: 'rgb(241,101,41)',
             backgroundColor: 'rgb(241,101,41, 0.2)',
@@ -235,7 +246,7 @@ const data_segundo_fg1 = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             backgroundColor: 'rgb(40,106,174, 0.2)',
             borderDash: [5, 5],
@@ -258,7 +269,7 @@ const config_segundo_fg1 = {
                         family: 'Montserrat',
                         weight: 'bold',
                     },
-                    filter: function(legendItem) {
+                    filter: function (legendItem) {
                         return legendItem.text !== '';
                     }
                 },
@@ -279,6 +290,13 @@ const config_segundo_fg1 = {
             point: {
                 radius: 5
             }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 0,
+                max: 100
+            }
         }
     }
 }
@@ -295,7 +313,7 @@ const data_segundo_fg2 = {
         },
         {
             label: '',
-            data: [30,30,30,30,30,30],
+            data: [30, 30, 30, 30, 30, 30],
             tension: 0,
             borderColor: 'rgb(205,5,5)',
             backgroundColor: 'rgb(205,5,5, 0.1)',
@@ -305,7 +323,7 @@ const data_segundo_fg2 = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             borderColor: 'rgb(241,101,41)',
             backgroundColor: 'rgb(241,101,41, 0.2)',
@@ -315,7 +333,7 @@ const data_segundo_fg2 = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             backgroundColor: 'rgb(40,106,174, 0.2)',
             borderDash: [5, 5],
@@ -338,7 +356,7 @@ const config_segundo_fg2 = {
                         family: 'Montserrat',
                         weight: 'bold',
                     },
-                    filter: function(legendItem) {
+                    filter: function (legendItem) {
                         return legendItem.text !== '';
                     }
                 },
@@ -359,6 +377,13 @@ const config_segundo_fg2 = {
             point: {
                 radius: 5
             }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 0,
+                max: 100
+            }
         }
     }
 }
@@ -375,7 +400,7 @@ const data_segundo_fn = {
         },
         {
             label: '',
-            data: [30,30,30,30,30,30],
+            data: [30, 30, 30, 30, 30, 30],
             tension: 0,
             borderColor: 'rgb(205,5,5)',
             backgroundColor: 'rgb(205,5,5, 0.1)',
@@ -385,7 +410,7 @@ const data_segundo_fn = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             borderColor: 'rgb(241,101,41)',
             backgroundColor: 'rgb(241,101,41, 0.2)',
@@ -395,7 +420,7 @@ const data_segundo_fn = {
         },
         {
             label: '',
-            data: [10,10,10,10,10,10],
+            data: [10, 10, 10, 10, 10, 10],
             tension: 0,
             backgroundColor: 'rgb(40,106,174, 0.2)',
             borderDash: [5, 5],
@@ -418,7 +443,7 @@ const config_segundo_fn = {
                         family: 'Montserrat',
                         weight: 'bold',
                     },
-                    filter: function(legendItem) {
+                    filter: function (legendItem) {
                         return legendItem.text !== '';
                     }
                 },
@@ -439,11 +464,153 @@ const config_segundo_fn = {
             point: {
                 radius: 5
             }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 0,
+                max: 100
+            }
         }
     }
 }
+
+const data_semana_fg1 = {
+    labels: labels_line_week,
+    datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        label: 'Taxa de vazão',
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+const config_semana_fg1 = {
+    type: 'bar',
+    data: data_semana_fg1,
+    options: {
+        indexAxis: 'y',
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Média da semana',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 12,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+};
+
+const data_semana_fg2 = {
+    labels: labels_line_week,
+    datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        label: 'Taxa de vazão',
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+const config_semana_fg2 = {
+    type: 'bar',
+    data: data_semana_fg2,
+    options: {
+        indexAxis: 'y',
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Média da semana',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 12,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+};
+
+const data_semana_fn = {
+    labels: labels_line_week,
+    datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        label: 'Taxa de vazão',
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+const config_semana_fn = {
+    type: 'bar',
+    data: data_semana_fn,
+    options: {
+        indexAxis: 'y',
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Média da semana',
+                padding: 0.5,
+                color: '#000000',
+                font: {
+                    size: 12,
+                    family: 'Montserrat',
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5
+            }
+        }
+    }
+};
 
 const graficoMinuto = new Chart(grafico_minuto, config_minuto);
 const graficoSegundoFg1 = new Chart(grafico_segundo_fg1, config_segundo_fg1);
 const graficoSegundoFg2 = new Chart(grafico_segundo_fg2, config_segundo_fg2);
 const graficoSegundoFn = new Chart(grafico_segundo_fn, config_segundo_fn);
+const graficoSemanaFg1 = new Chart(grafico_semana_fg1, config_semana_fg1);
+const graficoSemanaFg2 = new Chart(grafico_semana_fg2, config_semana_fg2);
+const graficoSemanaFn = new Chart(grafico_semana_fn, config_semana_fn);
