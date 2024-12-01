@@ -19,4 +19,8 @@ router.get("/capturarKpiValores/:idCozinhaServer/:idEmpresaServer", function (re
     kpiController.capturarKpiValores(req, res);
 });
 
+router.get("/qtdAlertasDia/:idCozinhaServer/:idEmpresaServer/:idSensorServer", function (req, res) {
+    kpiController.qtdAlertasDia(req, res);
+});
+
 module.exports = router;

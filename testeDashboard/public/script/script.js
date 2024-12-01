@@ -36,9 +36,9 @@ function trocarDash(tela) {
         containerFn.style.border = 'none';
 
         // Trocando o parametro da função
-        buttonFg1.onclick = function () { trocarDash('geral') };
-        buttonFg2.onclick = function () { trocarDash('fg2') };
-        buttonFn.onclick = function () { trocarDash('fn') };
+        buttonFg1.onclick = function () { trocarDash('geral')};
+        buttonFg2.onclick = function () { trocarDash('fg2'); qtdAlertasDia(idSensorFg2, `qtdRuimFg2`, `qtdPerigosoFg2`) };
+        buttonFn.onclick = function () { trocarDash('fn'); qtdAlertasDia(idSensorFn, `qtdRuimFn`, `qtdPerigosoFn`) };
     } else if (tela == 'fg2') {
         dashGeral.style.display = 'none';
         dashFg1.style.display = 'none';
@@ -49,9 +49,9 @@ function trocarDash(tela) {
         containerFg2.style.border = '2px solid #EFB661';
         containerFn.style.border = 'none';
 
-        buttonFg1.onclick = function () { trocarDash('fg1') }
+        buttonFg1.onclick = function () { trocarDash('fg1'); qtdAlertasDia(idSensorFg1, `qtdRuimFg1`, `qtdPerigosoFg1`) }
         buttonFg2.onclick = function () { trocarDash('geral') }
-        buttonFn.onclick = function () { trocarDash('fn') }
+        buttonFn.onclick = function () { trocarDash('fn'); qtdAlertasDia(idSensorFn, `qtdRuimFn`, `qtdPerigosoFn`) }
     } else if (tela == 'fn') {
         dashGeral.style.display = 'none';
         dashFg1.style.display = 'none';
@@ -62,8 +62,8 @@ function trocarDash(tela) {
         containerFg2.style.border = 'none';
         containerFn.style.border = '2px solid #EFB661';
 
-        buttonFg1.onclick = function () { trocarDash('fg1') }
-        buttonFg2.onclick = function () { trocarDash('fg2') }
+        buttonFg1.onclick = function () { trocarDash('fg1'); qtdAlertasDia(idSensorFg1, `qtdRuimFg1`, `qtdPerigosoFg1`) }
+        buttonFg2.onclick = function () { trocarDash('fg2'); qtdAlertasDia(idSensorFg2, `qtdRuimFg2`, `qtdPerigosoFg2`) }
         buttonFn.onclick = function () { trocarDash('geral') }
     } else if (tela == 'geral') {
         dashGeral.style.display = 'flex';
@@ -75,9 +75,9 @@ function trocarDash(tela) {
         containerFg2.style.border = 'none';
         containerFn.style.border = 'none';
 
-        buttonFg1.onclick = function () { trocarDash('fg1') }
-        buttonFg2.onclick = function () { trocarDash('fg2') }
-        buttonFn.onclick = function () { trocarDash('fn') }
+        buttonFg1.onclick = function () { trocarDash('fg1'); qtdAlertasDia(idSensorFg1, `qtdRuimFg1`, `qtdPerigosoFg1`) }
+        buttonFg2.onclick = function () { trocarDash('fg2'); qtdAlertasDia(idSensorFg2, `qtdRuimFg2`, `qtdPerigosoFg2`) }
+        buttonFn.onclick = function () { trocarDash('fn'); qtdAlertasDia(idSensorFn, `qtdRuimFn`, `qtdPerigosoFn`) }
     }
 }
 
@@ -90,7 +90,7 @@ function capturarKpiAtivos() {
         headers: {
             "Content-Type": "application/json",
         }
-    }).then( resposta => {
+    }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
                 sensorAtivos.innerHTML = json[0].qtdAtivos
@@ -115,7 +115,7 @@ function capturarKpiInoperante() {
         headers: {
             "Content-Type": "application/json",
         }
-    }).then( resposta => {
+    }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
                 sensorInoperante.innerHTML = json[0].qtdInoperante
@@ -140,7 +140,7 @@ function capturarKpiNiveis() {
         headers: {
             "Content-Type": "application/json",
         }
-    }).then( resposta => {
+    }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
                 if (json[0].qtdNormal != null) {
@@ -172,6 +172,10 @@ function capturarKpiNiveis() {
     })
 }
 
+var idSensorFg1;
+var idSensorFg2;
+var idSensorFn;
+
 function capturarKpiValores() {
     var idCozinha = sessionStorage.ID_COZINHA;
     var idEmpresa = sessionStorage.ID_EMPRESA;
@@ -181,7 +185,7 @@ function capturarKpiValores() {
         headers: {
             "Content-Type": "application/json",
         }
-    }).then( resposta => {
+    }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
                 var ultMedFg1 = document.getElementById('porcentagemFg1');
@@ -192,29 +196,73 @@ function capturarKpiValores() {
                 var botaoTelaFg2 = document.getElementById('button-fg2');
                 var botaoTelaFn = document.getElementById('button-fn');
 
-                function definirClasse(tela, botao, elemento, medida) {
+                function definirClasse(tela, botao, elemento, medida, idSensor, equipamento, kpiAlerta, kpiPergio) {
                     if (medida < 10) {
                         elemento.className = 'normal';
                         tela.className = 'status normal';
-                        botao.innerHTML = 'Normal'
+                        botao.textContent = 'Normal';
                     } else if (medida < 30) {
                         elemento.className = 'alerta';
                         tela.className = 'status alerta';
-                        botao.innerHTML = 'Alerta'
+                        botao.textContent = 'Alerta';
                     } else {
                         elemento.className = 'perigo';
                         tela.className = 'status perigo';
-                        botao.innerHTML = 'Perigo'
+                        botao.textContent = 'Perigo';
                     }
-                    elemento.innerHTML = medida;
+                    elemento.textContent = medida;
+                    botao.onclick = () => {
+                        trocarDash(equipamento);
+                        qtdAlertasDia(idSensor, kpiAlerta, kpiPergio);
+                    };
                 }
 
-                definirClasse(telaFg1, botaoTelaFg1, ultMedFg1, json[0].medidaSensor);
-                definirClasse(telaFg2, botaoTelaFg2, ultMedFg2, json[1].medidaSensor);
-                definirClasse(telaFn, botaoTelaFn, ultMedFn, json[2].medidaSensor);
+                definirClasse(telaFg1, botaoTelaFg1, ultMedFg1, json[0].medidaSensor, json[0].idSensor, 'fg1', `qtdRuimFg1`, `qtdPerigosoFg1`);
+                definirClasse(telaFg2, botaoTelaFg2, ultMedFg2, json[1].medidaSensor, json[1].idSensor, 'fg2', `qtdRuimFg2`, `qtdPerigosoFg2`);
+                definirClasse(telaFn, botaoTelaFn, ultMedFn, json[2].medidaSensor, json[2].idSensor, 'fn', `qtdRuimFn`, `qtdPerigosoFn`);
+
+                idSensorFg1 = json[0].idSensor;
+                idSensorFg2 = json[1].idSensor;
+                idSensorFn = json[2].idSensor;
+            });
+        } else {
+            console.error("Erro ao carregar os KPIs");
+            resposta.text().then(texto => console.error(texto));
+        }
+    }).catch(erro => {
+        console.error("Erro de conexão ou processamento:", erro);
+    });
+};
+
+function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
+    var idCozinha = sessionStorage.ID_COZINHA;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/kpis/qtdAlertasDia/${idCozinha}/${idEmpresa}/${idSensor}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json[0].qtdAlertas)
+                console.log(json[0].qtdPerigos)
+
+                var kpiQtdAlerta = document.getElementById(kpiAlerta)
+                var kpiQtdPerigo = document.getElementById(kpiPerigo)
+
+                kpiQtdAlerta.innerHTML = 0;
+                kpiQtdPerigo.innerHTML = 0;
+                if (json[0].qtdAlertas != undefined) {
+                    kpiQtdAlerta.innerHTML = json[0].qtdAlertas;
+                }
+                if (json[0].qtdPerigos != undefined) {
+                    kpiQtdPerigo.innerHTML = json[0].qtdPerigos;
+                }
             })
         } else {
-            console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
+            console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
             resposta.text().then(texto => {
                 console.error(texto);
             })

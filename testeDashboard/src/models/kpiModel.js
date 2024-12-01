@@ -31,7 +31,7 @@ function capturarKpiNiveis(idCozinha, idEmpresa) {
 function capturarKpiValores(idCozinha, idEmpresa) {
     var instrucaoSql = `
     SELECT 
-        s.idSensor,
+        s.idSensor as idSensor,
         s.nomeSensor,
         m.nivel_gas as medidaSensor,
         m.dtLeitura
@@ -48,9 +48,26 @@ function capturarKpiValores(idCozinha, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function qtdAlertasDia(idCozinha, idEmpresa, idSensor) {
+    var instrucaoSql = `
+    SELECT 
+        SUM(CASE WHEN nivel_gas >= 10 AND nivel_gas < 30 THEN 1 ELSE 0 END) AS qtdAlertas,
+        SUM(CASE WHEN nivel_gas >= 30 THEN 1 ELSE 0 END) AS qtdPerigos
+    FROM medida m
+    JOIN sensor s ON m.fkSensor = s.idSensor
+    WHERE s.fkCozinha = ${idCozinha}
+        AND s.fkEmpresa = ${idEmpresa}
+        AND m.fkSensor = ${idSensor}
+        AND DATE(m.dtLeitura) = CURDATE();
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     capturarKpiAtivos,
     capturarKpiInoperante,
     capturarKpiNiveis,
-    capturarKpiValores
+    capturarKpiValores,
+    qtdAlertasDia
 }

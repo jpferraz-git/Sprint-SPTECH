@@ -110,9 +110,7 @@ VALUES
 ('Sensor 3', 'Área de armazenamento', 'Ativo', 1, 1, 1),
 ('Sensor 4', 'Entrada de gás', 'Ativo', 1, 1, 1),
 ('Sensor 5', 'Exaustor Secundário', 'Ativo', 2, 2, 2),
-('Sensor 6', 'Cozinha Frontal', 'Ativo', 2, 2, 2),
-('Sensor 7', 'Sistema de ventilação', 'Ativo', 1, 1, 1),
-('Sensor 8', 'Corredor de serviço', 'Ativo', 2, 2, 2);
+('Sensor 6', 'Cozinha Frontal', 'Ativo', 2, 2, 2);
 
 -- Inserindo dados na tabela medida
 INSERT INTO medida (nivel_gas, fkSensor)
@@ -150,3 +148,13 @@ JOIN (
     GROUP BY fkSensor
 ) ultimas ON m.fkSensor = ultimas.fkSensor AND m.dtLeitura = ultimas.ultimaLeitura
 WHERE s.fkCozinha = 1 AND s.fkEmpresa = 1;
+
+SELECT 
+    SUM(CASE WHEN nivel_gas >= 10 AND nivel_gas < 30 THEN 1 ELSE 0 END) AS qtd_alertas,
+    SUM(CASE WHEN nivel_gas >= 30 THEN 1 ELSE 0 END) AS qtd_perigos
+FROM medida m
+JOIN sensor s ON m.fkSensor = s.idSensor
+WHERE s.fkCozinha = 1
+  AND s.fkEmpresa = 1
+  AND m.fkSensor = 1
+  AND DATE(m.dtLeitura) = CURDATE();

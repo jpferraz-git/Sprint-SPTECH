@@ -100,9 +100,36 @@ function capturarKpiValores(req, res) {
     }
 }
 
+function qtdAlertasDia(req, res) {
+    var idCozinha = req.params.idCozinhaServer;
+    var idEmpresa = req.params.idEmpresaServer;
+    var idSensor = req.params.idSensorServer;
+
+    if (idCozinha == undefined) {
+        res.status(400).send("Não foi possível puxar o id do usuário");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("Não foi possível puxar o id da empresa");
+    } else {
+
+        kpiModel.qtdAlertasDia(idCozinha, idEmpresa, idSensor)
+            .then(
+                function (valorMedidas) {
+                    res.json(valorMedidas);
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao selecionar a quantidade de alertas do fogão 1! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     capturarKpiAtivos,
     capturarKpiInoperante,
     capturarKpiNiveis,
-    capturarKpiValores
+    capturarKpiValores,
+    qtdAlertasDia
 }
