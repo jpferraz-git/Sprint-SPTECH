@@ -188,20 +188,30 @@ function capturarKpiValores() {
                 var ultMedFg2 = document.getElementById('porcentagemFg2');
                 var ultMedFn = document.getElementById('porcentagemFn');
 
-                function definirClasse(elemento, medida) {
+                var botaoTelaFg1 = document.getElementById('button-fg1');
+                var botaoTelaFg2 = document.getElementById('button-fg2');
+                var botaoTelaFn = document.getElementById('button-fn');
+
+                function definirClasse(tela, botao, elemento, medida) {
                     if (medida < 10) {
                         elemento.className = 'normal';
+                        tela.className = 'status normal';
+                        botao.innerHTML = 'Normal'
                     } else if (medida < 30) {
                         elemento.className = 'alerta';
+                        tela.className = 'status alerta';
+                        botao.innerHTML = 'Alerta'
                     } else {
                         elemento.className = 'perigo';
+                        tela.className = 'status perigo';
+                        botao.innerHTML = 'Perigo'
                     }
                     elemento.innerHTML = medida;
                 }
 
-                definirClasse(ultMedFg1, json[0].medidaSensor);
-                definirClasse(ultMedFg2, json[1].medidaSensor);
-                definirClasse(ultMedFn, json[2].medidaSensor);
+                definirClasse(telaFg1, botaoTelaFg1, ultMedFg1, json[0].medidaSensor);
+                definirClasse(telaFg2, botaoTelaFg2, ultMedFg2, json[1].medidaSensor);
+                definirClasse(telaFn, botaoTelaFn, ultMedFn, json[2].medidaSensor);
             })
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
