@@ -197,7 +197,7 @@
                     </div>
                     <p id="mensagem_erro1"></p>
                 </div>
-                <button onclick="validarCampos()" type="submit" class="btn">Finalizar Cadastro</button>
+                <button onclick="cadastrar()" type="submit" class="btn">Finalizar Cadastro</button>
             </form>
 
     </main>
@@ -231,3 +231,82 @@
 
 </html>
 
+
+<script>
+
+    // Array para armazenar empresas cadastradas para validação de código de ativação 
+    let listaEmpresasCadastradas = [];
+  
+    function cadastrar() {
+      // aguardar();
+  
+      // teste
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var razaoSocial = input_razao_social.value;
+      var nomeFantasia = input_nome_fantasia.value;
+      var responsavelLegal = input_resp_legal.value;
+      var cnpj = input_cnpj.value;
+      var estado = select_estados.value;
+      var cidade = input_cidade.value;
+      var bairro = input_bairro.value;
+      var CEP = input_cep.value;
+      var logradouro = input_logradouro.value;
+      var email = input_email.value;
+      var telefone = input_telefone.value;
+      var senha = input_senha1.value;
+      var confirmacaoSenha = input_confirmacao1.value;
+      
+      // Verificando se o código de ativação é de alguma empresa cadastrada
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          razaoSocialServer: razaoSocial,
+          nomeFantasiaServer: nomeFantasia,
+          responsavelLegalServer: responsavelLegal,
+          cnpjServer: cnpj,
+          estadoServer: estado,
+          cidadeServer: cidade,
+          bairroServer: bairro,
+          cepServer: CEP,
+          logradouroServer: logradouro,
+          emailServer: email,
+          telefoneServer: telefone,
+          senhaServer: senha,
+          
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+  
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+  
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+  
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+  
+      return false;
+    }
+  
+  </script>
