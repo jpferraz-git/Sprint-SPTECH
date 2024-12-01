@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>GasBusters | Dashboard</title>
+</head>
+
+<body onload="capturarKpiAtivos()">
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
+            </div>
+            <ul class="nav-list">
+                <li><a href="../CodigoDashboard/index.html">Gráficos</a></li>
+                <li>•</li>
+                <li><a href="../Cadastro_e_Login/criacao_usuario.html">Criar usuários</a></li>
+                <li>•</li>
+                <li><a href="../Home/index.html">Sair</a></li>
+            </ul>
+        </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="navbarMobile">
+            <div class="topnav">
+                <a href="../Home/index.html" class="logo"><img src="../Home/assets/logo.png" class="img-logo">
+                    GASBUSTERS</a>
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinks">
+                    <a href="../Home/index.html">Gráficos</a>
+                    <a href="../Sobre_nos/index.html">Criar usuários</a>
+                    <a href="../Calculadora/index.html">Sair</a>
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dash">
+            <div class="area-esquerda">
+                <article class="data-hora">
+                    <h1>Data e Hora</h1>
+                    <div id="hora_atual"></div>
+                </article>
+                <section class="container-status">
+                    <h1>Status</h1>
+                    <article class="fg1" id="fg1">
+                        <h2>Fogão 1</h2>
+                        <div class="status alerta"><a onclick="trocarDash('fg1')" id="button-fg1">Alerta Crítico</a></div>
+                    </article>
+                    <article class="fg2" id="fg2">
+                        <h2>Fogão 2</h2>
+                        <div class="status perigo"><a onclick="trocarDash('fg2')" id="button-fg2">Perigo</a></div>
+                    </article>
+                    <article class="fn" id="fn">
+                        <h2>Forno</h2>
+                        <div class="status normal"><a onclick="trocarDash('fn')" id="button-fn">Normal</a></div>
+                    </article>
+                </section>
+            </div>
+            <div class="area-direita">
+                <section class="container-kpis">
+                    <article class="kpi">
+                        <h1>Sensores ativos</h1>
+                        <div class="qtd ativo" id="sensorAtivos">0</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Sensores Inoperantes</h1>
+                        <div class="qtd inoperante" id="sensorInoperante">0</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Normal</h1>
+                        <div class="qtd normal" id="sensorNormal">0</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Alerta</h1>
+                        <div class="qtd alerta" id="sensorAlerta">0</div>
+                    </article>
+                    <article class="kpi">
+                        <h1>Perigo</h1>
+                        <div class="qtd perigo" id="sensorPerigo">0</div>
+                    </article>
+                </section>
+                <section class="graficos">
+                    <article class="chart" id="dash-geral">
+                        <div class="horizontal">
+                            <canvas class="cinco-minutos" id="grafico_minutos"></canvas>
+                        </div>
+                        <div class="vertical">
+                            <div class="legenda">
+                                <h2>Métricas</h2>
+                                <div class="med-leg">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="med-leg">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="med-leg">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
+                            <div class="ult-medicao">
+                                <h2>Ultimas medições</h2>
+                                <div class="medicao med-fg1">
+                                    <p>Fogão 1:</p>
+                                    <span class="alerta" id="porcentagemFg1">20,6%</span>
+                                </div>
+                                <div class="medicao med-fg2">
+                                    <p>Fogão 2:</p>
+                                    <span class="perigo" id="porcentagemFg2">55%</span>
+                                </div>
+                                <div class="medicao med-fn">
+                                    <p>Forno:</p>
+                                    <span class="normal" id="porcentagemFn">3,8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fg1" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fg1"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="vertical">
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fg1"></canvas>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ruim" id="qtdRuimFg1">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFg1">3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fg2" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fg2"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="vertical">
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fg2"></canvas>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ruim" id="qtdRuimFg2">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFg2">3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="chart" id="dash-fn" style="display: none;">
+                        <div class="horizontal">
+                            <canvas class="cinco-segundos" id="grafico_segundos_fn"></canvas>
+                            <div class="legenda-grafico">
+                                <div class="div-legenda">
+                                    Normal
+                                    <span class="leg normal"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Alerta Crítico
+                                    <span class="leg alerta"></span>
+                                </div> 
+                                <div class="div-legenda">
+                                    Perigo
+                                    <span class="leg perigo"></span>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="vertical">
+                            <div class="media-semana">
+                                <canvas class="grafico_semana" id="grafico_semana_fn"></canvas>
+                            </div>
+                            <div class="qtd-alertas">
+                                <h2>Quantidade de alertas (Dia)</h2>
+                                <div class="kpi-alerta">
+                                    <p class="alerta-ruim" id="qtdRuimFn">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFn">3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+<script src="script/script.js"></script>
+<script data-jsd-embedded data-key="12aac0c2-7d1c-4ac5-a4c5-f02fb0fc766e" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
