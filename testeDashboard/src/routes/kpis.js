@@ -7,4 +7,8 @@ router.get("/capturarKpiAtivos/:idCozinhaServer/:idEmpresaServer", function (req
     kpiController.capturarKpiAtivos(req, res);
 });
 
+router.get("/capturarKpiInoperante/:idCozinhaServer/:idEmpresaServer", function (req, res) {
+    kpiController.capturarKpiInoperante(req, res);
+});
+
 module.exports = router;

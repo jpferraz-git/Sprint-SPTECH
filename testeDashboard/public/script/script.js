@@ -106,6 +106,31 @@ function capturarKpiAtivos() {
     })
 }
 
+function capturarKpiInoperante() {
+    var idCozinha = sessionStorage.ID_COZINHA;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/kpis/capturarKpiInoperante/${idCozinha}/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then( resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                sensorInoperante.innerHTML = json[0].qtdInoperante
+            })
+        } else {
+            console.log(`Houve um erro ao carregar o número de sensores inativos`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
+}
+
 
 
 
