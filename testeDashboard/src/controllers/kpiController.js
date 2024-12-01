@@ -50,7 +50,33 @@ function capturarKpiInoperante(req, res) {
     }
 }
 
+function capturarKpiNiveis(req, res) {
+    var idCozinha = req.params.idCozinhaServer;
+    var idEmpresa = req.params.idEmpresaServer;
+
+    if (idCozinha == undefined) {
+        res.status(400).send("Não foi possível puxar o id do usuário");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("Não foi possível puxar o id da empresa");
+    } else {
+
+        kpiModel.capturarKpiNiveis(idCozinha, idEmpresa)
+            .then(
+                function (qtdAvisos) {
+                    res.json(qtdAvisos);
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao selecionar os niveis dos sensores! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     capturarKpiAtivos,
-    capturarKpiInoperante
+    capturarKpiInoperante,
+    capturarKpiNiveis
 }

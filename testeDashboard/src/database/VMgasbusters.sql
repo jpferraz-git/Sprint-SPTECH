@@ -106,7 +106,7 @@ VALUES
 INSERT INTO sensor (nomeSensor, localInstalacao, sensorStatus, fkCozinha, fkEmpresa, fkLocal)
 VALUES
 ('Sensor 1', 'Fogão Principal', 'Ativo', 1, 1, 1),
-('Sensor 2', 'Exaustor', 'Inativo', 2, 2, 2);
+('Sensor 2', 'Exaustor', 'Inativo', 2, 2, 2),
 ('Sensor 3', 'Área de armazenamento', 'Ativo', 1, 1, 1),
 ('Sensor 4', 'Entrada de gás', 'Ativo', 1, 1, 1),
 ('Sensor 5', 'Exaustor Secundário', 'Ativo', 2, 2, 2),
@@ -119,8 +119,10 @@ INSERT INTO medida (nivel_gas, fkSensor)
 VALUES
 (0.7, 1),
 (1.2, 1),
+(1.9, 1),
 (0.5, 2),
-(1.8, 2);
+(1.8, 2),
+(3.8, 2);
 
 SELECT * FROM cozinha;
 SELECT * FROM empresa;
@@ -128,3 +130,9 @@ SELECT * FROM localsensor;
 SELECT * FROM medida;
 SELECT * FROM sensor;
 SELECT * FROM usuario;
+
+SELECT 
+        SUM(CASE WHEN nivel_gas BETWEEN 0 AND 10 THEN 1 ELSE 0 END) AS qtdNormal,
+        SUM(CASE WHEN nivel_gas BETWEEN 11 AND 20 THEN 1 ELSE 0 END) AS qtdAlerta,
+        SUM(CASE WHEN nivel_gas > 20 THEN 1 ELSE 0 END) AS qtdPerigo
+FROM medida JOIN sensor ON fkSensor = idSensor WHERE fkCozinha = 1 AND fkEmpresa = 1;

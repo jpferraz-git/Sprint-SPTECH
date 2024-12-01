@@ -11,4 +11,8 @@ router.get("/capturarKpiInoperante/:idCozinhaServer/:idEmpresaServer", function 
     kpiController.capturarKpiInoperante(req, res);
 });
 
+router.get("/capturarKpiNiveis/:idCozinhaServer/:idEmpresaServer", function (req, res) {
+    kpiController.capturarKpiNiveis(req, res);
+});
+
 module.exports = router;

@@ -131,6 +131,33 @@ function capturarKpiInoperante() {
     })
 }
 
+function capturarKpiNiveis() {
+    var idCozinha = sessionStorage.ID_COZINHA;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/kpis/capturarKpiNiveis/${idCozinha}/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then( resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                sensorNormal.innerHTML = json[0].qtdNormal
+                sensorAlerta.innerHTML = json[0].qtdAlerta
+                sensorPerigo.innerHTML = json[0].qtdPerigo
+            })
+        } else {
+            console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
+}
+
 
 
 
