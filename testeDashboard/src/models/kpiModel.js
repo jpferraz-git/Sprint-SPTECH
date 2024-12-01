@@ -28,8 +28,29 @@ function capturarKpiNiveis(idCozinha, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function capturarKpiValores(idCozinha, idEmpresa) {
+    var instrucaoSql = `
+    SELECT 
+        s.idSensor,
+        s.nomeSensor,
+        m.nivel_gas as medidaSensor,
+        m.dtLeitura
+    FROM sensor s
+    JOIN medida m ON s.idSensor = m.fkSensor
+    JOIN (
+        SELECT fkSensor, MAX(dtLeitura) AS ultimaLeitura
+        FROM medida
+        GROUP BY fkSensor
+    ) ultimas ON m.fkSensor = ultimas.fkSensor AND m.dtLeitura = ultimas.ultimaLeitura
+    WHERE s.fkCozinha = ${idCozinha} AND s.fkEmpresa = ${idEmpresa};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     capturarKpiAtivos,
     capturarKpiInoperante,
-    capturarKpiNiveis
+    capturarKpiNiveis,
+    capturarKpiValores
 }

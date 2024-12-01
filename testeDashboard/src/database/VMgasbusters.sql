@@ -118,11 +118,11 @@ VALUES
 INSERT INTO medida (nivel_gas, fkSensor)
 VALUES
 (0.7, 1),
-(1.2, 1),
-(1.9, 1),
+(1.2, 3),
+(1.9, 4),
 (0.5, 2),
-(1.8, 2),
-(3.8, 2);
+(1.8, 5),
+(3.8, 6);
 
 SELECT * FROM cozinha;
 SELECT * FROM empresa;
@@ -136,3 +136,18 @@ SELECT
         SUM(CASE WHEN nivel_gas BETWEEN 11 AND 20 THEN 1 ELSE 0 END) AS qtdAlerta,
         SUM(CASE WHEN nivel_gas > 20 THEN 1 ELSE 0 END) AS qtdPerigo
 FROM medida JOIN sensor ON fkSensor = idSensor WHERE fkCozinha = 1 AND fkEmpresa = 1;
+
+SELECT 
+    s.idSensor,
+    s.nomeSensor,
+    m.nivel_gas,
+    m.dtLeitura
+FROM sensor s
+JOIN medida m ON s.idSensor = m.fkSensor
+JOIN (
+    SELECT fkSensor, MAX(dtLeitura) AS ultimaLeitura
+    FROM medida
+    GROUP BY fkSensor
+) ultimas ON m.fkSensor = ultimas.fkSensor AND m.dtLeitura = ultimas.ultimaLeitura
+WHERE s.fkCozinha = 1 AND s.fkEmpresa = 1;
+
