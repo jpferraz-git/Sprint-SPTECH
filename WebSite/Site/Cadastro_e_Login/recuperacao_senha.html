@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
     <script src="public/script.js"></script>
-    <title>GasBusters | Login</title>
+    <title>GasBusters | Recuperação de Senha</title>
 </head>
 
 <body>
@@ -63,13 +63,13 @@
     </header>
     <main>
         <div class="container">
-            <h1>Login</h1>
+            <h1>Recuperação de Senha</h1>
             <form>
 
                 <div class="campos">
                     <div class="separacao-campos senha">
                         <div class="campo-indiv">
-                            <p>E-mail</p>
+                            <p>Informe o seu E-mail</p>
                             <div class="campo-img">
                                 <input required onfocus="trocarCorNormal()" type="email" id="input_email"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
@@ -77,26 +77,44 @@
                             </div>
                         </div>
                         <div class="campo-indiv">
-                            <p>Senha</p>
+                            <p>Verifique a sua Caixa de Entrada e digite o código que te enviamos</p>
                             <div class="campo-img">
                                 <input required onfocus="trocarCorNormal()" type="password" id="input_senha"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Digite aqui'">
-                                <img id="img_senha" onclick="revelarSenha(input_senha,img_senha)"
+                            </div>
+                        </div>
+
+                        <div class="campo-indiv">
+                            <p>Nova Senha</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal()" type="password" id="input_senha_rec"
+                                    placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_senha_rec" onclick="revelarSenha(input_senha_rec,img_senha_rec)"
                                     src="public/assets/eye-crossed.png" alt="">
                             </div>
                         </div>
+
+                        <div class="campo-indiv">
+                            <p>Confirmação</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal()" type="password" id="input_confirmacao_rec"
+                                    placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_confirmacao_rec" onclick="revelarSenha(input_confirmacao_rec,img_confirmacao_rec)"
+                                    src="public/assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+
                         <div class="link-senha">
-                            <span>Primeira vez por aqui? </span>
-                            <a href="../Cadastro_e_Login/cadastro2.html"><b>Cadastre-se</b></a>
-                            <span>|</span>
-                            <a href="recuperacao_senha.html"><b>Esqueci a senha</b></a>
+                            <a href="login2.html"><b>Voltar para o Login</b></a>
                         </div>
 
                     </div>
                 </div>
                 <!-- Arrumar a validação pois agora exite um campo senha de para cada usuário e estão com o mesmo ID -->
-                <button type="submit" class="btn">Acessar</button>
+                <button type="submit" onclick="irParaProximaTela()" class="btn">Prosseguir</button>
             </form>
         </div>
     </main>

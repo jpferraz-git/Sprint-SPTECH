@@ -6,6 +6,10 @@
     font-family: "Montserrat", sans-serif;
 }
 
+.esconder {
+    display: none !important;
+}
+
 body {
     /* background-color: #000; */
     background-image: url(../../../../Imagens/Fundo_Editado.png);
