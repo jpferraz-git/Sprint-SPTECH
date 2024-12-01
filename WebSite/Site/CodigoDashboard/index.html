@@ -78,23 +78,23 @@
                 <section class="container-kpis">
                     <article class="kpi">
                         <h1>Sensores ativos</h1>
-                        <div class="qtd ativo">3</div>
+                        <div class="qtd ativo" id="sensorAtivos">3</div>
                     </article>
                     <article class="kpi">
                         <h1>Sensores Inoperantes</h1>
-                        <div class="qtd inoperante">0</div>
+                        <div class="qtd inoperante" id="sensorInoperante">0</div>
                     </article>
                     <article class="kpi">
                         <h1>Normal</h1>
-                        <div class="qtd normal">1</div>
+                        <div class="qtd normal" id="sensorNormal">1</div>
                     </article>
                     <article class="kpi">
                         <h1>Alerta</h1>
-                        <div class="qtd alerta">1</div>
+                        <div class="qtd alerta" id="sensorAlerta">1</div>
                     </article>
                     <article class="kpi">
                         <h1>Perigo</h1>
-                        <div class="qtd perigo">1</div>
+                        <div class="qtd perigo" id="sensorPerigo">1</div>
                     </article>
                 </section>
                 <section class="graficos">
@@ -122,15 +122,15 @@
                                 <h2>Ultimas medições</h2>
                                 <div class="medicao med-fg1">
                                     <p>Fogão 1:</p>
-                                    <span class="alerta">20,6%</span>
+                                    <span class="alerta" id="porcentagemFg1">20,6%</span>
                                 </div>
                                 <div class="medicao med-fg2">
                                     <p>Fogão 2:</p>
-                                    <span class="perigo">55%</span>
+                                    <span class="perigo" id="porcentagemFg2">55%</span>
                                 </div>
                                 <div class="medicao med-fn">
                                     <p>Forno:</p>
-                                    <span class="normal">3,8%</span>
+                                    <span class="normal" id="porcentagemFn">3,8%</span>
                                 </div>
                             </div>
                         </div>
@@ -161,8 +161,8 @@
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ruim">56</p>
-                                    <p class="alerta-perigoso">3</p>
+                                    <p class="alerta-ruim" id="qtdRuimFg1">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFg1">3</p>
                                 </div>
                             </div>
                         </div>
@@ -193,8 +193,8 @@
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ruim">56</p>
-                                    <p class="alerta-perigoso">3</p>
+                                    <p class="alerta-ruim" id="qtdRuimFg2">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFg2">3</p>
                                 </div>
                             </div>
                         </div>
@@ -225,8 +225,8 @@
                             <div class="qtd-alertas">
                                 <h2>Quantidade de alertas (Dia)</h2>
                                 <div class="kpi-alerta">
-                                    <p class="alerta-ruim">56</p>
-                                    <p class="alerta-perigoso">3</p>
+                                    <p class="alerta-ruim" id="qtdRuimFn">56</p>
+                                    <p class="alerta-perigoso" id="qtdPerigosoFn">3</p>
                                 </div>
                             </div>
                         </div>
