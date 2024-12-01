@@ -143,9 +143,23 @@ function capturarKpiNiveis() {
     }).then( resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                sensorNormal.innerHTML = json[0].qtdNormal
-                sensorAlerta.innerHTML = json[0].qtdAlerta
-                sensorPerigo.innerHTML = json[0].qtdPerigo
+                if (json[0].qtdNormal != null) {
+                    sensorNormal.innerHTML = json[0].qtdNormal
+                } else {
+                    sensorNormal.innerHTML = 0
+                }
+
+                if (json[0].qtdAlerta != null) {
+                    sensorAlerta.innerHTML = json[0].qtdAlerta
+                } else {
+                    sensorAlerta.innerHTML = 0
+                }
+
+                if (json[0].qtdPerigo != null) {
+                    sensorPerigo.innerHTML = json[0].qtdPerigo
+                } else {
+                    sensorPerigo.innerHTML = 0
+                }
             })
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
@@ -170,9 +184,24 @@ function capturarKpiValores() {
     }).then( resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                porcentagemFg1.innerHTML = json[0].medidaSensor;
-                porcentagemFg2.innerHTML = json[1].medidaSensor;
-                porcentagemFn.innerHTML = json[2].medidaSensor;
+                var ultMedFg1 = document.getElementById('porcentagemFg1');
+                var ultMedFg2 = document.getElementById('porcentagemFg2');
+                var ultMedFn = document.getElementById('porcentagemFn');
+
+                function definirClasse(elemento, medida) {
+                    if (medida < 10) {
+                        elemento.className = 'normal';
+                    } else if (medida < 30) {
+                        elemento.className = 'alerta';
+                    } else {
+                        elemento.className = 'perigo';
+                    }
+                    elemento.innerHTML = medida;
+                }
+
+                definirClasse(ultMedFg1, json[0].medidaSensor);
+                definirClasse(ultMedFg2, json[1].medidaSensor);
+                definirClasse(ultMedFn, json[2].medidaSensor);
             })
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)

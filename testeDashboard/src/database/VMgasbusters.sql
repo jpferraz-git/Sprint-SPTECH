@@ -133,8 +133,8 @@ SELECT * FROM usuario;
 
 SELECT 
         SUM(CASE WHEN nivel_gas BETWEEN 0 AND 10 THEN 1 ELSE 0 END) AS qtdNormal,
-        SUM(CASE WHEN nivel_gas BETWEEN 11 AND 20 THEN 1 ELSE 0 END) AS qtdAlerta,
-        SUM(CASE WHEN nivel_gas > 20 THEN 1 ELSE 0 END) AS qtdPerigo
+        SUM(CASE WHEN nivel_gas BETWEEN 11 AND 30 THEN 1 ELSE 0 END) AS qtdAlerta,
+        SUM(CASE WHEN nivel_gas > 30 THEN 1 ELSE 0 END) AS qtdPerigo
 FROM medida JOIN sensor ON fkSensor = idSensor WHERE fkCozinha = 1 AND fkEmpresa = 1;
 
 SELECT 
@@ -150,4 +150,3 @@ JOIN (
     GROUP BY fkSensor
 ) ultimas ON m.fkSensor = ultimas.fkSensor AND m.dtLeitura = ultimas.ultimaLeitura
 WHERE s.fkCozinha = 1 AND s.fkEmpresa = 1;
-
