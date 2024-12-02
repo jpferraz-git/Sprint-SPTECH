@@ -79,7 +79,7 @@
                         <div class="campo-indiv esconder" id="campo_2">
                             <p>Verifique a sua Caixa de Entrada e digite o código que te enviamos</p>
                             <div class="campo-img">
-                                <input type="password" id="input_senha"
+                                <input type="text" id="input_codigo"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Digite aqui'" maxlength="6">
                             </div>
@@ -154,9 +154,12 @@
     emailjs.init('IG2_cg1ryXPy0rFzC'); // Substitua YOUR_USER_ID pelo seu ID de usuário EmailJS
 })();
 
+var codigoValidacao
+
 function sendEmail() {
 
-    var codigoValidacao = sortearCodigoValidacao()
+    codigoValidacao = sortearCodigoValidacao()
+    sessionStorage.CODIGO = codigoValidacao
 
     const email = document.getElementById('input_email').value;
 
@@ -185,12 +188,5 @@ function sortearCodigoValidacao() {
 
     return codigo.join('')
 }
-
-
-
-
-
-
-
 
 </script>

@@ -224,46 +224,121 @@ function adicionarDeletarUsuario(a) {
     }
 }
 
-var numero_campo_atual = 1
-var campo_atual
+// var numero_campo_atual = 1
+// var campo_atual
+
+// function irParaProximoCampo() {
+
+//     if (numero_campo_atual == 1) {
+//         sendEmail()
+//     }
+
+//     campo_atual = document.getElementById(`campo_${numero_campo_atual}`)
+//     campo_atual.classList.add('esconder')
+//     var proximoCampo
+//     var proximoCampoJunto
+//     var botao
+
+//     if (numero_campo_atual == 2) {
+//         const codigo_inserido = document.getElementById(`input_codigo`).value
+
+//         if (codigo_inserido == sessionStorage.CODIGO) {
+//             proximoCampoJunto = document.getElementById(`campo_${numero_campo_atual + 2}`)
+//             proximoCampoJunto.classList.remove('esconder')
+//             proximoCampoJunto.style.opacity = 0
+    
+//             proximoCampo = document.getElementById(`campo_${numero_campo_atual + 1}`)
+//             proximoCampo.classList.remove('esconder')
+//             proximoCampo.style.opacity = 0
+    
+//             botao = document.getElementById('btn_prosseguir')
+//             botao.innerHTML = 'Alterar senha e voltar para o login'
+            
+    
+//             setTimeout(() => {
+//                 proximoCampo.style.opacity = 100, proximoCampoJunto.style.opacity = 100
+//             }, 300)
+//             botao.onclick = window.location.href = `login2.html`
+//         } else {
+//             alert('O código inserido não corresponde ao que foi enviado')
+//             return
+//         }
+
+//     } else if (numero_campo_atual == 3) {
+//         botao.onclick = window.location.href = `login2.html`
+//         return
+//     }
+
+//     numero_campo_atual++
+//     proximoCampo = document.getElementById(`campo_${numero_campo_atual}`)
+//     proximoCampo.classList.remove('esconder')
+//     proximoCampo.style.opacity = 0
+
+//     setTimeout(() => {
+//         proximoCampo.style.opacity = 100
+//     }, 300)
+
+
+
+//     campo_atual = proximoCampo
+
+// }
+
+let numero_campo_atual = 1; // Exemplo de valor inicial, ajuste conforme necessário
 
 function irParaProximoCampo() {
+    const campoAtual = document.getElementById(`campo_${numero_campo_atual}`);
 
-    if (numero_campo_atual == 1) {
-        sendEmail()
-    }
+    let proximoCampo;
+    let proximoCampoJunto;
+    const botao = document.getElementById('btn_prosseguir');
 
-    campo_atual = document.getElementById(`campo_${numero_campo_atual}`)
-    numero_campo_atual++
-
-    campo_atual.classList.add('esconder')
-
-    if (numero_campo_atual == 3) {
-        var proximoCampoJunto = document.getElementById(`campo_${numero_campo_atual + 1}`)
-        proximoCampoJunto.classList.remove('esconder')
-        proximoCampoJunto.style.opacity = 0
-
-        var proximoCampo = document.getElementById(`campo_${numero_campo_atual}`)
-        proximoCampo.classList.remove('esconder')
-        proximoCampo.style.opacity = 0
-
-        document.getElementById('btn_prosseguir').innerHTML = 'Alterar senha e voltar para o login'
-
+    if (numero_campo_atual === 1) {
+        sendEmail();
+        campoAtual.classList.add('esconder');
+        proximoCampo = document.getElementById(`campo_${numero_campo_atual+1}`);
+        proximoCampo.classList.remove('esconder');
+        proximoCampo.style.opacity = 0;
         setTimeout(() => {
-            proximoCampo.style.opacity = 100, proximoCampoJunto.style.opacity = 100
-        }, 300)
+            proximoCampo.style.opacity = 1;
+        }, 300);
     }
 
-    var proximoCampo = document.getElementById(`campo_${numero_campo_atual}`)
-    proximoCampo.classList.remove('esconder')
-    proximoCampo.style.opacity = 0
 
-    setTimeout(() => {
-        proximoCampo.style.opacity = 100
-    }, 300)
+    if (numero_campo_atual === 2) {
+        const codigoInserido = document.getElementById('input_codigo').value;
 
+        if (codigoInserido === sessionStorage.CODIGO) {
+            campoAtual.classList.add('esconder');
+            proximoCampoJunto = document.getElementById(`campo_${numero_campo_atual + 2}`);
+            proximoCampoJunto.classList.remove('esconder');
+            proximoCampoJunto.style.opacity = 0;
 
+            proximoCampo = document.getElementById(`campo_${numero_campo_atual + 1}`);
+            proximoCampo.classList.remove('esconder');
+            proximoCampo.style.opacity = 0;
 
-    campo_atual = proximoCampo
+            botao.innerHTML = 'Alterar senha e voltar para o login';
+            botao.onclick = function() {
+                window.location.href = 'login2.html';
+            };
 
+            setTimeout(() => {
+                proximoCampo.style.opacity = 1;
+                proximoCampoJunto.style.opacity = 1;
+            }, 300);
+
+        } else {
+            alert('O código inserido não corresponde ao que foi enviado');
+            return;
+        }
+    } else if (numero_campo_atual === 3) {
+        botao.onclick = function() {
+            window.location.href = 'login2.html';
+        };
+        return;
+    }
+
+    numero_campo_atual++;
 }
+
