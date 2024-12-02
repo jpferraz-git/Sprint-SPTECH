@@ -64,31 +64,31 @@
     <main>
         <div class="container">
             <h1>Recuperação de Senha</h1>
-            <form>
+            <form onsubmit="return false">
 
                 <div class="campos">
                     <div class="separacao-campos senha">
-                        <div class="campo-indiv">
+                        <div class="campo-indiv" id="campo_1">
                             <p>Informe o seu E-mail</p>
                             <div class="campo-img">
-                                <input required onfocus="trocarCorNormal()" type="email" id="input_email"
+                                <input type="email" id="input_email"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Digite aqui'">
                             </div>
                         </div>
-                        <div class="campo-indiv">
+                        <div class="campo-indiv esconder" id="campo_2">
                             <p>Verifique a sua Caixa de Entrada e digite o código que te enviamos</p>
                             <div class="campo-img">
-                                <input required onfocus="trocarCorNormal()" type="password" id="input_senha"
+                                <input type="password" id="input_senha"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Digite aqui'">
+                                    onblur="this.placeholder = 'Digite aqui'" maxlength="6">
                             </div>
                         </div>
 
-                        <div class="campo-indiv">
+                        <div class="campo-indiv esconder" id="campo_3">
                             <p>Nova Senha</p>
                             <div class="campo-img">
-                                <input required onfocus="trocarCorNormal()" type="password" id="input_senha_rec"
+                                <input type="password" id="input_senha_rec"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Digite aqui'">
                                 <img id="img_senha_rec" onclick="revelarSenha(input_senha_rec,img_senha_rec)"
@@ -96,10 +96,10 @@
                             </div>
                         </div>
 
-                        <div class="campo-indiv">
+                        <div class="campo-indiv esconder" id="campo_4">
                             <p>Confirmação</p>
                             <div class="campo-img">
-                                <input required onfocus="trocarCorNormal()" type="password" id="input_confirmacao_rec"
+                                <input type="password" id="input_confirmacao_rec"
                                     placeholder="Digite aqui" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Digite aqui'">
                                 <img id="img_confirmacao_rec" onclick="revelarSenha(input_confirmacao_rec,img_confirmacao_rec)"
@@ -113,8 +113,7 @@
 
                     </div>
                 </div>
-                <!-- Arrumar a validação pois agora exite um campo senha de para cada usuário e estão com o mesmo ID -->
-                <button type="submit" onclick="irParaProximaTela()" class="btn">Prosseguir</button>
+                <button type="submit" onclick="irParaProximoCampo()" class="btn" id="btn_prosseguir">Prosseguir</button>
             </form>
         </div>
     </main>
@@ -147,3 +146,51 @@
 </body>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+
+(function () {
+    emailjs.init('IG2_cg1ryXPy0rFzC'); // Substitua YOUR_USER_ID pelo seu ID de usuário EmailJS
+})();
+
+function sendEmail() {
+
+    var codigoValidacao = sortearCodigoValidacao()
+
+    const email = document.getElementById('input_email').value;
+
+    emailjs.send('service_r24sgfm', 'template_ev0yaqh', {
+        to_email: email,
+        from_email: 'gasbusterscia@gmail.com',
+        subject: 'Código de Recuperação de Senha',
+        message: codigoValidacao
+    })
+        .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+        }, function (error) {
+            console.log('FAILED...', error);
+        });
+
+    codigoValidacao = []
+}
+
+function sortearCodigoValidacao() {
+    const codigo = []
+
+    for (var i = 0; i < 6; i++) {
+        const randomNum = parseInt(Math.random()*9+1)
+        codigo.push(randomNum)
+    }
+
+    return codigo.join('')
+}
+
+
+
+
+
+
+
+
+</script>

@@ -101,10 +101,10 @@ function validarCampos() {
                 }
             }
 
-            
+
         }
-        
-        
+
+
         if (senha.length < 8 || qtd_num < 2 || qtd_caract_especiais < 2 || qtd_letras_maius < 2 || possui_espaco) {
             mensagem.style = 'margin-top: 1.3em;'
             mensagem.innerHTML = `*A senha deve conter no mínimo 8 caracteres, dentre eles: no mínimo 2 números, 2 caracteres especiais, 2 letras maiúsculas e NÃO deve ter espaços.`
@@ -116,7 +116,7 @@ function validarCampos() {
             mensagem.innerHTML = ''
             mensagem.style = 'default'
         }
-        console.log(`Qtd. Números: ${qtd_num}`,`Qtd. Especiais: ${qtd_caract_especiais}`,`Letra Maiúscula: ${qtd_letras_maius}`,possui_espaco)
+        console.log(`Qtd. Números: ${qtd_num}`, `Qtd. Especiais: ${qtd_caract_especiais}`, `Letra Maiúscula: ${qtd_letras_maius}`, possui_espaco)
 
         // Validando se a Senha e a Confirmação são iguais
 
@@ -142,28 +142,28 @@ function trocarCorErro(id_campo, id_confirmacao) {
     confirmacao.style = 'color: #cb0000'
 }
 
-    function trocarCorNormal(id_campo, id_confirmacao) {
-        const campo = document.getElementById(id_campo)
-        const confirmacao = document.getElementById(id_confirmacao)
+function trocarCorNormal(id_campo, id_confirmacao) {
+    const campo = document.getElementById(id_campo)
+    const confirmacao = document.getElementById(id_confirmacao)
 
-        campo.style = 'default'
-        confirmacao.style = 'default'
-    }
+    campo.style = 'default'
+    confirmacao.style = 'default'
+}
 
 
-    var qtd_users = 1
-    function adicionarDeletarUsuario(a) {
-        const element_user = document.getElementById('div_user')
-        const ultimo_adicionado = document.getElementById(`user${qtd_users}`)
+var qtd_users = 1
+function adicionarDeletarUsuario(a) {
+    const element_user = document.getElementById('div_user')
+    const ultimo_adicionado = document.getElementById(`user${qtd_users}`)
 
-        if (a == '-') {
-            if (qtd_users > 1) {
-                qtd_users--
-                ultimo_adicionado.remove()
-            }
-        } else {
-            qtd_users++
-            element_user.innerHTML += `
+    if (a == '-') {
+        if (qtd_users > 1) {
+            qtd_users--
+            ultimo_adicionado.remove()
+        }
+    } else {
+        qtd_users++
+        element_user.innerHTML += `
         <div id="user${qtd_users}" class="user-indiv">
             <div class="separacao-campos">
                 <div class="campo-indiv reduzido">
@@ -221,12 +221,49 @@ function trocarCorErro(id_campo, id_confirmacao) {
             </div>
         </div>
             `
-        }
+    }
+}
+
+var numero_campo_atual = 1
+var campo_atual
+
+function irParaProximoCampo() {
+
+    if (numero_campo_atual == 1) {
+        sendEmail()
     }
 
+    campo_atual = document.getElementById(`campo_${numero_campo_atual}`)
+    numero_campo_atual++
+
+    campo_atual.classList.add('esconder')
+
+    if (numero_campo_atual == 3) {
+        var proximoCampoJunto = document.getElementById(`campo_${numero_campo_atual + 1}`)
+        proximoCampoJunto.classList.remove('esconder')
+        proximoCampoJunto.style.opacity = 0
+
+        var proximoCampo = document.getElementById(`campo_${numero_campo_atual}`)
+        proximoCampo.classList.remove('esconder')
+        proximoCampo.style.opacity = 0
+
+        document.getElementById('btn_prosseguir').innerHTML = 'Alterar senha e voltar para o login'
+
+        setTimeout(() => {
+            proximoCampo.style.opacity = 100, proximoCampoJunto.style.opacity = 100
+        }, 300)
+    }
+
+    var proximoCampo = document.getElementById(`campo_${numero_campo_atual}`)
+    proximoCampo.classList.remove('esconder')
+    proximoCampo.style.opacity = 0
+
+    setTimeout(() => {
+        proximoCampo.style.opacity = 100
+    }, 300)
 
 
 
+    campo_atual = proximoCampo
 
-
-
+}
