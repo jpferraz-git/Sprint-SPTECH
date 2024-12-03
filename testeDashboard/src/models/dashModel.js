@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function ultimasMedidas(idCozinha, idEmpresa) {
     var instrucaoSql = `
-        SELECT m.fkSensor, m.nivel_gas, m.dtLeitura
+        SELECT m.fkSensor as idSensor, m.nivel_gas, m.dtLeitura
         FROM medida m
         JOIN sensor s ON m.fkSensor = s.idSensor
         WHERE s.fkCozinha = ${idCozinha}
@@ -11,13 +11,13 @@ function ultimasMedidas(idCozinha, idEmpresa) {
             SELECT COUNT(*) 
             FROM medida m2
             WHERE m2.fkSensor = m.fkSensor AND m2.dtLeitura >= m.dtLeitura
-            ) <= 5
+            ) <= 6
         ORDER BY m.fkSensor, m.dtLeitura DESC;
     `;
     return database.executar(instrucaoSql);
 }
 
-function ultimasMedidas(idSensor) {
+function dadosTempoReal(idSensor) {
     var instrucaoSql = `
         SELECT idMedida, nivel_gas, dtLeitura, fkSensor
         FROM medida

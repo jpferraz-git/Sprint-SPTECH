@@ -202,3 +202,24 @@ WHERE s.fkCozinha = 1
     ) <= 5
 ORDER BY m.fkSensor, m.dtLeitura DESC;
 
+SELECT 
+    s.idSensor AS idSensor,
+    s.nomeSensor,
+    m.nivel_gas AS medidaSensor,
+    m.dtLeitura
+FROM sensor s
+JOIN medida m ON s.idSensor = m.fkSensor
+WHERE s.fkCozinha = 1 
+  AND s.fkEmpresa = 1
+  AND m.idMedida = (
+      SELECT m2.idMedida
+      FROM medida m2
+      WHERE m2.fkSensor = m.fkSensor
+      ORDER BY m2.dtLeitura DESC, m2.idMedida DESC
+      LIMIT 1
+  )
+ORDER BY s.idSensor;
+
+
+
+

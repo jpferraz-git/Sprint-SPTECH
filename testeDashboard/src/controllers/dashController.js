@@ -25,7 +25,7 @@ function ultimasMedidas(req, res) {
     }
 }
 
-function ultimasMedidas(req, res) {
+function dadosTempoReal(req, res) {
     var idSensor = req.params.idSensor;
 
     dashModel.dadosTempoReal(idSensor)
