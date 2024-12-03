@@ -12,7 +12,7 @@
 
 body {
     /* background-color: #000; */
-    background-image: url(../../../../Imagens/Fundo_Editado.png);
+    background-image: url("../assets/Fundo_Editado.png");
     color: #fff;
     overflow-x: hidden;
     display: flex;

@@ -16,4 +16,8 @@ router.post("/autenticarEmail", function (req, res) {
     usuarioController.autenticarEmail(req, res);
 });
 
+router.post("/atualizarSenha", function (req, res) {
+    usuarioController.atualizarSenha(req, res);
+});
+
 module.exports = router;

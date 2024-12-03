@@ -263,7 +263,7 @@ function irParaProximoCampo() {
 
             botao.innerHTML = 'Alterar senha e voltar para o login';
             botao.onclick = function() {
-                window.location.href = 'login2.html';
+                window.location.href = 'login.html';
             };
 
             setTimeout(() => {
@@ -276,8 +276,9 @@ function irParaProximoCampo() {
             return;
         }
     } else if (numero_campo_atual === 3) {
+        atualizarSenhaLogin()
         botao.onclick = function() {
-            window.location.href = 'login2.html';
+            window.location.href = 'login.html';
         };
         return;
     }
@@ -312,7 +313,7 @@ function consultarEmail() {
 
         } else {
 
-            console.log("Houve um erro ao tentar realizar o login!");
+            console.log("Houve um erro ao autenticar o email!");
 
             resposta.text().then(texto => {
                 console.error(texto);

@@ -33,7 +33,7 @@ function cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, ci
 }
 
 function autenticarEmailModel(email) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email)
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticarEmail(): ", email)
     var instrucaoSql = `
         SELECT email FROM usuario WHERE email = '${email}';
     `;
@@ -41,9 +41,21 @@ function autenticarEmailModel(email) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarSenhaModel(novaSenha, idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarSenhaModel(): ", novaSenha, idUsuario)
+    var instrucaoSql = `
+        UPDATE usuario SET senha = ${senha} WHERE idUsuario = ${idUsuario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
 
 module.exports = {
     autenticar,
     cadastrar,
-    autenticarEmailModel
+    autenticarEmailModel,
+    atualizarSenhaModel
 };
