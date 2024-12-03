@@ -284,20 +284,20 @@ function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
 
                 kpiQtdAlerta.innerHTML = 0;
                 kpiQtdPerigo.innerHTML = 0;
-                if (json[0].qtdAlertas != undefined) {
+                if (json[0].qtdAlertas != undefined && json[0].qtdAlertas != null) {
                     kpiQtdAlerta.innerHTML = json[0].qtdAlertas;
                 }
-                if (json[0].qtdPerigos != undefined) {
+                if (json[0].qtdPerigos != undefined && json[0].qtdPerigos != null) {
                     kpiQtdPerigo.innerHTML = json[0].qtdPerigos;
                 }
             })
-            setTimeout(() => qtdAlertasDia(idSensor), 2000);
+            setTimeout(() => qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo), 2000);
         } else {
             console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => qtdAlertasDia(idSensor), 2000);
+            setTimeout(() => qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo), 2000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -339,9 +339,9 @@ function obterDados() {
 
                 plotagemGraficoPrincipal(medidasFg1, medidasFg2, medidasFn)
 
-                plotagemGraficoFg1(medidasFg1);
-                plotagemGraficoFg2(medidasFg2);
-                plotagemGraficoFn(medidasFn);
+                plotagemGraficoIndividualFg1(medidasFg1);
+                plotagemGraficoIndividualFg2(medidasFg2);
+                plotagemGraficoIndividualFn(medidasFn);
             })
         } else {
             console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
@@ -461,10 +461,8 @@ function plotagemGraficoPrincipal(medidasFg1, medidasFg2, medidasFn) {
     }
     
     const graficoMinuto = new Chart(grafico_minuto, config_minuto);
-    setTimeout(() => dadosTempoRealPrincipal(graficoMinuto, data_minuto), 5000)
+    setTimeout(() => dadosTempoRealPrincipal(graficoMinuto, data_minuto), 60000)
 }
-
-var proximaAtualização  
 
 function dadosTempoRealPrincipal(chart, dados) {
     var idCozinha = sessionStorage.ID_COZINHA
@@ -491,20 +489,310 @@ function dadosTempoRealPrincipal(chart, dados) {
 
                 chart.update();
             })
-            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 5000)
+            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 60000)
         } else {
             console.log(`Houve um erro ao carregar a ultima medida do sensor`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 5000)
+            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 60000)
         }
     }).catch(erro => {
         console.log(erro)
     })
 }
 
-function dadosTempoRealIndividual(idSensor, dados, chart) {
+function plotagemGraficoIndividualFg1(medidasFg1) {
+    const grafico_segundo_fg1 = document.querySelector("#grafico_segundos_fg1") 
+    
+    const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
+
+    const data_segundo_fg1 = {
+        labels: labels_line_seg,
+        datasets: [
+            {
+                label: 'Fogão 01',
+                data: medidasFg1,
+                tension: 0,
+                borderColor: borderFg1,
+                backgroundColor: backgroundFg1,
+            },
+            {
+                label: '',
+                data: [30, 30, 30, 30, 30, 30],
+                tension: 0,
+                borderColor: 'rgb(205,5,5)',
+                backgroundColor: 'rgb(205,5,5, 0.1)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                borderColor: 'rgb(241,101,41)',
+                backgroundColor: 'rgb(241,101,41, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                backgroundColor: 'rgb(40,106,174, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'start'
+            }
+        ]
+    }
+    
+    const config_segundo_fg1 = {
+        type: 'line',
+        data: data_segundo_fg1,
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'gray',
+                        font: {
+                            size: 12,
+                            family: 'Montserrat',
+                            weight: 'bold',
+                        },
+                        filter: function (legendItem) {
+                            return legendItem.text !== '';
+                        }
+                    },
+                    onClick: null
+                },
+                title: {
+                    display: true,
+                    text: 'Ultimos segundos',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 16,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    }
+    
+    const graficoSegundoFg1 = new Chart(grafico_segundo_fg1, config_segundo_fg1);
+    setInterval(() => dadosTempoReal(idSensorFg1, graficoSegundoFg1, data_segundo_fg1), 1000)
+}
+
+function plotagemGraficoIndividualFg2(medidasFg2) {
+    const grafico_segundo_fg2 = document.querySelector("#grafico_segundos_fg2")
+    
+    const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
+
+    const data_segundo_fg2 = {
+        labels: labels_line_seg,
+        datasets: [
+            {
+                label: 'Fogão 02',
+                data: medidasFg2,
+                tension: 0,
+                borderColor: borderFg2,
+                backgroundColor: backgroundFg2,
+            },
+            {
+                label: '',
+                data: [30, 30, 30, 30, 30, 30],
+                tension: 0,
+                borderColor: 'rgb(205,5,5)',
+                backgroundColor: 'rgb(205,5,5, 0.1)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                borderColor: 'rgb(241,101,41)',
+                backgroundColor: 'rgb(241,101,41, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                backgroundColor: 'rgb(40,106,174, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'start'
+            }
+        ]
+    }
+    
+    const config_segundo_fg2 = {
+        type: 'line',
+        data: data_segundo_fg2,
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'gray',
+                        font: {
+                            size: 12,
+                            family: 'Montserrat',
+                            weight: 'bold',
+                        },
+                        filter: function (legendItem) {
+                            return legendItem.text !== '';
+                        }
+                    },
+                    onClick: null
+                },
+                title: {
+                    display: true,
+                    text: 'Ultimos segundos',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 16,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    }
+    
+    const graficoSegundoFg2 = new Chart(grafico_segundo_fg2, config_segundo_fg2);
+    setInterval(() => dadosTempoReal(idSensorFg2, graficoSegundoFg2, data_segundo_fg2), 1000)
+}
+
+function plotagemGraficoIndividualFn (medidasFn) {
+    const grafico_segundo_fn = document.querySelector("#grafico_segundos_fn")
+    
+    const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
+
+    const data_segundo_fn = {
+        labels: labels_line_seg,
+        datasets: [
+            {
+                label: 'Forno',
+                data: medidasFn,
+                tension: 0,
+                borderColor: borderFn,
+                backgroundColor: backgroundFn,
+            },
+            {
+                label: '',
+                data: [30, 30, 30, 30, 30, 30],
+                tension: 0,
+                borderColor: 'rgb(205,5,5)',
+                backgroundColor: 'rgb(205,5,5, 0.1)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                borderColor: 'rgb(241,101,41)',
+                backgroundColor: 'rgb(241,101,41, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'end'
+            },
+            {
+                label: '',
+                data: [10, 10, 10, 10, 10, 10],
+                tension: 0,
+                backgroundColor: 'rgb(40,106,174, 0.2)',
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: 'start'
+            }
+        ]
+    }
+    
+    const config_segundo_fn = {
+        type: 'line',
+        data: data_segundo_fn,
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'gray',
+                        font: {
+                            size: 12,
+                            family: 'Montserrat',
+                            weight: 'bold',
+                        },
+                        filter: function (legendItem) {
+                            return legendItem.text !== '';
+                        }
+                    },
+                    onClick: null
+                },
+                title: {
+                    display: true,
+                    text: 'Ultimos segundos',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 16,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    }
+    
+    const graficoSegundoFn = new Chart(grafico_segundo_fn, config_segundo_fn);
+    setInterval(() => dadosTempoReal(idSensorFn, graficoSegundoFn, data_segundo_fn), 1000)
+}
+
+var proximaAtualização  
+
+function dadosTempoReal(idSensor, chart, dados) {
     fetch(`/dash/dadosTempoReal/${idSensor}`, {
         method: "GET",
         headers: {
@@ -513,6 +801,7 @@ function dadosTempoRealIndividual(idSensor, dados, chart) {
     }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
+                console.log(`JSON do dado em tempo real do sensor ${idSensor}: ` + json)
                 dados.datasets[0].data.shift();
                 dados.datasets[0].data.push(json[0].nivel_gas);
 
@@ -549,303 +838,14 @@ function dadosTempoRealIndividual(idSensor, dados, chart) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 atualizarDataHora();
 setInterval(atualizarDataHora, 1000);
 
-const grafico_segundo_fg1 = document.querySelector("#grafico_segundos_fg1")
-const grafico_segundo_fg2 = document.querySelector("#grafico_segundos_fg2")
-const grafico_segundo_fn = document.querySelector("#grafico_segundos_fn")
 const grafico_semana_fg1 = document.querySelector("#grafico_semana_fg1")
 const grafico_semana_fg2 = document.querySelector("#grafico_semana_fg2")
 const grafico_semana_fn = document.querySelector("#grafico_semana_fn")
 
-const labels_line_seg = ['0', '1s', '2s', '3s', '4s', '5s']
 const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
-
-
-
-const data_segundo_fg1 = {
-    labels: labels_line_seg,
-    datasets: [
-        {
-            label: 'Fogão 01',
-            data: [19, 19.5, 19.8, 19.4, 20, 20.6],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41)',
-        },
-        {
-            label: '',
-            data: [30, 30, 30, 30, 30, 30],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5, 0.1)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            backgroundColor: 'rgb(40,106,174, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'start'
-        }
-    ]
-}
-
-const config_segundo_fg1 = {
-    type: 'line',
-    data: data_segundo_fg1,
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'gray',
-                    font: {
-                        size: 12,
-                        family: 'Montserrat',
-                        weight: 'bold',
-                    },
-                    filter: function (legendItem) {
-                        return legendItem.text !== '';
-                    }
-                },
-                onClick: null
-            },
-            title: {
-                display: true,
-                text: 'Ultimos segundos',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 16,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                min: 0,
-                max: 100
-            }
-        }
-    }
-}
-
-const data_segundo_fg2 = {
-    labels: labels_line_seg,
-    datasets: [
-        {
-            label: 'Fogão 02',
-            data: [48, 52, 53, 58, 60, 55],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5)',
-        },
-        {
-            label: '',
-            data: [30, 30, 30, 30, 30, 30],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5, 0.1)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            backgroundColor: 'rgb(40,106,174, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'start'
-        }
-    ]
-}
-
-const config_segundo_fg2 = {
-    type: 'line',
-    data: data_segundo_fg2,
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'gray',
-                    font: {
-                        size: 12,
-                        family: 'Montserrat',
-                        weight: 'bold',
-                    },
-                    filter: function (legendItem) {
-                        return legendItem.text !== '';
-                    }
-                },
-                onClick: null
-            },
-            title: {
-                display: true,
-                text: 'Ultimos segundos',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 16,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                min: 0,
-                max: 100
-            }
-        }
-    }
-}
-
-const data_segundo_fn = {
-    labels: labels_line_seg,
-    datasets: [
-        {
-            label: 'Forno',
-            data: [2.2, 2.8, 3.1, 3.5, 3.3, 3.8],
-            tension: 0,
-            borderColor: 'rgb(40,106,174)',
-            backgroundColor: 'rgb(40,106,174)',
-        },
-        {
-            label: '',
-            data: [30, 30, 30, 30, 30, 30],
-            tension: 0,
-            borderColor: 'rgb(205,5,5)',
-            backgroundColor: 'rgb(205,5,5, 0.1)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            borderColor: 'rgb(241,101,41)',
-            backgroundColor: 'rgb(241,101,41, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'end'
-        },
-        {
-            label: '',
-            data: [10, 10, 10, 10, 10, 10],
-            tension: 0,
-            backgroundColor: 'rgb(40,106,174, 0.2)',
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: 'start'
-        }
-    ]
-}
-
-const config_segundo_fn = {
-    type: 'line',
-    data: data_segundo_fn,
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'gray',
-                    font: {
-                        size: 12,
-                        family: 'Montserrat',
-                        weight: 'bold',
-                    },
-                    filter: function (legendItem) {
-                        return legendItem.text !== '';
-                    }
-                },
-                onClick: null
-            },
-            title: {
-                display: true,
-                text: 'Ultimos segundos',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 16,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                min: 0,
-                max: 100
-            }
-        }
-    }
-}
 
 const data_semana_fg1 = {
     labels: labels_line_week,
@@ -979,9 +979,8 @@ const config_semana_fn = {
     }
 };
 
-const graficoSegundoFg1 = new Chart(grafico_segundo_fg1, config_segundo_fg1);
-const graficoSegundoFg2 = new Chart(grafico_segundo_fg2, config_segundo_fg2);
-const graficoSegundoFn = new Chart(grafico_segundo_fn, config_segundo_fn);
+
+
 const graficoSemanaFg1 = new Chart(grafico_semana_fg1, config_semana_fg1);
 const graficoSemanaFg2 = new Chart(grafico_semana_fg2, config_semana_fg2);
 const graficoSemanaFn = new Chart(grafico_semana_fn, config_semana_fn);

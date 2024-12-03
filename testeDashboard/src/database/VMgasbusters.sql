@@ -237,4 +237,3 @@ ORDER BY s.idSensor;
 
 
 
-
