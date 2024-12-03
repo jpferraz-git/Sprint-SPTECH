@@ -790,8 +790,6 @@ function plotagemGraficoIndividualFn (medidasFn) {
     setInterval(() => dadosTempoReal(idSensorFn, graficoSegundoFn, data_segundo_fn), 1000)
 }
 
-var proximaAtualização  
-
 function dadosTempoReal(idSensor, chart, dados) {
     fetch(`/dash/dadosTempoReal/${idSensor}`, {
         method: "GET",
@@ -818,169 +816,202 @@ function dadosTempoReal(idSensor, chart, dados) {
     })
 }
 
+function mediaSemana() {
+    var idCozinha = sessionStorage.ID_COZINHA;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
 
+    fetch(`/dash/mediaSemana/${idCozinha}/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json)
+                const mediaSemanaFg1 = []
+                const mediaSemanaFg2 = []
+                const mediaSemanaFn = []
+                for (var i = json.length - 1; i >= 0; i--) {
+                    if (json[i].idSensor == idSensorFg1) {
+                        mediaSemanaFg1.push(json[i].mediaNivelGas)
+                    } else if (json[i].idSensor == idSensorFg2) {
+                        mediaSemanaFg2.push(json[i].mediaNivelGas)
+                    } else if (json[i].idSensor == idSensorFn) {
+                        mediaSemanaFn.push(json[i].mediaNivelGas)
+                    }
+                }
 
+                plotagemSemanaFg1(mediaSemanaFg1)
+                plotagemSemanaFg2(mediaSemanaFg2)
+                plotagemSemanaFn(mediaSemanaFn)
+            })
+        } else {
+            console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
+}
 
+function plotagemSemanaFg1(mediaSemanaFg1) {
+    const grafico_semana_fg1 = document.querySelector("#grafico_semana_fg1")
 
+    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
+    const data_semana_fg1 = {
+        labels: labels_line_week,
+        datasets: [{
+            data: mediaSemanaFg1,
+            fill: false,
+            label: 'Taxa de vazão',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    
+    const config_semana_fg1 = {
+        type: 'bar',
+        data: data_semana_fg1,
+        options: {
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Média da semana',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            }
+        }
+    };
 
+    const graficoSemanaFg1 = new Chart(grafico_semana_fg1, config_semana_fg1);
+}
 
+function plotagemSemanaFg2(mediaSemanaFg2) {
+    const grafico_semana_fg2 = document.querySelector("#grafico_semana_fg2")
 
+    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
+    const data_semana_fg2 = {
+        labels: labels_line_week,
+        datasets: [{
+            data: mediaSemanaFg2,
+            fill: false,
+            label: 'Taxa de vazão',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    
+    const config_semana_fg2 = {
+        type: 'bar',
+        data: data_semana_fg2,
+        options: {
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Média da semana',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            }
+        }
+    };
 
+    const graficoSemanaFg2 = new Chart(grafico_semana_fg2, config_semana_fg2);
+}
 
+function plotagemSemanaFn(mediaSemanaFn) {
+    const grafico_semana_fn = document.querySelector("#grafico_semana_fn")
 
+    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
+    const data_semana_fn = {
+        labels: labels_line_week,
+        datasets: [{
+            data: mediaSemanaFn,
+            fill: false,
+            label: 'Taxa de vazão',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    
+    const config_semana_fn = {
+        type: 'bar',
+        data: data_semana_fn,
+        options: {
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Média da semana',
+                    padding: 0.5,
+                    color: '#000000',
+                    font: {
+                        size: 12,
+                        family: 'Montserrat',
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 5
+                }
+            }
+        }
+    };
 
-
-
-
-
-
+    const graficoSemanaFn = new Chart(grafico_semana_fn, config_semana_fn);
+}
 
 atualizarDataHora();
 setInterval(atualizarDataHora, 1000);
-
-const grafico_semana_fg1 = document.querySelector("#grafico_semana_fg1")
-const grafico_semana_fg2 = document.querySelector("#grafico_semana_fg2")
-const grafico_semana_fn = document.querySelector("#grafico_semana_fn")
-
-const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
-
-const data_semana_fg1 = {
-    labels: labels_line_week,
-    datasets: [{
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        label: 'Taxa de vazão',
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-            'rgb(255, 99, 132)'
-        ],
-        borderWidth: 1
-    }]
-};
-
-const config_semana_fg1 = {
-    type: 'bar',
-    data: data_semana_fg1,
-    options: {
-        indexAxis: 'y',
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Média da semana',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 12,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        }
-    }
-};
-
-const data_semana_fg2 = {
-    labels: labels_line_week,
-    datasets: [{
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        label: 'Taxa de vazão',
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-            'rgb(255, 99, 132)'
-        ],
-        borderWidth: 1
-    }]
-};
-
-const config_semana_fg2 = {
-    type: 'bar',
-    data: data_semana_fg2,
-    options: {
-        indexAxis: 'y',
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Média da semana',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 12,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        }
-    }
-};
-
-const data_semana_fn = {
-    labels: labels_line_week,
-    datasets: [{
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        label: 'Taxa de vazão',
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-            'rgb(255, 99, 132)'
-        ],
-        borderWidth: 1
-    }]
-};
-
-const config_semana_fn = {
-    type: 'bar',
-    data: data_semana_fn,
-    options: {
-        indexAxis: 'y',
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Média da semana',
-                padding: 0.5,
-                color: '#000000',
-                font: {
-                    size: 12,
-                    family: 'Montserrat',
-                }
-            }
-        },
-        elements: {
-            point: {
-                radius: 5
-            }
-        }
-    }
-};
-
-
-
-const graficoSemanaFg1 = new Chart(grafico_semana_fg1, config_semana_fg1);
-const graficoSemanaFg2 = new Chart(grafico_semana_fg2, config_semana_fg2);
-const graficoSemanaFn = new Chart(grafico_semana_fn, config_semana_fn);

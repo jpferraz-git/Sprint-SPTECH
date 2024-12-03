@@ -15,4 +15,8 @@ router.get("/dadosTempoRealPrincipal/:idCozinha/:idEmpresa", function (req, res)
     dashController.dadosTempoRealPrincipal(req, res);
 });
 
+router.get("/mediaSemana/:idCozinha/:idEmpresa", function (req, res) {
+    dashController.mediaSemana(req, res);
+});
+
 module.exports = router;

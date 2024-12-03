@@ -52,8 +52,27 @@ function dadosTempoRealPrincipal(idCozinha, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function mediaSemana(idCozinha, idEmpresa) {
+    var instrucaoSql = `
+    SELECT 
+        m.fkSensor AS idSensor,
+        DAYNAME(m.dtLeitura) AS diaSemana,
+        AVG(m.nivel_gas) AS mediaNivelGas
+    FROM medida m
+    JOIN sensor s ON m.fkSensor = s.idSensor
+    JOIN cozinha c ON s.fkCozinha = c.idCozinha
+    WHERE c.idCozinha = ${idCozinha}
+    AND s.fkEmpresa = ${idEmpresa}
+    GROUP BY m.fkSensor, DAYNAME(m.dtLeitura)
+    ORDER BY m.fkSensor, FIELD(diaSemana, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     ultimasMedidas,
     dadosTempoReal,
-    dadosTempoRealPrincipal
+    dadosTempoRealPrincipal,
+    mediaSemana
 }

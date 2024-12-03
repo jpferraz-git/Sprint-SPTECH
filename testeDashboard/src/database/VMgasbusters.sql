@@ -168,6 +168,8 @@ VALUES
 (1.4, 6);
 
 
+
+
 SELECT * FROM cozinha;
 SELECT * FROM empresa;
 SELECT * FROM localsensor;
@@ -234,6 +236,18 @@ WHERE s.fkCozinha = 1
       LIMIT 1
   )
 ORDER BY s.idSensor;
+
+SELECT 
+    m.fkSensor AS idSensor,
+    DAYNAME(m.dtLeitura) AS diaSemana,
+    AVG(m.nivel_gas) AS mediaNivelGas
+FROM medida m
+JOIN sensor s ON m.fkSensor = s.idSensor
+JOIN cozinha c ON s.fkCozinha = c.idCozinha
+WHERE c.idCozinha = 1
+  AND s.fkEmpresa = 1
+GROUP BY m.fkSensor, DAYNAME(m.dtLeitura)
+ORDER BY m.fkSensor, FIELD(diaSemana, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
 
 
