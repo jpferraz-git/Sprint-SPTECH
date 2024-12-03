@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../Home/assets/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>GasBusters | BobIA</title>
+    <link rel="stylesheet" href="BobIA.css">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../../Home/index.html" class="logo"><img src="../../Home/assets/logo.png" class="img-logo">
+                    GASBUSTERS</a>
+            </div>
+            <ul class="nav-list">
+                <li><b><a href="index_BobIA.html" style="text-transform: none;">BobIA</a></b></li>
+                <li>•</li>
+                <li><a href="https://gasbusterscia.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1"
+                        target="_blank">Chamados</a></li>
+            </ul>
+        </nav>
+
+
+    </header>
+    <div class="divmae">
+        <div class="container">
+            <div class="conteudo">
+
+                <div class="form">
+                    <div class="formdentro">
+                        <h1><img src="bob_camisa.png" alt=""> BobIA</h1>
+                        <textarea id="pergunta" type="text" placeholder="Digite aqui a sua pergunta"
+                        onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Digite aqui a sua pergunta'"></textarea>
+                        
+                    </div>
+                </div>
+                <p>Recomendamos sempre revisar as respostas antes de aplicá-las!</p>
+                <button class="btn" onclick="gerarResposta()">Gerar Resposta</button>
+                <div id="resposta" class="divResultado">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<!-- Scripts de layout -->
+<script>
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+<script type="text/javascript">
+    textarea = document.querySelector("pergunta");
+    textarea.addEventListener('input', autoResize, false);
+
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+</script>
+
+<!-- Scripts da IA -->
+<script>
+
+    async function gerarResposta() {
+        const pergunta = document.getElementById('pergunta').value;
+
+        const response = await fetch('/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+        resposta.style.display = 'block';
+        document.getElementById('resposta').innerText = data.resultado;
+    }
+
+</script>
