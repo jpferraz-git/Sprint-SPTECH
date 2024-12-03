@@ -1,0 +1,474 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    position: relative;
+    background-color: white;
+    padding-top: 18vh;
+}
+
+body::after {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+header {
+    background-color: rgb(0, 0, 0, 0.8);
+    color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 16vh;
+    z-index: 1000;
+    padding-left: 5vw;
+    position: fixed;
+    display: block;
+    align-content: center;
+}
+
+.navbarMobile {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px dotted white;
+    padding-right: 3vw;
+
+    font-size: 1.1vw;
+    text-transform: uppercase;
+}
+
+.nav-list li {
+    letter-spacing: 0.5vh;
+    margin-left: 5px;
+    padding-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-list li:active {
+    opacity: 0.7;
+}
+
+.nav-list li:hover {
+    opacity: 0.7;
+}
+
+.logo {
+    display: block;
+    /* justify-content: center;
+    align-items: center; */
+    font-size: 2vw;
+    font-weight: bold;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+
+    margin-right: 1%;
+    margin-left: 0;
+}
+
+.img-logo {
+    width: 8%;
+    margin-right: 1%;
+    vertical-align: middle;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-dash {
+    width: 90%;
+    height: 80vh;
+    box-shadow: 0 0 10px black;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.area-esquerda {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-hora {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-radius: 10px 0 0 0;
+}
+
+.data-hora #hora_atual {
+    font-size: larger;
+}
+
+.container-status {
+    width: 100%;
+    height: 80%;
+    color: white;
+    border-radius: 0 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: black;
+}
+
+.fg1, .fg2, .fn {
+    width: 50%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.status {
+    width: 100%;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+.area-direita {
+    width: 80%;
+    height: 100%;
+}
+
+.container-kpis {
+    width: 100%;
+    height: 20%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0 10px 0 0;
+}
+
+.kpi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.qtd {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.ativo {
+    background-color: green;
+}
+
+.inoperante {
+    background-color: red;
+}
+
+.normal {
+    background-color: #286AAE;
+}
+
+.alerta {
+    background-color: #F16529;
+}
+
+.perigo {
+    background-color: #CD0505;
+}
+
+.graficos {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart {
+    width: 90%;
+    height: 90%;
+    display: flex;
+}
+
+.horizontal {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.legenda-grafico {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.legenda-grafico .div-legenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.legenda-grafico .div-legenda .leg {
+    width: 10px;
+    height: 10px;
+}
+
+.cinco-minutos, .cinco-segundos {
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+}
+
+.vertical {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.legenda, .media-semana {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px black;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.legenda h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.legenda .med-leg {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.legenda .med-leg .leg {    
+    width: 10px;
+    height: 10px;
+}
+
+
+.qtd-alertas {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px black;
+    gap: 8px;
+}
+
+.qtd-alertas h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+.kpi-alerta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.alerta-ruim {
+    padding: 10px;
+    background-color: rgb(200, 0, 0);
+}
+
+.alerta-perigoso {
+    padding: 10px;
+    background-color: rgb(100, 0, 0);
+}
+
+.ult-medicao {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 0 0 5px black;
+}
+
+.ult-medicao h2, .maior-vasao h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 90%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+.medicao p {
+    width: 50%;
+}
+
+.ult-medicao .medicao span {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.medicao {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@media (max-width:600px) {
+
+    body {
+        padding-top: 6.5vh;
+    }
+
+    header {
+        top: 0;
+        padding-left: 0;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .navbarMobile {
+        display: contents;
+    }
+
+    .face-page {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        margin-top: 0;
+    }
+
+    .divFacePage {
+        width: 70vw;
+        align-self: center;
+    }
+
+    .divFacePage p {
+        font-size: 4vw;
+        line-height: 130%;
+    }
+
+    .divFacePage a {
+        font-size: 4vw;
+        border-bottom: 2px solid red;
+    }
+
+    .logo {
+        font-size: 2vw;
+        font-weight: bold;
+
+    }
+
+    .img-logo {
+        width: 4%;
+        vertical-align: middle;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: rgb(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .topnav #myLinks {
+        display: none;
+    }
+
+    .topnav a {
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+
+    .topnav a.icon {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .active {
+        background-color: #04AA6D;
+        color: white;
+    }
+}
