@@ -7,6 +7,25 @@ function myFunction() {
     }
 }
 
+function atualizarDataHora() {
+    let data_geral = new Date();
+    let dataFormatada = data_geral.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    let horaFormatada = data_geral.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    let dataHoraFormatada = `${dataFormatada} ${horaFormatada}`;
+    const mostrar_data = document.querySelector('#hora_atual');
+    mostrar_data.textContent = dataHoraFormatada;
+}
+
+var telaAtual = ``;
+
 function trocarDash(tela) {
     // Trazendo os graficos
     var dashGeral = document.getElementById('dash-geral')
@@ -79,6 +98,7 @@ function trocarDash(tela) {
         buttonFg2.onclick = function () { trocarDash('fg2'); qtdAlertasDia(idSensorFg2, `qtdRuimFg2`, `qtdPerigosoFg2`) }
         buttonFn.onclick = function () { trocarDash('fn'); qtdAlertasDia(idSensorFn, `qtdRuimFn`, `qtdPerigosoFn`) }
     }
+    telaAtual = tela;
 }
 
 function capturarKpiAtivos() {
@@ -95,11 +115,14 @@ function capturarKpiAtivos() {
             resposta.json().then(json => {
                 sensorAtivos.innerHTML = json[0].qtdAtivos
             })
+
+            setTimeout(() => capturarKpiAtivos(), 2000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores ativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
+            setTimeout(() => capturarKpiAtivos(), 2000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -120,11 +143,13 @@ function capturarKpiInoperante() {
             resposta.json().then(json => {
                 sensorInoperante.innerHTML = json[0].qtdInoperante
             })
+            setTimeout(() => capturarKpiInoperante(), 2000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores inativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
+            setTimeout(() => capturarKpiInoperante(), 2000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -161,11 +186,13 @@ function capturarKpiNiveis() {
                     sensorPerigo.innerHTML = 0
                 }
             })
+            setTimeout(() => capturarKpiNiveis(), 2000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
+            setTimeout(() => capturarKpiNiveis(), 2000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -225,9 +252,11 @@ function capturarKpiValores() {
                 idSensorFg2 = json[1].idSensor;
                 idSensorFn = json[2].idSensor;
             });
+            setTimeout(() => capturarKpiValores(), 2000);
         } else {
             console.error("Erro ao carregar os KPIs");
             resposta.text().then(texto => console.error(texto));
+            setTimeout(() => capturarKpiValores(), 2000);
         }
     }).catch(erro => {
         console.error("Erro de conexão ou processamento:", erro);
@@ -260,6 +289,51 @@ function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
                 if (json[0].qtdPerigos != undefined) {
                     kpiQtdPerigo.innerHTML = json[0].qtdPerigos;
                 }
+            })
+            setTimeout(() => qtdAlertasDia(idSensor), 2000);
+        } else {
+            console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+            setTimeout(() => qtdAlertasDia(idSensor), 2000);
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
+}
+
+function obterDados() {
+    var idCozinha = sessionStorage.ID_COZINHA;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/dash/ultimasMedidas/${idCozinha}/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json)
+                const medidasFg1 = []
+                const medidasFg2 = []
+                const medidasFn = []
+                for(var i = 0; i < json.length; i++) {
+                    if (json[i].idSensor == idSensorFg1) {
+                        medidasFg1.push(json[i].nivel_gas)
+                    } else if (json[i].idSensor == idSensorFg2) {
+                        medidasFg2.push(json[i].nivel_gas)
+                    } else if (json[i].idSensor == idSensorFn) {
+                        medidasFn.push(json[i].nivel_gas)
+                    }
+                }
+
+                plotagemGraficoPrincipal(medidasFg1, medidasFg2, medidasFn)
+
+                plotagemGraficoFg1(medidasFg1);
+                plotagemGraficoFg2(medidasFg2);
+                plotagemGraficoFn(medidasFn);
             })
         } else {
             console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
@@ -312,22 +386,9 @@ function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
 
 
 
-function atualizarDataHora() {
-    let data_geral = new Date();
-    let dataFormatada = data_geral.toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-    let horaFormatada = data_geral.toLocaleTimeString('pt-BR', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
-    let dataHoraFormatada = `${dataFormatada} ${horaFormatada}`;
-    const mostrar_data = document.querySelector('#hora_atual');
-    mostrar_data.textContent = dataHoraFormatada;
-}
+
+
+
 
 atualizarDataHora();
 setInterval(atualizarDataHora, 1000);
