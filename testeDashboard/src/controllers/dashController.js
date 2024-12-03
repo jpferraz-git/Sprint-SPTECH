@@ -25,6 +25,24 @@ function ultimasMedidas(req, res) {
     }
 }
 
+function ultimasMedidas(req, res) {
+    var idSensor = req.params.idSensor;
+
+    dashModel.dadosTempoReal(idSensor)
+        .then(
+            function (medidas) {
+                res.json(medidas);
+            })
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao selecionar os niveis dos sensores! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
-    ultimasMedidas
+    ultimasMedidas,
+    dadosTempoReal
 }

@@ -17,6 +17,18 @@ function ultimasMedidas(idCozinha, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function ultimasMedidas(idSensor) {
+    var instrucaoSql = `
+        SELECT idMedida, nivel_gas, dtLeitura, fkSensor
+        FROM medida
+        WHERE fkSensor = ${idSensor}
+        ORDER BY dtLeitura DESC
+        LIMIT 1;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    ultimasMedidas
+    ultimasMedidas,
+    dadosTempoReal
 }

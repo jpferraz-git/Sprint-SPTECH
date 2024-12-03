@@ -55,7 +55,7 @@ function trocarDash(tela) {
         containerFn.style.border = 'none';
 
         // Trocando o parametro da função
-        buttonFg1.onclick = function () { trocarDash('geral')};
+        buttonFg1.onclick = function () { trocarDash('geral') };
         buttonFg2.onclick = function () { trocarDash('fg2'); qtdAlertasDia(idSensorFg2, `qtdRuimFg2`, `qtdPerigosoFg2`) };
         buttonFn.onclick = function () { trocarDash('fn'); qtdAlertasDia(idSensorFn, `qtdRuimFn`, `qtdPerigosoFn`) };
     } else if (tela == 'fg2') {
@@ -319,7 +319,7 @@ function obterDados() {
                 const medidasFg1 = []
                 const medidasFg2 = []
                 const medidasFn = []
-                for(var i = 0; i < json.length; i++) {
+                for (var i = 0; i < json.length; i++) {
                     if (json[i].idSensor == idSensorFg1) {
                         medidasFg1.push(json[i].nivel_gas)
                     } else if (json[i].idSensor == idSensorFg2) {
@@ -346,7 +346,30 @@ function obterDados() {
     })
 }
 
+function dadosTempoReal(idSensor, dados, chart) {
+    fetch(`/dash/dadosTempoReal/${idSensor}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                dados.datasets[0].data.shift();
+                dados.datasets[0].data.push(json[0].nivel_gas);
 
+                chart.update();
+            })
+        } else {
+            console.log(`Houve um erro ao carregar a ultima medida do sensor`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
+}
 
 
 
