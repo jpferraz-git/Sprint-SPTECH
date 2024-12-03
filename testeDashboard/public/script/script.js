@@ -168,6 +168,7 @@ function capturarKpiNiveis() {
     }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
+                console.log(json)
                 if (json[0].qtdNormal != null) {
                     sensorNormal.innerHTML = json[0].qtdNormal
                 } else {
@@ -303,6 +304,13 @@ function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
     })
 }
 
+var borderFg1 = 'rgb(241,101,41)'
+var borderFg2 = 'rgb(205,5,5)'
+var borderFn = 'rgb(40,106,174)'
+var backgroundFg1 = 'rgb(241,101,41)'
+var backgroundFg2 = 'rgb(205,5,5)'
+var backgroundFn = 'rgb(40,106,174)'
+
 function obterDados() {
     var idCozinha = sessionStorage.ID_COZINHA;
     var idEmpresa = sessionStorage.ID_EMPRESA;
@@ -319,7 +327,7 @@ function obterDados() {
                 const medidasFg1 = []
                 const medidasFg2 = []
                 const medidasFn = []
-                for (var i = 0; i < json.length; i++) {
+                for (var i = json.length - 1; i >= 0; i--) {
                     if (json[i].idSensor == idSensorFg1) {
                         medidasFg1.push(json[i].nivel_gas)
                     } else if (json[i].idSensor == idSensorFg2) {
@@ -358,22 +366,22 @@ function plotagemGraficoPrincipal(medidasFg1, medidasFg2, medidasFn) {
                 label: 'Fogão 01',
                 data: medidasFg1,
                 tension: 0,
-                borderColor: 'rgb(241,101,41)',
-                backgroundColor: 'rgb(241,101,41)',
+                borderColor: borderFg1,
+                backgroundColor: backgroundFg1,
             },
             {
                 label: 'Fogão 02',
                 data: medidasFg2,
                 tension: 0,
-                borderColor: 'rgb(205,5,5)',
-                backgroundColor: 'rgb(205,5,5)',
+                borderColor: borderFg2,
+                backgroundColor: backgroundFg2,
             },
             {
                 label: 'Forno',
                 data: medidasFn,
                 tension: 0,
-                borderColor: 'rgb(40,106,174)',
-                backgroundColor: 'rgb(40,106,174)',
+                borderColor: borderFn,
+                backgroundColor: backgroundFn,
             },
             {
                 label: '',
@@ -453,6 +461,47 @@ function plotagemGraficoPrincipal(medidasFg1, medidasFg2, medidasFn) {
     }
     
     const graficoMinuto = new Chart(grafico_minuto, config_minuto);
+    setTimeout(() => dadosTempoRealPrincipal(graficoMinuto, data_minuto), 5000)
+}
+
+var proximaAtualização  
+
+function dadosTempoRealPrincipal(chart, dados) {
+    var idCozinha = sessionStorage.ID_COZINHA
+    var idEmpresa = sessionStorage.ID_EMPRESA
+
+    fetch(`/dash/dadosTempoRealPrincipal/${idCozinha}/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(dados)
+                console.log(json)
+                dados.datasets[0].data.shift();
+                dados.datasets[0].data.push(json[0].medidaSensor);
+
+                dados.datasets[1].data.shift();
+                dados.datasets[1].data.push(json[1].medidaSensor);
+
+                dados.datasets[2].data.shift();
+                dados.datasets[2].data.push(json[2].medidaSensor);
+
+                chart.update();
+            })
+            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 5000)
+        } else {
+            console.log(`Houve um erro ao carregar a ultima medida do sensor`)
+            resposta.text().then(texto => {
+                console.error(texto);
+            })
+            setTimeout(() => dadosTempoRealPrincipal(chart, dados), 5000)
+        }
+    }).catch(erro => {
+        console.log(erro)
+    })
 }
 
 function dadosTempoRealIndividual(idSensor, dados, chart) {

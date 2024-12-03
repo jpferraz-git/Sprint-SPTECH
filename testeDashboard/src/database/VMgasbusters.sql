@@ -152,6 +152,21 @@ VALUES
 (0.5, 6),
 (1.4, 6);
 
+INSERT INTO medida (nivel_gas, fkSensor)
+VALUES
+-- Sensor 1
+(0.7, 1),
+-- Sensor 2
+(0.5, 2),
+-- Sensor 3
+(1.2, 3),
+-- Sensor 4
+(1.9, 4),
+-- Sensor 5
+(1.8, 5),
+-- Sensor 6
+(1.4, 6);
+
 
 SELECT * FROM cozinha;
 SELECT * FROM empresa;
@@ -190,7 +205,7 @@ WHERE s.fkCozinha = 1
     AND m.fkSensor = 1
     AND DATE(m.dtLeitura) = CURDATE();
 
-SELECT m.fkSensor, m.nivel_gas, m.dtLeitura
+SELECT m.fkSensor, m.nivel_gas, m.dtLeitura, m.idMedida
 FROM medida m
 JOIN sensor s ON m.fkSensor = s.idSensor
 WHERE s.fkCozinha = 1
@@ -199,8 +214,8 @@ WHERE s.fkCozinha = 1
     SELECT COUNT(*) 
     FROM medida m2
     WHERE m2.fkSensor = m.fkSensor AND m2.dtLeitura >= m.dtLeitura
-    ) <= 5
-ORDER BY m.fkSensor, m.dtLeitura DESC;
+    ) <= 6
+ORDER BY m.fkSensor, m.idMedida DESC;
 
 SELECT 
     s.idSensor AS idSensor,

@@ -13,6 +13,7 @@ function ultimasMedidas(req, res) {
         dashModel.ultimasMedidas(idCozinha, idEmpresa)
             .then(
                 function (medidas) {
+                    console.log(medidas)
                     res.json(medidas);
                 })
             .catch(
@@ -42,7 +43,26 @@ function dadosTempoReal(req, res) {
         );
 }
 
+function dadosTempoRealPrincipal(req, res) {
+    var idCozinha = req.params.idCozinha;
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.dadosTempoRealPrincipal(idCozinha, idEmpresa)
+        .then(
+            function (medidas) {
+                res.json(medidas);
+            })
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao selecionar os niveis dos sensores! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     ultimasMedidas,
-    dadosTempoReal
+    dadosTempoReal,
+    dadosTempoRealPrincipal
 }
