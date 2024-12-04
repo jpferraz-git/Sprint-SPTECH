@@ -7,8 +7,8 @@
 
 body {
     position: relative;
-    background-color: white;
-    padding-top: 20vh;
+    background-image: url(../../../../../../WebSite/Imagens/Fundo_Editado.png);
+    padding-top: 13vh;
 }
 
 body::after {
@@ -23,76 +23,78 @@ a {
 }
 
 header {
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 1);
     color: white;
     top: 0;
     left: 0;
     width: 100%;
-    height: 16vh;
-    z-index: 1000;
+    height: fit-content;
+    /* z-index: 1000; */
     padding-left: 5vw;
     position: fixed;
     display: block;
     align-content: center;
-}
-
-.logo {
-    display: block;
-    /* justify-content: center;
-    align-items: center; */
-    font-size: 2vw;
-    font-weight: bold;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-
-    margin-right: 1%;
-    margin-left: 0;
-}
-
-.img-logo {
-    width: 8%;
-    margin-right: 1%;
-    vertical-align: middle;
-}
-.navbarMobile {
+    /* display: flex;
+      align-items: center;
+      justify-content: space-between; */
+  }
+  
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbarMobile {
     display: none;
-}
-
-.navbar {
+  }
+  
+  .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    align-content: center;
-}
-
-.nav-list {
+    padding: 5px;
+    height: auto;
+  }
+  
+  .nav-list {
     display: flex;
     list-style: none;
-    border-bottom: 1px dotted white;
+    /* justify-content: space-between; */
+    /* border-bottom: 1px dotted white; */
     padding-right: 3vw;
-    
+  
     font-size: 1.1vw;
     text-transform: uppercase;
-}
-
-.nav-list li {
+  }
+  
+  .nav-list li {
     letter-spacing: 0.5vh;
     margin-left: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 3px;
     color: white;
     text-decoration: none;
     white-space: nowrap;
-}
-
-.nav-list li:active {
+  }
+  
+  .nav-list li:hover {
     opacity: 0.7;
-}
-
-.nav-list li:hover {
-    opacity: 0.7;
-}
-
+  }
+  
+  .logo {
+    display: flex;
+    font-size: 2vw;
+    font-weight: bold;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+  }
+  
+  .img-logo {
+    max-height: 4vh;
+    vertical-align: middle;
+    margin: 5px;
+    margin-right: 8px;
+  }
 
 main {
     display: flex;
@@ -107,6 +109,7 @@ main {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
+    background-color: white;
 }
 
 .area-esquerda {
@@ -152,7 +155,7 @@ main {
     background-color: white;
 }
 
-.status-fg1 {
+.status {
     width: 100%;
     color: white;
     padding: 15px;
@@ -160,32 +163,8 @@ main {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: 80%;
-    background-color: #F16529;
-}
-
-.status-fg2 {
-    width: 100%;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 80%;
-    background-color: #CD0505;
-}
-
-.status-fn {
-    width: 100%;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 80%;
-    background-color: #286AAE;
+    text-wrap: nowrap;
+    cursor: pointer;
 }
 
 .area-direita {
@@ -259,9 +238,29 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.cinco-minutos {
+.legenda-grafico {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.legenda-grafico .div-legenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.legenda-grafico .div-legenda .leg {
+    width: 10px;
+    height: 10px;
+}
+
+.cinco-minutos, .cinco-segundos {
     margin-right: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px black;
@@ -269,18 +268,86 @@ main {
 
 .vertical {
     width: 35%;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+    gap: 16px;
 }
 
-.hora-hora {
+.legenda, .media-semana {
     width: 100%;
-    height: 50%;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     box-shadow: 0 0 5px black;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.legenda h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.legenda .med-leg {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.legenda .med-leg .leg {    
+    width: 10px;
+    height: 10px;
+}
+
+
+.qtd-alertas {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px black;
+    gap: 8px;
+}
+
+.qtd-alertas h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+.kpi-alerta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.alerta-ruim {
+    padding: 10px;
+    background-color: rgb(200, 0, 0);
+}
+
+.alerta-perigoso {
+    padding: 10px;
+    background-color: rgb(100, 0, 0);
 }
 
 .ult-medicao {
@@ -297,7 +364,7 @@ main {
     box-shadow: 0 0 5px black;
 }
 
-.ult-medicao h2 {
+.ult-medicao h2, .maior-vasao h2 {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -310,10 +377,11 @@ main {
     width: 50%;
 }
 
-.medicao span {
+.ult-medicao .medicao span {
     width: 30%;
     display: flex;
     justify-content: center;
+    font-weight: bold;
 }
 
 .medicao {
@@ -321,103 +389,6 @@ main {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
-
-.med-fg1 span {
-    background-color: #F16529;
-    font-weight: bold;
-}
-
-.med-fg2 span {
-    background-color: #CD0505;
-    font-weight: bold;
-}
-.med-fn span {
-    background-color: #286AAE;
-    font-weight: bold;
-}
-
-footer {
-    width: 100%;
-    height: 30vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    justify-items: center;
-    margin-block: 50px;
-    padding-inline: 50px;
-    overflow-x: hidden;
-    background-color: black;
-}
-
-.logotipo {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.logotipo img {
-    height: 10vh;
-    margin: 20px;
-    vertical-align: middle;
-}
-
-.logotipo h1 {
-    color: white;
-    font-weight: bold;
-    max-width: fit-content;
-}
-
-.logoGasbus {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-right: 40px;
-
-}
-
-.direitos {
-    color: white;
-    font-size: 0.8vw;
-}
-
-.vl {
-    border-right: 1px dotted white;
-    height: 100%;
-}
-
-.infos {
-    max-width: 50%;
-    margin-left: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-
-    text-align: left;
-    color: white;
-    height: auto;
-}
-
-.infos a {
-    text-decoration: underline 0.5px;
-}
-
-.infos a:hover {
-    color: #cb4444;
-}
-
-.redes {
-    display: flex;
-    justify-content: space-between;
-    width: 30%;
-    margin-top: 10px;
 }
 
 @media (max-width:600px) {
@@ -502,83 +473,5 @@ footer {
     .active {
         background-color: #04AA6D;
         color: white;
-    }
-
-    footer {
-        width: 100%;
-        height: 30vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        justify-items: center;
-        margin-block: 50px;
-        padding-inline: 50px;
-        overflow-x: hidden;
-    }
-
-    .logotipo {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        max-width: 30%;
-    }
-
-    .logotipo img {
-        height: 4vh;
-        margin: 20px;
-        vertical-align: middle;
-    }
-
-    .logotipo h1 {
-        color: white;
-        font-size: 4vw;
-        font-weight: bold;
-        max-width: fit-content;
-    }
-
-    .logoGasbus {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-right: 40px;
-
-    }
-
-    .direitos {
-        color: white;
-        font-size: 1.8vw;
-    }
-
-    .vl {
-        border-right: 1px dotted white;
-        height: 100%;
-    }
-
-    .infos {
-        max-width: 50%;
-        margin-left: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: wrap;
-
-        font-size: 2.3vw;
-        text-wrap: balance;
-
-        text-align: left;
-        color: white;
-    }
-
-    .redes {
-        display: flex;
-        justify-content: space-between;
-        max-width: 30%;
-        margin-top: 10px;
     }
 }
