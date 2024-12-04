@@ -1,4 +1,4 @@
-const int PINO_SENSOR_MQ2 = A0; 
+const int PINO_SENSOR_MQ2 = A4; 
 const int VALOR_MINIMO = 100; 
 const int VALOR_MAXIMO = 1000; 
 

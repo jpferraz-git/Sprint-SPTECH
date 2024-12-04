@@ -3,11 +3,10 @@ var database = require("../database/config")
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucaoSql = `
-        select usua.idUsuario, usua.email, usua.senha, empre.idEmpresa, cozi.idCozinha from usuario as usua
-        join empresa as empre on usua.fkEmpresa = empre.idEmpresa
-        join cozinha as cozi on cozi.fkEmpresa = empre.idEmpresa
-        where usua.email = '${email}' and usua.senha = '${senha}' LIMIT 1;
-
+        select usua.idusuario, usua.email, usua.senha, empre.idempresa, cozi.idcozinha from usuario as usua
+        join empresa as empre on usua.fkempresa = empre.idempresa
+        join cozinha as cozi on cozi.fkempresa = empre.idempresa
+        where usua.email = '${email}' and usua.senha = '${senha}' limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -19,7 +18,7 @@ async function cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, esta
     
 
     var instrucaoSql = `
-    INSERT INTO empresa (razaoSocial, nomeFantasia, responsavelLegal, cnpj, uf, cidade, numero, bairro, CEP, rua, emailEmpresa, telefoneEmpresa) VALUES 
+    insert into empresa (razaosocial, nomefantasia, responsavellegal, cnpj, uf, cidade, numero, bairro, cep, rua, emailempresa, telefoneempresa) values 
         ('${razaoSocial}', '${nomeFantasia}', '${responsavelLegal}', '${cnpj}', '${estado}', '${cidade}', '${numero}', '${bairro}', '${CEP}',  '${logradouro}', '${email}', '${telefone}');
     `;
     
@@ -28,47 +27,47 @@ async function cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, esta
 
 async function cadastrarUsuario(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
     var instrucaoSql = `
-    INSERT INTO usuario (nome, email, senha, fkEmpresa) 
-    VALUES ('${nomeFantasia}', '${email}', '${senha}', (SELECT max(idEmpresa) from Empresa));
+    insert into usuario (nome, email, senha, fkempresa) 
+    values ('${nomeFantasia}', '${email}', '${senha}', (select max(idempresa) from empresa));
         `;
     await cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
 }
 
 async function cadastrarCozinha(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
-    var instrucaoSql = `INSERT INTO cozinha VALUES (default, 'Comercial', '', 3, (SELECT max(idEmpresa) from Empresa));`;
+    var instrucaoSql = `insert into cozinha values (default, 'comercial', '', 3, (select max(idempresa) from empresa));`;
     await cadastrarUsuario(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
 }
 
 async function cadastrarLocalSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
-    var instrucaoSql = `INSERT INTO localsensor (fkCozinha, fkEmpresa) VALUES ((SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa)), ((SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa)), ((SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa));`
+    var instrucaoSql = `insert into localsensor (fkcozinha, fkempresa) values ((select max(idcozinha) from cozinha), (select max(idempresa) from empresa)), ((select max(idcozinha) from cozinha), (select max(idempresa) from empresa)), ((select max(idcozinha) from cozinha), (select max(idempresa) from empresa));`
     await cadastrarCozinha(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
 }
 
 async function cadastrarSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
-    var instrucaoSql = `INSERT INTO sensor (sensorStatus, fkCozinha, fkEmpresa, fkLocal) VALUES ('Ativo', (SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa), (SELECT (MAX(idLocal) - 2) FROM localsensor)), ('Ativo', (SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa), (SELECT (MAX(idLocal) - 1) FROM localsensor)), ('Ativo', (SELECT MAX(idCozinha) from Cozinha), (SELECT max(idEmpresa) from Empresa), (SELECT (MAX(idLocal)) FROM localsensor));`
+    var instrucaoSql = `insert into sensor (sensorstatus, fkcozinha, fkempresa, fklocal) values ('ativo', (select max(idcozinha) from cozinha), (select max(idempresa) from empresa), (select (max(idlocal) - 2) from localsensor)), ('ativo', (select max(idcozinha) from cozinha), (select max(idempresa) from empresa), (select (max(idlocal) - 1) from localsensor)), ('ativo', (select max(idcozinha) from cozinha), (select max(idempresa) from empresa), (select (max(idlocal)) from localsensor));`
     await cadastrarLocalSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
 }
 
 async function inserirMedidas(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
     var instrucaoSql = `
-    INSERT INTO medida(nivel_gas, fkSensor) VALUES 
-        (2.5, (SELECT (MAX(idSensor)) FROM sensor)),
-        (5.0, (SELECT (MAX(idSensor)) FROM sensor)),
-        (7.5, (SELECT (MAX(idSensor)) FROM sensor)),
-        (3.0, (SELECT (MAX(idSensor)) FROM sensor)),
-        (6.5, (SELECT (MAX(idSensor)) FROM sensor)),
-        (4.0, (SELECT (MAX(idSensor)) FROM sensor)),
-        (1.0, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (2.8, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (4.5, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (6.0, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (5.3, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (3.0, (SELECT (MAX(idSensor) - 1) FROM sensor)),
-        (4.0, (SELECT (MAX(idSensor) - 2) FROM sensor));
+    insert into medida(nivel_gas, fksensor) values 
+        (2.5, (select (max(idsensor)) from sensor)),
+        (5.0, (select (max(idsensor)) from sensor)),
+        (7.5, (select (max(idsensor)) from sensor)),
+        (3.0, (select (max(idsensor)) from sensor)),
+        (6.5, (select (max(idsensor)) from sensor)),
+        (4.0, (select (max(idsensor)) from sensor)),
+        (1.0, (select (max(idsensor) - 1) from sensor)),
+        (2.8, (select (max(idsensor) - 1) from sensor)),
+        (4.5, (select (max(idsensor) - 1) from sensor)),
+        (6.0, (select (max(idsensor) - 1) from sensor)),
+        (5.3, (select (max(idsensor) - 1) from sensor)),
+        (3.0, (select (max(idsensor) - 1) from sensor)),
+        (4.0, (select (max(idsensor) - 2) from sensor));
         `;
     await cadastrarSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
@@ -77,7 +76,7 @@ async function inserirMedidas(razaoSocial, nomeFantasia, responsavelLegal, cnpj,
 function autenticarEmailModel(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticarEmail(): ", email)
     var instrucaoSql = `
-        SELECT idUsuario, email FROM usuario WHERE email = '${email}' LIMIT 1;
+        select idusuario, email from usuario where email = '${email}' limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -86,14 +85,11 @@ function autenticarEmailModel(email) {
 function atualizarSenhaModel(senha, idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarSenhaModel(): ", senha, idUsuario)
     var instrucaoSql = `
-        UPDATE usuario SET senha = '${senha}' WHERE idUsuario = ${idUsuario}
+        update usuario set senha = '${senha}' where idusuario = ${idUsuario}
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-
-
 
 module.exports = {
     autenticar,

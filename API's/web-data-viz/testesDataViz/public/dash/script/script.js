@@ -113,7 +113,7 @@ function capturarKpiAtivos() {
     }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                sensorAtivos.innerHTML = json[0].qtdAtivos
+                sensorAtivos.innerHTML = json[0].qtdativos
             })
 
             setTimeout(() => capturarKpiAtivos(), 5000);
@@ -141,7 +141,7 @@ function capturarKpiInoperante() {
     }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                sensorInoperante.innerHTML = json[0].qtdInoperante
+                sensorInoperante.innerHTML = json[0].qtdinoperante
             })
             setTimeout(() => capturarKpiInoperante(), 5000);
         } else {
@@ -169,20 +169,20 @@ function capturarKpiNiveis() {
         if (resposta.ok) {
             resposta.json().then(json => {
                 console.log(json)
-                if (json[0].qtdNormal != null) {
-                    sensorNormal.innerHTML = json[0].qtdNormal
+                if (json[0].qtdnormal != null) {
+                    sensorNormal.innerHTML = json[0].qtdnormal
                 } else {
                     sensorNormal.innerHTML = 0
                 }
 
-                if (json[0].qtdAlerta != null) {
-                    sensorAlerta.innerHTML = json[0].qtdAlerta
+                if (json[0].qtdalerta != null) {
+                    sensorAlerta.innerHTML = json[0].qtdalerta
                 } else {
                     sensorAlerta.innerHTML = 0
                 }
 
-                if (json[0].qtdPerigo != null) {
-                    sensorPerigo.innerHTML = json[0].qtdPerigo
+                if (json[0].qtdperigo != null) {
+                    sensorPerigo.innerHTML = json[0].qtdperigo
                 } else {
                     sensorPerigo.innerHTML = 0
                 }
@@ -248,13 +248,13 @@ function capturarKpiValores(primeiraVez = true) {
                     };
                 }
 
-                definirClasse(telaFg1, botaoTelaFg1, ultMedFg1, json[0].medidaSensor, json[0].idSensor, 'fg1', `qtdRuimFg1`, `qtdPerigosoFg1`);
-                definirClasse(telaFg2, botaoTelaFg2, ultMedFg2, json[1].medidaSensor, json[1].idSensor, 'fg2', `qtdRuimFg2`, `qtdPerigosoFg2`);
-                definirClasse(telaFn, botaoTelaFn, ultMedFn, json[2].medidaSensor, json[2].idSensor, 'fn', `qtdRuimFn`, `qtdPerigosoFn`);
+                definirClasse(telaFg1, botaoTelaFg1, ultMedFg1, json[0].medidasensor, json[0].idsensor, 'fg1', `qtdRuimFg1`, `qtdPerigosoFg1`);
+                definirClasse(telaFg2, botaoTelaFg2, ultMedFg2, json[1].medidasensor, json[1].idsensor, 'fg2', `qtdRuimFg2`, `qtdPerigosoFg2`);
+                definirClasse(telaFn, botaoTelaFn, ultMedFn, json[2].medidasensor, json[2].idsensor, 'fn', `qtdRuimFn`, `qtdPerigosoFn`);
 
-                idSensorFg1 = json[0].idSensor;
-                idSensorFg2 = json[1].idSensor;
-                idSensorFn = json[2].idSensor;
+                idSensorFg1 = json[0].idsensor;
+                idSensorFg2 = json[1].idsensor;
+                idSensorFn = json[2].idsensor;
 
                 obterDados()
                 mediaSemana()
@@ -282,19 +282,19 @@ function qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo) {
     }).then(resposta => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                console.log(json[0].qtdAlertas)
-                console.log(json[0].qtdPerigos)
+                console.log(json[0].qtdalertas)
+                console.log(json[0].qtdperigos)
 
                 var kpiQtdAlerta = document.getElementById(kpiAlerta)
                 var kpiQtdPerigo = document.getElementById(kpiPerigo)
 
                 kpiQtdAlerta.innerHTML = 0;
                 kpiQtdPerigo.innerHTML = 0;
-                if (json[0].qtdAlertas != undefined && json[0].qtdAlertas != null) {
-                    kpiQtdAlerta.innerHTML = json[0].qtdAlertas;
+                if (json[0].qtdalertas != undefined && json[0].qtdalertas != null) {
+                    kpiQtdAlerta.innerHTML = json[0].qtdalertas;
                 }
-                if (json[0].qtdPerigos != undefined && json[0].qtdPerigos != null) {
-                    kpiQtdPerigo.innerHTML = json[0].qtdPerigos;
+                if (json[0].qtdperigos != undefined && json[0].qtdperigos != null) {
+                    kpiQtdPerigo.innerHTML = json[0].qtdperigos;
                 }
             })
             setTimeout(() => qtdAlertasDia(idSensor, kpiAlerta, kpiPerigo), 2000);
@@ -334,11 +334,11 @@ function obterDados() {
                 const medidasFg2 = []
                 const medidasFn = []
                 for (var i = json.length - 1; i >= 0; i--) {
-                    if (json[i].idSensor == idSensorFg1) {
+                    if (json[i].idsensor == idSensorFg1) {
                         medidasFg1.push(json[i].nivel_gas)
-                    } else if (json[i].idSensor == idSensorFg2) {
+                    } else if (json[i].idsensor == idSensorFg2) {
                         medidasFg2.push(json[i].nivel_gas)
-                    } else if (json[i].idSensor == idSensorFn) {
+                    } else if (json[i].idsensor == idSensorFn) {
                         medidasFn.push(json[i].nivel_gas)
                     }
                 }
@@ -485,13 +485,13 @@ function dadosTempoRealPrincipal(chart, dados) {
                 console.log(dados)
                 console.log(json)
                 dados.datasets[0].data.shift();
-                dados.datasets[0].data.push(json[0].medidaSensor);
+                dados.datasets[0].data.push(json[0].medidasensor);
 
                 dados.datasets[1].data.shift();
-                dados.datasets[1].data.push(json[1].medidaSensor);
+                dados.datasets[1].data.push(json[1].medidasensor);
 
                 dados.datasets[2].data.shift();
-                dados.datasets[2].data.push(json[2].medidaSensor);
+                dados.datasets[2].data.push(json[2].medidasensor);
 
                 chart.update();
             })
@@ -852,12 +852,12 @@ function mediaSemana() {
                 console.log(labels_line_week)
 
                 for (var i = json.length - 1; i >= 0; i--) {
-                    if (json[i].idSensor == idSensorFg1) {
-                        mediaSemanaFg1.push(json[i].mediaNivelGas)
-                    } else if (json[i].idSensor == idSensorFg2) {
-                        mediaSemanaFg2.push(json[i].mediaNivelGas)
-                    } else if (json[i].idSensor == idSensorFn) {
-                        mediaSemanaFn.push(json[i].mediaNivelGas)
+                    if (json[i].idsensor == idSensorFg1) {
+                        mediaSemanaFg1.push(json[i].medianivelgas)
+                    } else if (json[i].idsensor == idSensorFg2) {
+                        mediaSemanaFg2.push(json[i].medianivelgas)
+                    } else if (json[i].idsensor == idSensorFn) {
+                        mediaSemanaFn.push(json[i].medianivelgas)
                     }
                 }
 

@@ -2,51 +2,51 @@ var database = require("../database/config");
 
 function ultimasMedidas(idCozinha, idEmpresa) {
     var instrucaoSql = `
-        SELECT m.fkSensor as idSensor, m.nivel_gas as nivel_gas, m.dtLeitura
-        FROM medida m
-        JOIN sensor s ON m.fkSensor = s.idSensor
-        WHERE s.fkCozinha = ${idCozinha}
-            AND s.fkEmpresa = ${idEmpresa}
-            AND (
-            SELECT COUNT(*) 
-            FROM medida m2
-            WHERE m2.fkSensor = m.fkSensor AND m2.idMedida >= m.idMedida
+        select m.fksensor as idsensor, m.nivel_gas as nivel_gas, m.dtleitura
+        from medida m
+        join sensor s on m.fksensor = s.idsensor
+        where s.fkcozinha = ${idCozinha}
+            and s.fkempresa = ${idEmpresa}
+            and (
+            select count(*) 
+            from medida m2
+            where m2.fksensor = m.fksensor and m2.idmedida >= m.idmedida
             ) <= 6
-        ORDER BY m.fkSensor, m.idMedida DESC;
+        order by m.fksensor, m.idmedida desc;
     `;
     return database.executar(instrucaoSql);
 }
 
 function dadosTempoReal(idSensor) {
     var instrucaoSql = `
-        SELECT idMedida, nivel_gas, dtLeitura, fkSensor
-        FROM medida
-        WHERE fkSensor = ${idSensor}
-        ORDER BY idMedida DESC
-        LIMIT 1;
+        select idmedida, nivel_gas, dtleitura, fksensor
+        from medida
+        where fksensor = ${idSensor}
+        order by idmedida desc
+        limit 1;
     `;
     return database.executar(instrucaoSql);
 }
 
 function dadosTempoRealPrincipal(idCozinha, idEmpresa) {
     var instrucaoSql = `
-    SELECT 
-        s.idSensor AS idSensor,
-        s.nomeSensor,
-        m.nivel_gas AS medidaSensor,
-        m.dtLeitura
-    FROM sensor s
-    JOIN medida m ON s.idSensor = m.fkSensor
-    WHERE s.fkCozinha = ${idCozinha}
-    AND s.fkEmpresa = ${idEmpresa}
-    AND m.idMedida = (
-        SELECT m2.idMedida
-        FROM medida m2
-        WHERE m2.fkSensor = m.fkSensor
-        ORDER BY m2.dtLeitura DESC, m2.idMedida DESC
-        LIMIT 1
+    select 
+        s.idsensor as idsensor,
+        s.nomesensor,
+        m.nivel_gas as medidasensor,
+        m.dtleitura
+    from sensor s
+    join medida m on s.idsensor = m.fksensor
+    where s.fkcozinha = ${idCozinha}
+    and s.fkempresa = ${idEmpresa}
+    and m.idmedida = (
+        select m2.idmedida
+        from medida m2
+        where m2.fksensor = m.fksensor
+        order by m2.dtleitura desc, m2.idmedida desc
+        limit 1
     )
-    ORDER BY s.idSensor;
+    order by s.idsensor;
     `;
 
     return database.executar(instrucaoSql);
@@ -54,17 +54,17 @@ function dadosTempoRealPrincipal(idCozinha, idEmpresa) {
 
 function mediaSemana(idCozinha, idEmpresa) {
     var instrucaoSql = `
-    SELECT 
-        m.fkSensor AS idSensor,
-        DAYNAME(m.dtLeitura) AS diaSemana,
-        AVG(m.nivel_gas) AS mediaNivelGas
-    FROM medida m
-    JOIN sensor s ON m.fkSensor = s.idSensor
-    JOIN cozinha c ON s.fkCozinha = c.idCozinha
-    WHERE c.idCozinha = ${idCozinha}
-    AND s.fkEmpresa = ${idEmpresa}
-    GROUP BY m.fkSensor, DAYNAME(m.dtLeitura)
-    ORDER BY m.fkSensor, FIELD(diaSemana, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+    select 
+        m.fksensor as idsensor,
+        dayname(m.dtleitura) as diasemana,
+        avg(m.nivel_gas) as medianivelgas
+    from medida m
+    join sensor s on m.fksensor = s.idsensor
+    join cozinha c on s.fkcozinha = c.idcozinha
+    where c.idcozinha = ${idCozinha}
+    and s.fkempresa = ${idEmpresa}
+    group by m.fksensor, dayname(m.dtleitura)
+    order by m.fksensor, field(diasemana, 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
     `;
 
     return database.executar(instrucaoSql);

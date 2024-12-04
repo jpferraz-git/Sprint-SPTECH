@@ -20,13 +20,13 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        cozinhaModel.buscarCozinhasPorEmpresa(resultadoAutenticar[0].idUsuario)
+                        cozinhaModel.buscarCozinhasPorEmpresa(resultadoAutenticar[0].idusuario)
                             .then((resultadoAutenticar) => {
                                 if (resultadoAutenticar.length > 0) {
                                     res.json({
-                                        email: resultadoAutenticar[0].emailEmpresa,
-                                        idEmpresa: resultadoAutenticar[0].fkEmpresa,
-                                        idCozinha: resultadoAutenticar[0].idCozinha
+                                        email: resultadoAutenticar[0].emailempresa,
+                                        idEmpresa: resultadoAutenticar[0].fkempresa,
+                                        idCozinha: resultadoAutenticar[0].idcozinha
                                     });
                                 } else {
                                     res.status(204).json({resultadoAutenticar});
