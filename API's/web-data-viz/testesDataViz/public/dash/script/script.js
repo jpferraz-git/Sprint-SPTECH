@@ -33,9 +33,9 @@ function trocarDash(tela) {
     var dashFg2 = document.getElementById('dash-fg2')
     var dashFn = document.getElementById('dash-fn')
 
-    var buttonFg1 = document.getElementById('button-fg1')
-    var buttonFg2 = document.getElementById('button-fg2')
-    var buttonFn = document.getElementById('button-fn')
+    var buttonFg1 = document.getElementById('fg1')
+    var buttonFg2 = document.getElementById('fg2')
+    var buttonFn = document.getElementById('fn')
 
     var containerFg1 = document.getElementById('fg1')
     var containerFg2 = document.getElementById('fg2')
