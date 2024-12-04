@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="js/login_e_cadastro.js"></script>
+    <title>GasBusters | Cadastro</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li>•</li>
+                <li><a href="sobre_nos.html">Sobre nós</a></li>
+                <li>•</li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li>•</li>
+                <li><a href="fale_conosco.html">Contato</a></li>
+                <li>•</li>
+                <li><b><a href="login.html">Login</a></b></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <div class="container">
+            <h1>Cadastro</h1>
+            <p>Vamos começar a sua jornada em direção à segurança da sua cozinha.</p>
+
+            <form onsubmit="return false">
+                <div class="campos">
+                    <div class="campo-indiv separacao-empresa">
+                        <p>Sobre a Empresa</p>
+                    </div>
+                    <div class="separacao-campos">
+                        <div class="campo-indiv">
+                            <p>Razão Social</p>
+                            <input required id="input_razao_social" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Nome Fantasia</p>
+                            <input required required id="input_nome_fantasia" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                    </div>
+                    <div class="separacao-campos">
+                        <div class="campo-indiv">
+                            <p>Responsável Legal</p>
+                            <input required id="input_resp_legal" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div id="cnpj" class="campo-indiv reduzido">
+                            <p>CNPJ</p>
+                            <input required maxlength="14" id="input_cnpj" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                    </div>
+                    <div class="separacao-campos">
+                        <div class="campo-indiv reduzido">
+                            <p>Estado</p>
+                            <select required id="select_estados">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Cidade</p>
+                            <input required id="input_cidade" placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Bairro</p>
+                            <input required id="input_bairro" placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                    </div>
+                    <div class="separacao-campos">
+                        <div class="campo-indiv">
+                            <p>CEP</p>
+                            <input required maxlength="9" id="input_cep" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Logradouro/Rua</p>
+                            <input required id="input_logradouro" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv reduzido">
+                            <p>N°</p>
+                            <input required type="number" id="input_numero" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" maxlength="6">
+                        </div>
+                    </div>
+                    <div class="separacao-campos">
+                        <div class="campo-indiv">
+                            <p>E-mail Corporativo</p>
+                            <input required type="email" id="input_email" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Telefone de contato</p>
+                            <input required maxlength="14" id="input_telefone" placeholder="Digite aqui"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                        </div>
+                    </div>
+                    <div class="separacao-campos senha">
+                        <div class="campo-indiv">
+                            <p>Senha</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal('input_senha1','input_confirmacao1')"
+                                    type="password" id="input_senha1" placeholder="Digite aqui"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_senha1" onclick="revelarSenha(input_senha1,img_senha1)"
+                                    src="assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Confirmação</p>
+                            <div class="campo-img">
+                                <input required onfocus="trocarCorNormal('input_senha1','input_confirmacao1')"
+                                    type="password" id="input_confirmacao1" placeholder="Digite aqui"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_confirmacao1"
+                                    onclick="revelarSenha(input_confirmacao1,img_confirmacao1)"
+                                    src="assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-senha">
+                        <span>Temos uma sugestão de senha!</span>
+                        <a href="#" onclick="gerarSenha(input_senha1,input_confirmacao1)"><b>Clique aqui</b></a>
+                    </div>
+                    <p id="mensagem_erro1"></p>
+                </div>
+                <button onclick="cadastrar()" type="submit" class="btn">Finalizar Cadastro</button>
+            </form>
+
+    </main>
+    <footer>
+        <span class="logoGasbus">
+            <section class="logotipo">
+                <img src="../Home/assets/logo.png" alt="">
+                <h1>GASBUSTERS</h1>
+            </section>
+            <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+        </span>
+
+
+        <div class="vl"></div>
+
+        <section class="infos">
+            <h1>FALE CONOSCO</h1>
+            <p>(11) 3456-7890</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+            <div class="redes">
+                <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+                <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
+
+
+<script>
+
+    // Array para armazenar empresas cadastradas para validação de código de ativação 
+    let listaEmpresasCadastradas = [];
+  
+    function cadastrar() {
+      // aguardar();
+  
+      // teste
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var razaoSocial = input_razao_social.value;
+      var nomeFantasia = input_nome_fantasia.value;
+      var responsavelLegal = input_resp_legal.value;
+      var cnpj = input_cnpj.value;
+      var estado = select_estados.value;
+      var cidade = input_cidade.value;
+      var numero = input_numero.value;
+      var bairro = input_bairro.value;
+      var CEP = input_cep.value;
+      var logradouro = input_logradouro.value;
+      var email = input_email.value;
+      var telefone = input_telefone.value;
+      var senha = input_senha1.value;
+      var confirmacaoSenha = input_confirmacao1.value;
+      
+      // Verificando se o código de ativação é de alguma empresa cadastrada
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          razaoSocialServer: razaoSocial,
+          nomeFantasiaServer: nomeFantasia,
+          responsavelLegalServer: responsavelLegal,
+          cnpjServer: cnpj,
+          estadoServer: estado,
+          cidadeServer: cidade,
+          numeroServer: numero,
+          bairroServer: bairro,
+          cepServer: CEP,
+          logradouroServer: logradouro,
+          emailServer: email,
+          telefoneServer: telefone,
+          senhaServer: senha,
+          
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+              
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+  
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+
+        });
+  
+      return false;
+    }
+  
+  </script>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../../Logotipo/Nova logo Gas Busters tipo 3.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link href="css/simulador.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <title>GasBusters | Simulador</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li>•</li>
+                <li><a href="sobre_nos.html">Sobre nós</a></li>
+                <li>•</li>
+                <li><b><a href="simulador.html">Simulador</a></b></li>
+                <li>•</li>
+                <li><a href="fale_conosco.html">Contato</a></li>
+                <li>•</li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+
+    </header>
+<div class="divmae">
+<div class="container">
+<div class="conteudo">
+<h1>Por que me preocupar com o nível de Gás na minha cozinha?</h1>
+<p>Descubra como podemos te ajudar a garantir a segurança do seu ambiente de trabalho, reduzir riscos de acidentes e otimizar seus custos operacionais com a nossa solução.</p>
+<div class="form">
+    <div class="formdentro">
+    <!-- <p>Qual é o nome da sua empresa?</p>
+    <input id="input_nome" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" > -->
+    <p>Quanto foi investido para montar a sua cozinha (R$):</p>
+    <input id="input_valor" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <p>Qual é a quantidade de funcionários que trabalham nessa cozinha:</p>
+    <input type="number" id="input_qtd_funcionario" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" >
+    <p>Por fim, qual é o seu faturamento mensal (R$)?</p>
+    <input id="input_faturamento_mensal" placeholder="Digite aqui" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'" ><br>
+</div>
+</div>
+    <button class="btn" onclick="calcularPerda()">Como isso pode me prejudicar?</button>
+    <div id="div_mostrar_calculo" class="divResultado">
+
+<!-- INÍCIO SCRIPT
+
+    <div class="divResultado">
+
+    <h2>Prejuízo Total: ${(valorTotalExplo+valorFiscalizacao).toLocaleString('pt-br', estiloReal)}</h2>
+
+<div class="divResultadoDentro">
+
+    <div class="divResultadoUm">
+        <div class="divUmSubtitulo">
+    Em caso de <b>Fiscalização</b>
+        </div>
+        <div class="divUmDescricao">
+        Dias fechados até a regularização: <text>7 dias</text>
+        Perda no faturamento: <text>${faturaMentoPerdidoFisc.toLocaleString('pt-br', estiloReal)} </text>
+        Multa por estar em irregularidade com a norma NBR 15526*: <text>${valorFiscalizacao.toLocaleString('pt-br', estiloReal)}</text>
+        <small style="text-transform: uppercase; font-size:xx-small; font-weight: 500;">
+            *A Norma <a href="https://www.mjinstalacoes.com.br/wp-content/uploads/2018/04/ABNT-NBR-15526-2016-Atualizada.pdf" target="_blank">NBR 15526</a> estabelece requisitos para a instalação segura e eficiente de sistemas de gás combustível em edificações.
+        </small> 
+        </div>
+    </div>
+
+    <div class="divResultadoDois">
+        <div class="divDoisSubtitulo">
+    Em caso uma <b>Explosão</b>
+        </div>
+        <div class="divDoisDescricao">
+        Dias fechados até a reconstrução da cozinha: <text>30</text>
+        Perda no faturamento: <text>${faturaMentoPerdidoExplo.toLocaleString('pt-br', estiloReal)}</text>
+        Perda dos TOTAL dos equipamentos: <text>${valorInvestido.toLocaleString('pt-br', estiloReal)}</text>
+        Gastos com tratamento médico dos funcionários: <text>${valoresFuncionariosExplo.toLocaleString('pt-br', estiloReal)}</text>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+
+FIM SCRIPT -->
+    </div>
+</div>
+</div>
+
+<footer>
+    <span class="logoGasbus">
+    <section class="logotipo">
+        <img src="../Home/assets/logo.png" alt="">
+        <h1>GASBUSTERS</h1>
+    </section>
+    <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+</span>
+
+
+    <div class="vl"></div>
+
+    <section class="infos">
+        <h1>FALE CONOSCO</h1>
+        <p>(11) 3456-7890</p>
+        <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+        <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+        <div class="redes">
+            <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+        </div>
+    </section>
+</footer>
+</div>
+
+</body>
+</html>
+
+<script src="js/simulador.js"></script>
+<script>
+    function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>

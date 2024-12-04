@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Cadastro_e_Login/public/assets/Nova logo Gas Busters tipo 3.png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="simuladorGB.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://kit.fontawesome.com/4a7ef7e799.js" crossorigin="anonymous"></script>
+    <script src="js/login_e_cadastro.js"></script>
+    <title>GasBusters | Login</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li>•</li>
+                <li><a href="sobre_nos.html">Sobre nós</a></li>
+                <li>•</li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li>•</li>
+                <li><a href="fale_conosco.html">Contato</a></li>
+                <li>•</li>
+                <li><b><a href="login.html">Login</a></b></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <div class="container">
+            <h1>Login</h1>
+            <form onsubmit="return false">
+
+                <div class="campos">
+                    <div class="separacao-campos senha">
+                        <div class="campo-indiv">
+                            <p>E-mail</p>
+                            <div class="campo-img">
+                                <input required type="email" id="input_email"
+                                    placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Digite aqui'">
+                            </div>
+                        </div>
+                        <div class="campo-indiv">
+                            <p>Senha</p>
+                            <div class="campo-img">
+                                <input required type="password" id="input_senha"
+                                    placeholder="Digite aqui" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Digite aqui'">
+                                <img id="img_senha" onclick="revelarSenha(input_senha,img_senha)"
+                                    src="assets/eye-crossed.png" alt="">
+                            </div>
+                        </div>
+                        <div class="link-senha">
+                            <span>Primeira vez por aqui? </span>
+                            <a href="cadastro.html"><b>Cadastre-se</b></a>
+                            <span>|</span>
+                            <a href="recuperacao_senha.html"><b>Esqueci a senha</b></a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Arrumar a validação pois agora exite um campo senha de para cada usuário e estão com o mesmo ID -->
+                <button type="submit" class="btn" onclick="entrar()">Acessar</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <span class="logoGasbus">
+            <section class="logotipo">
+                <img src="../Home/assets/logo.png" alt="">
+                <h1>GASBUSTERS</h1>
+            </section>
+            <span class="direitos">© 2024 GASBUSTERS. Todos os direitos reservados.</span>
+        </span>
+
+
+        <div class="vl"></div>
+
+        <section class="infos">
+            <h1>FALE CONOSCO</h1>
+            <p>(11) 3456-7890</p>
+            <p>Rua Haddock Lobo, 595 - São Paulo, SP</p>
+            <a href="mailto:faleconosco@GasBusters.com">faleconosco@GasBusters.com.br</a>
+
+            <div class="redes">
+                <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+                <a href="https://www.twitter.com/"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+        //aguardar();
+
+
+        // teste
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+    
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>
