@@ -20,20 +20,19 @@ function capturarKpiNiveis(idCozinha, idEmpresa) {
     var instrucaoSql = `
     SELECT 
         SUM(CASE WHEN medidasRecentes.nivel_gas BETWEEN 0 AND 10 THEN 1 ELSE 0 END) AS qtdNormal,
-        SUM(CASE WHEN medidasRecentes.nivel_gas BETWEEN 11 AND 20 THEN 1 ELSE 0 END) AS qtdAlerta,
-        SUM(CASE WHEN medidasRecentes.nivel_gas > 20 THEN 1 ELSE 0 END) AS qtdPerigo
+        SUM(CASE WHEN medidasRecentes.nivel_gas BETWEEN 11 AND 30 THEN 1 ELSE 0 END) AS qtdAlerta,
+        SUM(CASE WHEN medidasRecentes.nivel_gas > 30 THEN 1 ELSE 0 END) AS qtdPerigo
     FROM (
         SELECT m.fkSensor, m.nivel_gas
         FROM medida m
         JOIN (
-            SELECT fkSensor, MAX(dtLeitura) AS ultimaLeitura
+            SELECT fkSensor, MAX(idMedida) AS ultimaMedida
             FROM medida
             GROUP BY fkSensor
-        ) ultimas ON m.fkSensor = ultimas.fkSensor AND m.dtLeitura = ultimas.ultimaLeitura
+        ) ultimas ON m.fkSensor = ultimas.fkSensor AND m.idMedida = ultimas.ultimaMedida
         JOIN sensor s ON m.fkSensor = s.idSensor
         WHERE s.fkCozinha = ${idCozinha} AND s.fkEmpresa = ${idEmpresa}
     ) medidasRecentes;
-
     `;
 
     return database.executar(instrucaoSql);

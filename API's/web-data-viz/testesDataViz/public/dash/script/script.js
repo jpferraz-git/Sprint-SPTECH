@@ -116,13 +116,13 @@ function capturarKpiAtivos() {
                 sensorAtivos.innerHTML = json[0].qtdAtivos
             })
 
-            setTimeout(() => capturarKpiAtivos(), 10000);
+            setTimeout(() => capturarKpiAtivos(), 5000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores ativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiAtivos(), 10000);
+            setTimeout(() => capturarKpiAtivos(), 5000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -143,13 +143,13 @@ function capturarKpiInoperante() {
             resposta.json().then(json => {
                 sensorInoperante.innerHTML = json[0].qtdInoperante
             })
-            setTimeout(() => capturarKpiInoperante(), 10000);
+            setTimeout(() => capturarKpiInoperante(), 5000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores inativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiInoperante(), 10000);
+            setTimeout(() => capturarKpiInoperante(), 5000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -187,13 +187,13 @@ function capturarKpiNiveis() {
                     sensorPerigo.innerHTML = 0
                 }
             })
-            setTimeout(() => capturarKpiNiveis(), 10000);
+            setTimeout(() => capturarKpiNiveis(), 5000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiNiveis(), 10000);
+            setTimeout(() => capturarKpiNiveis(), 5000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -259,11 +259,11 @@ function capturarKpiValores(primeiraVez = true) {
                 obterDados()
                 mediaSemana()
             });
-            setTimeout(() => capturarKpiValores(false), 10000);
+            setTimeout(() => capturarKpiValores(false), 5000);
         } else {
             console.error("Erro ao carregar os KPIs");
             resposta.text().then(texto => console.error(texto));
-            setTimeout(() => capturarKpiValores(false), 10000);
+            setTimeout(() => capturarKpiValores(false), 5000);
         }
     }).catch(erro => {
         console.error("Erro de conexão ou processamento:", erro);
