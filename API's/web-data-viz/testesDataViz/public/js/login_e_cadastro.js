@@ -1,10 +1,10 @@
 function revelarSenha(idInput, idImage) {
     if (idInput.type == "password") {
         idInput.type = "text"
-        idImage.src = "public/assets/eye.png"
+        idImage.src = "assets/eye.png"
     } else {
         idInput.type = "password"
-        idImage.src = "public/assets/eye-crossed.png"
+        idImage.src = "assets/eye-crossed.png"
     }
 }
 
@@ -60,9 +60,6 @@ function validarCampos() {
         const id_campo = `input_senha${user_atual}`
         const id_confirmacao = `input_confirmacao${user_atual}`
         const mensagem_erro = `mensagem_erro${user_atual}`
-
-        var validacao_senha = false
-        var validacao_confirmacao = false
 
         // Validando Senha
         const senha = document.getElementById(id_campo)
@@ -200,7 +197,7 @@ function adicionarDeletarUsuario(a) {
                             placeholder="Digite aqui" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Digite aqui'">
                         <img id="img_senha${qtd_users}" onclick="revelarSenha(input_senha${qtd_users},img_senha${qtd_users})"
-                            src="public/assets/eye-crossed.png" alt="">
+                            src="assets/eye-crossed.png" alt="">
                     </div>
                 </div>
                 <div class="campo-indiv">
@@ -211,7 +208,7 @@ function adicionarDeletarUsuario(a) {
                             onblur="this.placeholder = 'Digite aqui'">
                         <img id="img_confirmacao${qtd_users}"
                             onclick="revelarSenha(input_confirmacao${qtd_users},img_confirmacao${qtd_users})"
-                            src="public/assets/eye-crossed.png" alt="">
+                            src="assets/eye-crossed.png" alt="">
                     </div>
                 </div>
             </div>
@@ -226,27 +223,39 @@ function adicionarDeletarUsuario(a) {
 
 let numero_campo_atual = 1; // Exemplo de valor inicial, ajuste conforme necessário
 
-function irParaProximoCampo() {
+async function irParaProximoCampo() {
     const campoAtual = document.getElementById(`campo_${numero_campo_atual}`);
+    const email = document.getElementById('input_email').value;
 
     let proximoCampo;
     let proximoCampoJunto;
     const botao = document.getElementById('btn_prosseguir');
 
-    if (numero_campo_atual === 1 && consultarEmail()) {
-        sendEmail();
-        campoAtual.classList.add('esconder');
-        proximoCampo = document.getElementById(`campo_${numero_campo_atual+1}`);
-        proximoCampo.classList.remove('esconder');
-        proximoCampo.style.opacity = 0;
-        setTimeout(() => {
-            proximoCampo.style.opacity = 1;
-        }, 300);
-    } else {
-        alert('Este email ainda não foi cadastrado.')
-        return
+    if (numero_campo_atual == 1) {
+        await consultarEmail();
+        try {
+            const validacao = sessionStorage.getItem('VALIDACAO') === 'true';
+            if (validacao) {
+                console.log('Email encontrado, prosseguindo...');
+                sendEmail();
+                campoAtual.classList.add('esconder');
+                proximoCampo = document.getElementById(`campo_${numero_campo_atual + 1}`);
+                proximoCampo.classList.remove('esconder');
+                proximoCampo.style.opacity = 0;
+                setTimeout(() => {
+                    proximoCampo.style.opacity = 1;
+                }, 300);
+            } else {
+                console.log('Email não encontrado, mostrando alerta.');
+                alert('Este email ainda não foi cadastrado.');
+                return;
+            }
+        } catch (erro) {
+            console.error('Erro na verificação de email:', erro);
+            alert('Ocorreu um erro ao verificar o email.');
+            return;
+        }
     }
-
 
     if (numero_campo_atual === 2) {
         const codigoInserido = document.getElementById('input_codigo').value;
@@ -262,9 +271,7 @@ function irParaProximoCampo() {
             proximoCampo.style.opacity = 0;
 
             botao.innerHTML = 'Alterar senha e voltar para o login';
-            botao.onclick = function() {
-                window.location.href = 'login.html';
-            };
+
 
             setTimeout(() => {
                 proximoCampo.style.opacity = 1;
@@ -275,21 +282,22 @@ function irParaProximoCampo() {
             alert('O código inserido não corresponde ao que foi enviado');
             return;
         }
-    } else if (numero_campo_atual === 3) {
-        atualizarSenhaLogin()
-        botao.onclick = function() {
-            window.location.href = 'login.html';
-        };
+    }
+
+    if (numero_campo_atual === 3) {
+        atualizarSenha()
         return;
     }
 
     numero_campo_atual++;
 }
 
-function consultarEmail() {
-    var email = document.getElementById('input_email').value
 
-    fetch("/usuarios/autenticarEmail", {
+
+function consultarEmail() {
+    var email = document.getElementById('input_email').value;
+
+    return fetch("/usuarios/autenticarEmail", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -298,31 +306,67 @@ function consultarEmail() {
             emailServer: email,
         })
     }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
+        console.log("ESTOU NO THEN DO consultarEmail()!");
 
         if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                return true
-
+            return resposta.json().then(json => {
+                sessionStorage.ID_USUARIO = json[0].idUsuario;
+                console.log('Resultado:', json);
+                if (Object.keys(json).length === 0) {
+                    sessionStorage.setItem('VALIDACAO', 'false');
+                    return false;
+                } else {
+                    sessionStorage.setItem('VALIDACAO', 'true');
+                    return true;
+                }
             });
-
-
         } else {
-
             console.log("Houve um erro ao autenticar o email!");
-
-            resposta.text().then(texto => {
+            return resposta.text().then(texto => {
                 console.error(texto);
+                sessionStorage.setItem('VALIDACAO', 'false');
+                return false;
             });
         }
-
     }).catch(function (erro) {
         console.log(erro);
+        sessionStorage.setItem('VALIDACAO', 'false');
+        return false;
+    });
+}
+
+function atualizarSenha() {
+
+    const senha = document.getElementById('input_senha_rec').value
+
+    fetch("/usuarios/atualizarSenha", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO,
+            senhaServer: senha
+
+        }),
     })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert('Senha Atualizada com Sucesso!')
+                window.location = "login.html"
+                sessionStorage.clear()
+
+
+            } else {
+                throw "Houve um erro ao tentar trocar a senha!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
 
     return false;
 }

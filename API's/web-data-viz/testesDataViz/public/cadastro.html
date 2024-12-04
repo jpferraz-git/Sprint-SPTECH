@@ -22,9 +22,10 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a></div>
+                <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
+            </div>
             <ul class="nav-list">
-                <li><b><a href="index.html">Home</a></b></li>
+                <li><a href="index.html">Home</a></li>
                 <li>•</li>
                 <li><a href="sobre_nos.html">Sobre nós</a></li>
                 <li>•</li>
@@ -32,7 +33,7 @@
                 <li>•</li>
                 <li><a href="fale_conosco.html">Contato</a></li>
                 <li>•</li>
-                <li><a href="login.html">Login</a></li>
+                <li><b><a href="login.html">Login</a></b></li>
             </ul>
         </nav>
 
@@ -153,7 +154,7 @@
                                     type="password" id="input_senha1" placeholder="Digite aqui"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
                                 <img id="img_senha1" onclick="revelarSenha(input_senha1,img_senha1)"
-                                    src="public/assets/eye-crossed.png" alt="">
+                                    src="assets/eye-crossed.png" alt="">
                             </div>
                         </div>
                         <div class="campo-indiv">
@@ -162,9 +163,8 @@
                                 <input required onfocus="trocarCorNormal('input_senha1','input_confirmacao1')"
                                     type="password" id="input_confirmacao1" placeholder="Digite aqui"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite aqui'">
-                                <img id="img_confirmacao1"
-                                    onclick="revelarSenha(input_confirmacao1,img_confirmacao1)"
-                                    src="public/assets/eye-crossed.png" alt="">
+                                <img id="img_confirmacao1" onclick="revelarSenha(input_confirmacao1,img_confirmacao1)"
+                                    src="assets/eye-crossed.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -213,74 +213,74 @@
 
     // Array para armazenar empresas cadastradas para validação de código de ativação 
     let listaEmpresasCadastradas = [];
-  
+
     function cadastrar() {
-      // aguardar();
-  
-      // teste
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-      var razaoSocial = input_razao_social.value;
-      var nomeFantasia = input_nome_fantasia.value;
-      var responsavelLegal = input_resp_legal.value;
-      var cnpj = input_cnpj.value;
-      var estado = select_estados.value;
-      var cidade = input_cidade.value;
-      var numero = input_numero.value;
-      var bairro = input_bairro.value;
-      var CEP = input_cep.value;
-      var logradouro = input_logradouro.value;
-      var email = input_email.value;
-      var telefone = input_telefone.value;
-      var senha = input_senha1.value;
-      var confirmacaoSenha = input_confirmacao1.value;
-      
-      // Verificando se o código de ativação é de alguma empresa cadastrada
-      // Enviando o valor da nova input
-      fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          razaoSocialServer: razaoSocial,
-          nomeFantasiaServer: nomeFantasia,
-          responsavelLegalServer: responsavelLegal,
-          cnpjServer: cnpj,
-          estadoServer: estado,
-          cidadeServer: cidade,
-          numeroServer: numero,
-          bairroServer: bairro,
-          cepServer: CEP,
-          logradouroServer: logradouro,
-          emailServer: email,
-          telefoneServer: telefone,
-          senhaServer: senha,
-          
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-  
-          if (resposta.ok) {
-              
-            setTimeout(() => {
-              window.location = "login.html";
-            }, "2000");
-  
+        // aguardar();
 
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
+        // teste
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var razaoSocial = input_razao_social.value;
+        var nomeFantasia = input_nome_fantasia.value;
+        var responsavelLegal = input_resp_legal.value;
+        var cnpj = input_cnpj.value;
+        var estado = select_estados.value;
+        var cidade = input_cidade.value;
+        var numero = input_numero.value;
+        var bairro = input_bairro.value;
+        var CEP = input_cep.value;
+        var logradouro = input_logradouro.value;
+        var email = input_email.value;
+        var telefone = input_telefone.value;
+        var senha = input_senha1.value;
+        var confirmacaoSenha = input_confirmacao1.value;
+
+        // Verificando se o código de ativação é de alguma empresa cadastrada
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                razaoSocialServer: razaoSocial,
+                nomeFantasiaServer: nomeFantasia,
+                responsavelLegalServer: responsavelLegal,
+                cnpjServer: cnpj,
+                estadoServer: estado,
+                cidadeServer: cidade,
+                numeroServer: numero,
+                bairroServer: bairro,
+                cepServer: CEP,
+                logradouroServer: logradouro,
+                emailServer: email,
+                telefoneServer: telefone,
+                senhaServer: senha,
+
+            }),
         })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        });
-  
-      return false;
+                if (resposta.ok) {
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
     }
-  
-  </script>
+
+</script>

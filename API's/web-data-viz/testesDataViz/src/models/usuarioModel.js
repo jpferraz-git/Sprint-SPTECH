@@ -30,7 +30,7 @@ function cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, ci
         
         `;
 
-    var instrucaoSql3 = `INSERT INTO cozinha VALUES (default, 'Comercial', 5, '', 3, 1);`
+    var instrucaoSql3 = `INSERT INTO cozinha VALUES (default, 'Comercial', 5, '', 3, (SELECT max(idEmpresa) from Empresa));`
     
     return database.executar(instrucaoSql), database.executar(instrucaoSql2), database.executar(instrucaoSql3)
 
@@ -39,16 +39,16 @@ function cadastrar(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, ci
 function autenticarEmailModel(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticarEmail(): ", email)
     var instrucaoSql = `
-        SELECT email FROM usuario WHERE email = '${email}';
+        SELECT idUsuario, email FROM usuario WHERE email = '${email}' LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function atualizarSenhaModel(novaSenha, idUsuario) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarSenhaModel(): ", novaSenha, idUsuario)
+function atualizarSenhaModel(senha, idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarSenhaModel(): ", senha, idUsuario)
     var instrucaoSql = `
-        UPDATE usuario SET senha = ${senha} WHERE idUsuario = ${idUsuario}
+        UPDATE usuario SET senha = '${senha}' WHERE idUsuario = ${idUsuario}
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
