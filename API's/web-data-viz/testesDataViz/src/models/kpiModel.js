@@ -54,7 +54,7 @@ function capturarKpiValores(idCozinha, idEmpresa) {
         SELECT m2.idMedida
         FROM medida m2
         WHERE m2.fkSensor = m.fkSensor
-        ORDER BY m2.dtLeitura DESC, m2.idMedida DESC
+        ORDER BY m2.idMedida DESC
         LIMIT 1
     )
     ORDER BY s.idSensor;

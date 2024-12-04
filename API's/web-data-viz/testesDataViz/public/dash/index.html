@@ -17,18 +17,16 @@
     <title>GasBusters | Dashboard</title>
 </head>
 
-<body onload="capturarKpiAtivos(), capturarKpiInoperante(), capturarKpiNiveis(), capturarKpiValores(), obterDados(), mediaSemana()">
+<body onload="capturarKpiAtivos(), capturarKpiInoperante(), capturarKpiNiveis(), capturarKpiValores()">
     <header>
         <nav class="navbar">
             <div class="logo">
                 <a href="./index.html" class="logo"><img src="./assets/logo.png" class="img-logo"> GASBUSTERS</a>
             </div>
             <ul class="nav-list">
-                <li><a href="../CodigoDashboard/index.html">Gráficos</a></li>
+                <li><a href="./index.html">Gráficos</a></li>
                 <li>•</li>
-                <li><a href="../Cadastro_e_Login/criacao_usuario.html">Criar usuários</a></li>
-                <li>•</li>
-                <li><a href="../Home/index.html">Sair</a></li>
+                <li><a href="../index.html" onclick="sessionStorage.clear()">Sair</a></li>
             </ul>
         </nav>
 

@@ -162,3 +162,42 @@ PRIMARY KEY (idMedida, fkSensor),
 FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
+SELECT * FROM usuario;
+
+SELECT * FROM medida;
+
+SELECT idMedida, nivel_gas, dtLeitura, fkSensor
+        FROM medida
+        WHERE fkSensor = 1
+        ORDER BY idMedida DESC
+        LIMIT 1;
+
+SELECT m.fkSensor as idSensor, m.nivel_gas, m.dtLeitura
+        FROM medida m
+        JOIN sensor s ON m.fkSensor = s.idSensor
+        WHERE s.fkCozinha = 1
+            AND s.fkEmpresa = 1
+            AND (
+            SELECT COUNT(*) 
+            FROM medida m2
+            WHERE m2.fkSensor = m.fkSensor AND m2.idMedida >= m.idMedida
+            ) <= 6
+        ORDER BY m.fkSensor, m.idMedida DESC;
+
+SELECT 
+        s.idSensor AS idSensor,
+        s.nomeSensor,
+        m.nivel_gas AS medidaSensor,
+        m.dtLeitura
+    FROM sensor s
+    JOIN medida m ON s.idSensor = m.fkSensor
+    WHERE s.fkCozinha = 1
+    AND s.fkEmpresa = 1
+    AND m.idMedida = (
+        SELECT m2.idMedida
+        FROM medida m2
+        WHERE m2.fkSensor = m.fkSensor
+        ORDER BY m2.idMedida DESC
+        LIMIT 1
+    )
+    ORDER BY s.idSensor;

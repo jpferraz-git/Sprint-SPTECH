@@ -116,13 +116,13 @@ function capturarKpiAtivos() {
                 sensorAtivos.innerHTML = json[0].qtdAtivos
             })
 
-            setTimeout(() => capturarKpiAtivos(), 2000);
+            setTimeout(() => capturarKpiAtivos(), 10000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores ativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiAtivos(), 2000);
+            setTimeout(() => capturarKpiAtivos(), 10000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -143,13 +143,13 @@ function capturarKpiInoperante() {
             resposta.json().then(json => {
                 sensorInoperante.innerHTML = json[0].qtdInoperante
             })
-            setTimeout(() => capturarKpiInoperante(), 2000);
+            setTimeout(() => capturarKpiInoperante(), 10000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores inativos`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiInoperante(), 2000);
+            setTimeout(() => capturarKpiInoperante(), 10000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -187,13 +187,13 @@ function capturarKpiNiveis() {
                     sensorPerigo.innerHTML = 0
                 }
             })
-            setTimeout(() => capturarKpiNiveis(), 2000);
+            setTimeout(() => capturarKpiNiveis(), 10000);
         } else {
             console.log(`Houve um erro ao carregar o número de sensores em cada nivel`)
             resposta.text().then(texto => {
                 console.error(texto);
             })
-            setTimeout(() => capturarKpiNiveis(), 2000);
+            setTimeout(() => capturarKpiNiveis(), 10000);
         }
     }).catch(erro => {
         console.log(erro)
@@ -204,7 +204,7 @@ var idSensorFg1;
 var idSensorFg2;
 var idSensorFn;
 
-function capturarKpiValores() {
+function capturarKpiValores(primeiraVez = true) {
     var idCozinha = sessionStorage.ID_COZINHA;
     var idEmpresa = sessionStorage.ID_EMPRESA;
 
@@ -226,14 +226,17 @@ function capturarKpiValores() {
 
                 function definirClasse(tela, botao, elemento, medida, idSensor, equipamento, kpiAlerta, kpiPergio) {
                     if (medida < 10) {
+                        elemento.innerHTML = medida
                         elemento.className = 'normal';
                         tela.className = 'status normal';
                         botao.textContent = 'Normal';
                     } else if (medida < 30) {
+                        elemento.innerHTML = medida
                         elemento.className = 'alerta';
                         tela.className = 'status alerta';
                         botao.textContent = 'Alerta';
                     } else {
+                        elemento.innerHTML = medida
                         elemento.className = 'perigo';
                         tela.className = 'status perigo';
                         botao.textContent = 'Perigo';
@@ -252,12 +255,15 @@ function capturarKpiValores() {
                 idSensorFg1 = json[0].idSensor;
                 idSensorFg2 = json[1].idSensor;
                 idSensorFn = json[2].idSensor;
+
+                obterDados()
+                mediaSemana()
             });
-            setTimeout(() => capturarKpiValores(), 2000);
+            setTimeout(() => capturarKpiValores(false), 10000);
         } else {
             console.error("Erro ao carregar os KPIs");
             resposta.text().then(texto => console.error(texto));
-            setTimeout(() => capturarKpiValores(), 2000);
+            setTimeout(() => capturarKpiValores(false), 10000);
         }
     }).catch(erro => {
         console.error("Erro de conexão ou processamento:", erro);
