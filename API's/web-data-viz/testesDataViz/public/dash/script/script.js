@@ -838,6 +838,19 @@ function mediaSemana() {
                 const mediaSemanaFg1 = []
                 const mediaSemanaFg2 = []
                 const mediaSemanaFn = []
+
+                const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+                const hoje = new Date();
+                const diaAtual = hoje.getDay();
+
+                const labels_line_week = [];
+
+                for(let i = 0; i < diasSemana.length; i++) {
+                    labels_line_week.push(diasSemana[(diaAtual + i) % diasSemana.length])
+                }
+
+                console.log(labels_line_week)
+
                 for (var i = json.length - 1; i >= 0; i--) {
                     if (json[i].idSensor == idSensorFg1) {
                         mediaSemanaFg1.push(json[i].mediaNivelGas)
@@ -848,9 +861,9 @@ function mediaSemana() {
                     }
                 }
 
-                plotagemSemanaFg1(mediaSemanaFg1)
-                plotagemSemanaFg2(mediaSemanaFg2)
-                plotagemSemanaFn(mediaSemanaFn)
+                plotagemSemanaFg1(mediaSemanaFg1, labels_line_week)
+                plotagemSemanaFg2(mediaSemanaFg2, labels_line_week)
+                plotagemSemanaFn(mediaSemanaFn, labels_line_week)
             })
         } else {
             console.log(`Houve um erro ao carregar a quantidade de alertas do dia`)
@@ -863,10 +876,8 @@ function mediaSemana() {
     })
 }
 
-function plotagemSemanaFg1(mediaSemanaFg1) {
+function plotagemSemanaFg1(mediaSemanaFg1, labels_line_week) {
     const grafico_semana_fg1 = document.querySelector("#grafico_semana_fg1")
-
-    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
     const data_semana_fg1 = {
         labels: labels_line_week,
@@ -915,10 +926,8 @@ function plotagemSemanaFg1(mediaSemanaFg1) {
     const graficoSemanaFg1 = new Chart(grafico_semana_fg1, config_semana_fg1);
 }
 
-function plotagemSemanaFg2(mediaSemanaFg2) {
+function plotagemSemanaFg2(mediaSemanaFg2, labels_line_week) {
     const grafico_semana_fg2 = document.querySelector("#grafico_semana_fg2")
-
-    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
     const data_semana_fg2 = {
         labels: labels_line_week,
@@ -967,10 +976,8 @@ function plotagemSemanaFg2(mediaSemanaFg2) {
     const graficoSemanaFg2 = new Chart(grafico_semana_fg2, config_semana_fg2);
 }
 
-function plotagemSemanaFn(mediaSemanaFn) {
+function plotagemSemanaFn(mediaSemanaFn, labels_line_week) {
     const grafico_semana_fn = document.querySelector("#grafico_semana_fn")
-
-    const labels_line_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
     const data_semana_fn = {
         labels: labels_line_week,

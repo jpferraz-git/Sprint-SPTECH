@@ -7,7 +7,7 @@
 
 body {
     position: relative;
-    background-image: url(../../../../../../WebSite/Imagens/Fundo_Editado.png);
+    background-image: url('../../assets/Fundo_Editado.png');
     padding-top: 13vh;
 }
 

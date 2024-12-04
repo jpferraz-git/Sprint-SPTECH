@@ -42,7 +42,6 @@ function capturarKpiValores(idCozinha, idEmpresa) {
     var instrucaoSql = `
     SELECT 
         s.idSensor AS idSensor,
-        s.nomeSensor,
         m.nivel_gas AS medidaSensor,
         m.dtLeitura
     FROM sensor s
