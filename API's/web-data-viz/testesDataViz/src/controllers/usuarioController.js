@@ -91,24 +91,19 @@ function autenticarEmail(req, res) {
 
 
     usuarioModel.autenticarEmailModel(email)
-        .then(
-            function (resultadoAutenticar) {
-                console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+        .then(function (resultadoAutenticar) {
+            console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                if (resultadoAutenticar.length == 1) {
-                    console.log(resultadoAutenticar);
+            if (resultadoAutenticar.length === 0) {
+                res.json(0)
+            } else if (resultadoAutenticar.length === 1) {
+                // Caso haja exatamente um resultado, enviar o resultado
+                res.json(resultadoAutenticar);
+            } 
+        })
 
-                    res.json({
-                        resultado: resultadoAutenticar
-                    });
-
-
-
-                }
-            }
-
-        ).catch(
+        .catch(
             function (erro) {
                 console.log(erro);
                 console.log("\nHouve um erro ao autenticar o email: ", erro.sqlMessage);
@@ -120,9 +115,8 @@ function autenticarEmail(req, res) {
 function atualizarSenha(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 
-    var novaSenha = req.body.novaSenhaServer;
+    var novaSenha = req.body.senhaServer;
     var idUsuario = req.body.idUsuarioServer;
-
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
 
@@ -130,6 +124,7 @@ function atualizarSenha(req, res) {
         .then(
             function (resultado) {
                 res.json(resultado);
+                console.log('Senha atualizada com sucesso!')
             }
         ).catch(
             function (erro) {

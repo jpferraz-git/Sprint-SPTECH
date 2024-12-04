@@ -4,7 +4,7 @@ function revelarSenha(idInput, idImage) {
         idImage.src = "public/assets/eye.png"
     } else {
         idInput.type = "password"
-        idImage.src = "public/assets/eye-crossed.png"
+        idImage.src = "assets/eye-crossed.png"
     }
 }
 
@@ -200,7 +200,7 @@ function adicionarDeletarUsuario(a) {
                             placeholder="Digite aqui" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Digite aqui'">
                         <img id="img_senha${qtd_users}" onclick="revelarSenha(input_senha${qtd_users},img_senha${qtd_users})"
-                            src="public/assets/eye-crossed.png" alt="">
+                            src="assets/eye-crossed.png" alt="">
                     </div>
                 </div>
                 <div class="campo-indiv">
@@ -211,7 +211,7 @@ function adicionarDeletarUsuario(a) {
                             onblur="this.placeholder = 'Digite aqui'">
                         <img id="img_confirmacao${qtd_users}"
                             onclick="revelarSenha(input_confirmacao${qtd_users},img_confirmacao${qtd_users})"
-                            src="public/assets/eye-crossed.png" alt="">
+                            src="assets/eye-crossed.png" alt="">
                     </div>
                 </div>
             </div>

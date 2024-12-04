@@ -19,8 +19,8 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  /* background-color: #000; */
-  background-image: url(../../Imagens/Fundo_Editado.png);
+  background-color: #D0D3D4;
+  /* background-image: url(../../Imagens/Fundo_Editado.png); */
   color: #63666A;
   overflow-x: hidden;
   display: flex;
@@ -122,7 +122,7 @@ header a {
   display: flex;
   background-color: #D0D3D4;
   font-family: Arial, sans-serif;
-  height: 100vh;
+  /* height: 100vh; */
   flex-direction: row;
   align-content: center;
   justify-content: center;
