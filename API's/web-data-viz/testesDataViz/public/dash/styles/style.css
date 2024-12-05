@@ -339,12 +339,12 @@ main {
 
 .alerta-ruim {
     padding: 10px;
-    background-color: rgb(200, 0, 0);
+    background-color: #F16529;
 }
 
 .alerta-perigoso {
     padding: 10px;
-    background-color: rgb(100, 0, 0);
+    background-color: #CD0505;
 }
 
 .ult-medicao {
