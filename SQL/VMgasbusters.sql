@@ -1,5 +1,15 @@
+
+
 CREATE DATABASE gasbusters;
 USE gasbusters;
+
+CREATE TABLE tecnico (
+idTecnico INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45),
+telefone VARCHAR(15),
+email VARCHAR(100),
+especialidade VARCHAR(100)
+);
 
 
 CREATE TABLE empresa(
@@ -17,6 +27,15 @@ telefoneEmpresa CHAR(11),
 emailEmpresa 	VARCHAR(100),
 dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE empresa_tecnico (
+fkEmpresa INT,
+fkTecnico INT,
+PRIMARY KEY (fkEmpresa, fkTecnico),
+FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
+FOREIGN KEY (fkTecnico) REFERENCES tecnico (idTecnico)
+);
+
 
 
 CREATE TABLE usuario(
