@@ -55,24 +55,24 @@ async function cadastrarSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj
 async function inserirMedidas(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha) {
     var instrucaoSql = `
     insert into medida(nivel_gas, fksensor) values 
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor)) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 1) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor)),
-        (0.0, (select (max(idsensor) - 2) from sensor));
+        (0.1, (select (max(idsensor)) from sensor)),
+        (0.4, (select (max(idsensor)) from sensor)),
+        (0.2, (select (max(idsensor)) from sensor)),
+        (0.3, (select (max(idsensor)) from sensor)),
+        (0.1, (select (max(idsensor)) from sensor)),
+        (0.5, (select (max(idsensor)) from sensor)),
+        (0.1, (select (max(idsensor) - 1) from sensor)),
+        (0.4, (select (max(idsensor) - 1) from sensor)),
+        (0.2, (select (max(idsensor) - 1) from sensor)),
+        (0.3, (select (max(idsensor) - 1) from sensor)),
+        (0.1, (select (max(idsensor) - 1) from sensor)),
+        (0.5, (select (max(idsensor) - 1) from sensor)),
+        (0.1, (select (max(idsensor) - 2) from sensor)),
+        (0.4, (select (max(idsensor) - 2) from sensor)),
+        (0.2, (select (max(idsensor) - 2) from sensor)),
+        (0.3, (select (max(idsensor) - 2) from sensor)),
+        (0.5, (select (max(idsensor) - 2) from sensor)),
+        (0.1, (select (max(idsensor) - 2) from sensor));
         `;
     await cadastrarSensor(razaoSocial, nomeFantasia, responsavelLegal, cnpj, estado, cidade, numero, bairro, CEP, logradouro, email, telefone, senha)
     await database.executar(instrucaoSql)
