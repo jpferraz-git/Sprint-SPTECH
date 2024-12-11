@@ -1,23 +1,20 @@
-
-
 CREATE DATABASE gasbusters;
 USE gasbusters;
-
-
 
 
 CREATE TABLE empresa(
 idEmpresa  		INT PRIMARY KEY AUTO_INCREMENT,
 razaoSocial  	VARCHAR(100),
 nomeFantasia 	VARCHAR(100),
-CNPJ  			CHAR(14),
+responsavellegal varchar(45),
+CNPJ  			CHAR(18),
 cidade  		VARCHAR(45),
 bairro 			VARCHAR(45),
 uf 				CHAR(5),
 rua 			VARCHAR(45),
 numero 			VARCHAR(6),
 cep 			CHAR(9),
-telefoneEmpresa CHAR(11),
+telefoneEmpresa CHAR(14),
 emailEmpresa 	VARCHAR(100),
 dtCriacao 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -52,7 +49,6 @@ FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 CREATE TABLE cozinha(
 idCozinha		 	 INT AUTO_INCREMENT,
 tipoCozinha 		 VARCHAR(15),
-numeroFuncionarios 	 INT,
 observacoes 		 TEXT,
 qtdSaidaGas	 		 INT,
 fkEmpresa 			 INT,
@@ -61,7 +57,7 @@ FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
 CHECK (tipoCozinha IN ('Industrial', 'Comercial'))
 );
 
-CREATE TABLE localSensor(
+CREATE TABLE localsensor(
 idLocal INT AUTO_INCREMENT,
 descricao TEXT,
 fkCozinha INT,
@@ -82,7 +78,7 @@ fkEmpresa 			INT,
 fkLocal				INT,
 FOREIGN KEY (fkCozinha) REFERENCES cozinha (idCozinha),
 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
-FOREIGN KEY (fkLocal) REFERENCES localSensor (idLocal),
+FOREIGN KEY (fkLocal) REFERENCES localsensor(idLocal),
 CHECK (sensorStatus IN ('Ativo', 'Inativo'))
 );
 

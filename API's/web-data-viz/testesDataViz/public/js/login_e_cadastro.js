@@ -310,7 +310,7 @@ function consultarEmail() {
 
         if (resposta.ok) {
             return resposta.json().then(json => {
-                sessionStorage.ID_USUARIO = json[0].idUsuario;
+                sessionStorage.ID_USUARIO = json[0].idusuario;
                 console.log('Resultado:', json);
                 if (Object.keys(json).length === 0) {
                     sessionStorage.setItem('VALIDACAO', 'false');
